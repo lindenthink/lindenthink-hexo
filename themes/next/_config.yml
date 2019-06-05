@@ -198,7 +198,7 @@ site_state: true
 # Value before `||` delimeter is the target permalink.
 # Value after `||` delimeter is the name of FontAwesome icon. If icon (with or without delimeter) is not specified, globe icon will be loaded.
 social:
-  GitHub: https://github.com/qinlinchong || github
+  GitHub: https://github.com/lindenthink || github
   E-Mail: mailto:84449541@qq.com || envelope
   #Weibo: https://weibo.com/yourname || weibo
   #Google: https://plus.google.com/yourname || google
@@ -827,7 +827,7 @@ firestore:
 busuanzi_count:
   enable: true
   total_visitors: true
-  total_visitors_icon: users
+  total_visitors_icon: user
   total_views: true
   total_views_icon: eye
   post_views: true
