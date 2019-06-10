@@ -56,11 +56,11 @@ footer:
   icon:
     # Icon name in fontawesome, see: https://fontawesome.com/v4.7.0/icons/
     # `heart` is recommended with animation in red (#ff0000).
-    name: heart
+    name: pencil
     # If you want to animate the icon, set it to true.
     animated: true
     # Change the color of icon, using Hex Code.
-    color: "#ff0000"
+    color: "#808080"
 
   # If not defined, `author` from Hexo main config will be used.
   copyright:
@@ -283,7 +283,7 @@ back2top:
 # Firstly, you need enable the chat service you want to activate its sidebar button.
 chat:
   enable: false
-  #service: chatra
+  service: chatra
   #service: tidio
   icon: comment # icon in Font Awesome 4, set false to disable icon
   text: Chat # button text, change it as you wish
@@ -624,7 +624,7 @@ disqusjs:
 
 # Changyan
 changyan:
-  enable: true
+  enable: false
   appid:
   appkey:
 
@@ -637,7 +637,7 @@ valine:
   appkey:  VLjcJi2mwUj7XeGj4Vq2sUmx
   notify: true # mail notifier, See: https://github.com/xCss/Valine/wiki
   verify: true # Verification code
-  placeholder: Just go go # comment box placeholder
+  placeholder: 敬请留言，你的支持是我最大的动力！ # comment box placeholder
   avatar: mm # gravatar style
   guest_info: nick,mail,link # custom comment header
   pageSize: 10 # pagination size
@@ -884,7 +884,7 @@ local_search:
 chatra:
   enable: false
   async: true
-  id: # visit Dashboard to get your ChatraID
+  id: ZNhBSHLbupmM48hL2 # visit Dashboard to get your ChatraID
   #embed: # unfinished experimental feature for developers, See: https://chatra.io/help/api/#injectto
 
 # Tidio Support
