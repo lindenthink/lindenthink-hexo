@@ -18,6 +18,5 @@
     "hexo-server": "^0.3.3",
     "hexo-generator-searchdb": "^1.0.8"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
