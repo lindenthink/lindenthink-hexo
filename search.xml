@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  <entry>
+    <title><![CDATA[常用网站集合]]></title>
+    <url>%2F2019%2F06%2F11%2Ftools%2F</url>
+    <content type="text"><![CDATA[主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。 编程 在线接口测试 在线正则表达式测试 模拟数据服务 Web开发测试工具集合 30秒掌握JS代码片段 两行代码统计PV 许可证 开源许可证选择 排版/转换 在线格式化 数学公式截图转为latex排版 Unix时间戳 在线二维码生成 Nginx配置文件生成 cron表达式生成器 文字转图片 编辑器 在线Markdown编辑器 jsbin-在线编写调试JS jsfiddle-JS在线调试 codepen-前端在线开发，可嵌入到页面，含很多特效源码 codesandbox-前端代码沙盒，可以嵌入到页面 vscode网页版 加密/解密 在线加密/解密 Base64编码 多媒体 在线录屏工具 在线PS 开源视频编辑器 PDF相关功能，包括格式转换等很多功能 去除图片背景 趣味 需要我帮你百度吗 演示汉字笔画顺序的JS库 文档 菜鸟教程 HTTP状态码详解 RFC文档 谷歌JS编码规范 Node的API文档 JEP JSDoc中文文档 综合 龙猫学术导航 未完待续…]]></content>
+      <tags>
+        <tag>工具</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[Hello World]]></title>
+    <url>%2F2019%2F06%2F11%2Fhello-world%2F</url>
+    <content type="text"><![CDATA[Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick StartCreate a new post1$ hexo new "My New Post" More info: Writing Run server1$ hexo server More info: Server Generate static files1$ hexo generate More info: Generating Deploy to remote sites1$ hexo deploy More info: Deployment]]></content>
+  </entry>
+</search>
