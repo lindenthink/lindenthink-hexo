@@ -4,6 +4,7 @@ date: 2019-06-11 23:36:43
 tags: 
 	- 工具
 categories:
+	- 工具
 ---
 > 主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。
 
@@ -53,7 +54,7 @@ categories:
 * [需要我帮你百度吗](https://lmbtfy.cn/)
 * [演示汉字笔画顺序的JS库](https://chanind.github.io/hanzi-writer/docs.html)
 
-## 参考文档
+## 参照/文档
 * [HTTP状态码详解](http://tool.oschina.net/commons?type=5)
 * [RFC文档](http://www.rfcreader.com/)
 * [谷歌JS编码规范](https://google.github.io/styleguide/jsguide.html)
