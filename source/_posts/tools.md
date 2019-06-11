@@ -5,7 +5,7 @@ tags:
 	- 工具
 categories:
 ---
-> 主要记录了一些常用的在线工具，将持续进行收集和更新。
+> 主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。
 
 <!-- more -->
 ## 编程
@@ -13,6 +13,8 @@ categories:
 * [在线正则表达式测试](http://tool.oschina.net/regex/)
 * [模拟数据服务](https://www.easy-mock.com/docs)
 * [Web开发测试工具集合](https://my.oschina.net/editorial-story/blog/1512299?from=20170820)
+* [30秒掌握JS代码片段](https://30secondsofcode.org/)
+* [两行代码统计PV](http://busuanzi.ibruce.info/)
 
 ## 许可证
 * [开源许可证选择](https://choosealicense.com)
@@ -30,7 +32,8 @@ categories:
 * [在线Markdown编辑器](https://www.zybuluo.com/mdeditor)
 * [jsbin-在线编写调试JS](https://jsbin.com)
 * [jsfiddle-JS在线调试](http://jsfiddle.net/)
-* [codesandbox-前端代码沙盒，可以嵌入到页面](https://codesandbox.io/docs/embedding)
+* [codepen-前端在线开发](https://codepen.io/)，可嵌入到页面，含很多特效源码
+* [codesandbox-前端代码沙盒](https://codesandbox.io/docs/embedding)，可以嵌入到页面
 * [vscode网页版](https://microsoft.github.io/monaco-editor/index.html)
 
 ## 加密/解密
@@ -41,6 +44,8 @@ categories:
 * [在线录屏工具](https://screenrecord.43z.one/)
 * [在线PS](https://www.uupoop.com/)
 * [开源视频编辑器](https://kdenlive.org/en/)
+* [PDF相关功能](https://www.ilovepdf.com/)，包括格式转换等很多功能
+* [去除图片背景](https://www.remove.bg/)
 
 ## 趣味
 * [需要我帮你百度吗](https://lmbtfy.cn/)
@@ -51,9 +56,9 @@ categories:
 * [HTTP状态码详解](http://tool.oschina.net/commons?type=5)
 * [RFC文档](http://www.rfcreader.com/)
 * [谷歌JS编码规范](https://google.github.io/styleguide/jsguide.html)
-* [JDk版本特性](http://openjdk.java.net/jeps)
 * [Node的API文档](https://nodejs.org/api/stream.html)
 * [JEP](http://openjdk.java.net/jeps/0)
+* [JSDoc中文文档](https://www.html.cn/doc/jsdoc/index.html)
 
 ## 综合
 * [龙猫学术导航](http://www.6453.net/)
