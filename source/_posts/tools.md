@@ -20,6 +20,7 @@ categories:
 * [开源许可证选择](https://choosealicense.com)
 
 ## 排版/转换
+* [复制内容转为Markdown格式](https://euangoddard.github.io/clipboard2markdown)
 * [在线格式化](http://tool.oschina.net/codeformat/js/)
 * [数学公式截图转为latex排版](https://mathpix.com/)
 * [Unix时间戳](http://tool.chinaz.com/Tools/unixtime.aspx)
@@ -46,21 +47,49 @@ categories:
 * [开源视频编辑器](https://kdenlive.org/en/)
 * [PDF相关功能](https://www.ilovepdf.com/)，包括格式转换等很多功能
 * [去除图片背景](https://www.remove.bg/)
+* [在线画ASCII码框图](http://asciiflow.com)
 
 ## 趣味
 * [需要我帮你百度吗](https://lmbtfy.cn/)
 * [演示汉字笔画顺序的JS库](https://chanind.github.io/hanzi-writer/docs.html)
 
-## 文档
-* [菜鸟教程](https://www.runoob.com)
+## 参考文档
 * [HTTP状态码详解](http://tool.oschina.net/commons?type=5)
 * [RFC文档](http://www.rfcreader.com/)
 * [谷歌JS编码规范](https://google.github.io/styleguide/jsguide.html)
 * [Node的API文档](https://nodejs.org/api/stream.html)
 * [JEP](http://openjdk.java.net/jeps/0)
 * [JSDoc中文文档](https://www.html.cn/doc/jsdoc/index.html)
+* [IntelliJ Platform SDK ](http://www.jetbrains.org/intellij/sdk/docs/welcome.html)
+* [GitHub官方教程](https://lab.github.com/courses)
 
-## 综合
+## 教程
+* [菜鸟教程](https://www.runoob.com)
+* [极客学院](http://wiki.jikexueyuan.com/)
+* [计算机组织导论](http://bob.cs.sonoma.edu/)
+* [黑客工具教程](https://hacker-tools.github.io/lectures)
+* [第九频道](https://channel9.msdn.com/Browse/AllContent)，包括很多课程视频
+* [运维学校](http://www.opsschool.org/)
+* [免费编程笔记下载](https://goalkicker.com/)
+
+## 素材
+* [17素材](http://www.17sucai.com/)
+* [阿里巴巴矢量图标库](https://www.iconfont.cn)
+* [ionicons-图标库](https://ionicons.com/)
+* [阮一峰整理免费资源合集](https://www.yuque.com/ruanyf/share/free-photos)
+* [SVG格式Logo](https://www.vectorlogo.zone)
+* [千库网](https://588ku.com/image/gudianbiankuang.html)
+* [无版权插图库](https://gallery.manypixels.co)
+
+## 资源
+* [Kindle电子书分享网](https://kindle.51nazhun.pub/)
+
+## 网络
+* [wireshark-网络数据包分析](https://www.wireshark.org)
+* [在线测速](https://www.speedtest.net)
+
+## 学术
 * [龙猫学术导航](http://www.6453.net/)
+* [在线古籍](https://ctext.org/huangdi-neijing/shang-gu-tian-zhen-lun/zhs)
 
 ## 未完待续...
