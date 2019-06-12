@@ -61,7 +61,7 @@
               {{ _p('counter.categories', visibleCategories) }}
             </div>
             <div class="category-all">
-              {{ list_categories() }}
+              {{ list_categories(site.categories) }}
             </div>
           </div>
         {% elif page.type === 'schedule' %}
