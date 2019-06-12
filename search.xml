@@ -1,9 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title><![CDATA[常用CSS代码片段]]></title>
+    <url>%2F2019%2F06%2F11%2Fcss-snippet%2F</url>
+    <content type="text"><![CDATA[主要记录了一些常用的样式代码片段和实现效果，将持续进行收集和更新。 外层盒阴影 盒阴影在网页中比较常用，能够很好的组织和区分各个模块。 代码 12345.outer-shadow &#123; -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.52); -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.52); box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.52);&#125; 效果 透明 在一些地方经常需要用到透明字体，比如输入框的占位符等，下面给出了适应于不同浏览器的实现。 代码 123456.transparent &#123; filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; opacity: 0.5;&#125; 效果]]></content>
+      <categories>
+        <category>前端</category>
+      </categories>
+      <tags>
+        <tag>CSS</tag>
+      </tags>
+  </entry>
+  <entry>
     <title><![CDATA[常用网站集合]]></title>
     <url>%2F2019%2F06%2F11%2Ftools%2F</url>
-    <content type="text"><![CDATA[主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。 编程 在线接口测试 在线正则表达式测试 模拟数据服务 Web开发测试工具集合 30秒掌握JS代码片段 两行代码统计PV 许可证 开源许可证选择 排版/转换 在线格式化 数学公式截图转为latex排版 Unix时间戳 在线二维码生成 Nginx配置文件生成 cron表达式生成器 文字转图片 编辑器 在线Markdown编辑器 jsbin-在线编写调试JS jsfiddle-JS在线调试 codepen-前端在线开发，可嵌入到页面，含很多特效源码 codesandbox-前端代码沙盒，可以嵌入到页面 vscode网页版 加密/解密 在线加密/解密 Base64编码 多媒体 在线录屏工具 在线PS 开源视频编辑器 PDF相关功能，包括格式转换等很多功能 去除图片背景 趣味 需要我帮你百度吗 演示汉字笔画顺序的JS库 文档 菜鸟教程 HTTP状态码详解 RFC文档 谷歌JS编码规范 Node的API文档 JEP JSDoc中文文档 综合 龙猫学术导航 未完待续…]]></content>
+    <content type="text"><![CDATA[主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。 编程 在线接口测试 在线正则表达式测试 模拟数据服务 Web开发测试工具集合 30秒掌握JS代码片段 两行代码统计PV 许可证 开源许可证选择 排版/转换 复制内容转为Markdown格式 在线格式化 数学公式截图转为latex排版 Unix时间戳 在线二维码生成 Nginx配置文件生成 cron表达式生成器 文字转图片 编辑器 在线Markdown编辑器 jsbin-在线编写调试JS jsfiddle-JS在线调试 codepen-前端在线开发，可嵌入到页面，含很多特效源码 codesandbox-前端代码沙盒，可以嵌入到页面 vscode网页版 加密/解密 在线加密/解密 Base64编码 多媒体 在线录屏工具 在线PS 开源视频编辑器 PDF相关功能，包括格式转换等很多功能 去除图片背景 在线画ASCII码框图 趣味 需要我帮你百度吗 演示汉字笔画顺序的JS库 参照/文档 HTTP状态码详解 RFC文档 谷歌JS编码规范 Node的API文档 JEP JSDoc中文文档 IntelliJ Platform SDK GitHub官方教程 教程 菜鸟教程 极客学院 计算机组织导论 黑客工具教程 第九频道，包括很多课程视频 运维学校 免费编程笔记下载 素材 17素材 阿里巴巴矢量图标库 ionicons-图标库 阮一峰整理免费资源合集 SVG格式Logo 千库网 无版权插图库 资源 Kindle电子书分享网 网络 wireshark-网络数据包分析 在线测速 学术 龙猫学术导航 在线古籍 未完待续…]]></content>
+      <categories>
+        <category>工具</category>
+      </categories>
       <tags>
         <tag>工具</tag>
       </tags>
