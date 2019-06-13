@@ -95,7 +95,7 @@ footer:
 creative_commons:
   license: by-nc-sa
   sidebar: false
-  post: false
+  post: true
   language:
 
 # `Follow me on GitHub` banner in the top-right corner.
@@ -336,6 +336,7 @@ symbols_count_time:
   item_text_total: false
   awl: 4
   wpm: 275
+  suffix: mins.
 
 codeblock:
   # Manual define the border radius in codeblock, leave it blank for the default value: 1
@@ -1210,3 +1211,5 @@ vendors:
 css: css
 js: js
 images: images
+
+######################以下为新增#######################
