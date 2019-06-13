@@ -5,6 +5,7 @@
     <url>%2F2019%2F06%2F11%2Fcss-snippet%2F</url>
     <content type="text"><![CDATA[主要记录了一些常用的样式代码片段和实现效果，将持续进行收集和更新。 外层盒阴影 盒阴影在网页中比较常用，能够很好的组织和区分各个模块。 代码 12345.outer-shadow &#123; -webkit-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.52); -moz-box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.52); box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.52);&#125; 效果 透明 在一些地方经常需要用到透明字体，比如输入框的占位符等，下面给出了适应于不同浏览器的实现。 代码 123456.transparent &#123; filter: alpha(opacity=50); -moz-opacity: 0.5; -khtml-opacity: 0.5; opacity: 0.5;&#125; 效果]]></content>
       <categories>
+        <category>编程</category>
         <category>前端</category>
       </categories>
       <tags>

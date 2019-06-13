@@ -1612,6 +1612,16 @@ pre .javascript .function {
 .fancybox-close:hover {
   border: none;
 }
+.post-copyright {
+  margin: 2em 0 0;
+  padding: 0.5em 1em;
+  border-left: 3px solid #ff1700;
+  background-color: #eee;
+  list-style: none;
+}
+.post-copyright i.fa {
+  font-size: 15px;
+}
 .rtl.post-body p,
 .rtl.post-body a,
 .rtl.post-body h1,
@@ -1763,7 +1773,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9ff;
+  background: #5017ff;
 }
 .feed-link,
 .chat {
@@ -2191,7 +2201,6 @@ pre .javascript .function {
 .category-all-page .category-list {
   margin: 0;
   padding: 0;
-  list-style: none;
 }
 .category-all-page .category-list-item {
   margin: 5px 10px;
@@ -2209,6 +2218,9 @@ pre .javascript .function {
 }
 .category-all-page .category-list-child {
   padding-left: 10px;
+}
+.category-all-page .category-all>ul>li {
+  border-bottom: 1px solid #ccc;
 }
 #event-list {
   padding-left: 30px;
