@@ -94,7 +94,7 @@ footer:
 # Valid values of language: deed.zh, deed.fr, deed.de, etc.
 creative_commons:
   license: by-nc-sa
-  sidebar: false
+  sidebar: true
   post: true
   language:
 
@@ -336,7 +336,6 @@ symbols_count_time:
   item_text_total: false
   awl: 4
   wpm: 275
-  suffix: mins.
 
 codeblock:
   # Manual define the border radius in codeblock, leave it blank for the default value: 1
@@ -417,12 +416,12 @@ custom_logo:
 highlight_theme: night
 
 # Enable "cheers" for archive page.
-cheers: false
+cheers: true
 
 # TagCloud settings for tags page.
 tagcloud:
   # If true, font size, font color and amount of tags can be customized
-  enable: false
+  enable: true
   # All values below are same as default, change them by yourself
   min: 12 # min font size in px
   max: 30 # max font size in px
@@ -529,7 +528,7 @@ math:
 
 # Han Support
 # Dependencies: https://github.com/theme-next/theme-next-han
-han: false
+han: true
 
 # Pangu Support
 # Dependencies: https://github.com/theme-next/theme-next-pangu
@@ -568,7 +567,7 @@ quicklink:
 # Bookmark Support
 # Dependencies: https://github.com/theme-next/theme-next-bookmark
 bookmark:
-  enable: false
+  enable: true
   # If auto, save the reading position when closing the page or clicking the bookmark-icon.
   # If manual, only save it by clicking the bookmark-icon.
   save: auto
@@ -883,9 +882,9 @@ local_search:
 # See: https://chatra.io
 # Dashboard: https://app.chatra.io/settings/general
 chatra:
-  enable: false
+  enable: true
   async: true
-  id: ZNhBSHLbupmM48hL2 # visit Dashboard to get your ChatraID
+  id: NYntaGXsFmsvsYuvw # visit Dashboard to get your ChatraID
   #embed: # unfinished experimental feature for developers, See: https://chatra.io/help/api/#injectto
 
 # Tidio Support
@@ -1211,5 +1210,3 @@ vendors:
 css: css
 js: js
 images: images
-
-######################以下为新增#######################
