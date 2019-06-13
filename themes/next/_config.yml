@@ -828,8 +828,10 @@ busuanzi_count:
   enable: true
   total_visitors: true
   total_visitors_icon: user
+  total_visitors_title: 访问人数
   total_views: true
   total_views_icon: eye
+  total_views_title: 浏览次数
   post_views: true
   post_views_icon: eye
 
