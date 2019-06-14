@@ -444,6 +444,7 @@ body {
 }
 .container {
   position: relative;
+  opacity: 0.8;
 }
 .header-inner {
   margin: 0 auto;
@@ -1773,7 +1774,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #d2d9ff;
+  background: #ff20f7;
 }
 .feed-link,
 .chat {
