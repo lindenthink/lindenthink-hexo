@@ -94,7 +94,7 @@ footer:
 # Valid values of language: deed.zh, deed.fr, deed.de, etc.
 creative_commons:
   license: by-nc-sa
-  sidebar: true
+  sidebar: false
   post: true
   language:
 
@@ -359,7 +359,7 @@ wechat_subscriber:
 reward_settings:
   # If true, reward would be displayed in every article by default.
   # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
-  enable: true
+  enable: false
   animation: true
   #comment: Donate comment here
 
@@ -832,7 +832,7 @@ busuanzi_count:
   total_visitors_title: 访问人数
   total_views: true
   total_views_icon: eye
-  total_views_title: 浏览次数
+  total_views_title: 浏览总量
   post_views: true
   post_views_icon: eye
 
@@ -1213,3 +1213,12 @@ vendors:
 css: css
 js: js
 images: images
+
+
+frends: 
+  -
+    name: 菩提思
+    href: http://47.104.243.84/
+    slogan: 一花一世界，一页一菩提
+    snapshot: 
+  - 
