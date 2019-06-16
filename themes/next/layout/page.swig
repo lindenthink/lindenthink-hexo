@@ -66,6 +66,10 @@
           </div>
         {% elif page.type === 'schedule' %}
           {% include 'schedule.swig' %}
+        {% elif page.type === 'friends' %}
+          {% include 'friends.swig' %}
+        {% elif page.type === 'about' %}
+          {% include 'about.swig' %}
         {% else %}
           {{ page.content }}
         {% endif %}

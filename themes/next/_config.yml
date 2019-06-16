@@ -1214,11 +1214,15 @@ css: css
 js: js
 images: images
 
-
-frends: 
+# 友链
+friends: 
   -
     name: 菩提思
     href: http://47.104.243.84/
     slogan: 一花一世界，一页一菩提
     snapshot: 
   - 
+    name: 菩提思2
+    href: http://47.104.243.84/
+    slogan: 一花一世界，一页一菩提
+    snapshot: 
