@@ -30,6 +30,7 @@ top: 100
 * [Nginx配置文件生成](https://nginxconfig.io/)
 * [cron表达式生成器](http://cron.qqe2.com/)
 * [文字转图片](https://www.qt86.com/22)
+* [在线国际化](https://i18ns.com/zh/index.html)
 
 ## 编辑器
 * [在线Markdown编辑器](https://www.zybuluo.com/mdeditor)
@@ -38,6 +39,7 @@ top: 100
 * [codepen-前端在线开发](https://codepen.io/)，可嵌入到页面，含很多特效源码
 * [codesandbox-前端代码沙盒](https://codesandbox.io/docs/embedding)，可以嵌入到页面
 * [vscode网页版](https://microsoft.github.io/monaco-editor/index.html)
+* [在线拾色器](https://www.w3cschool.cn/tools/index?name=cpicker)
 
 ## 加密/解密
 * [在线加密/解密](http://tool.chacuo.net/cryptaes)
@@ -64,6 +66,7 @@ top: 100
 * [JSDoc中文文档](https://www.html.cn/doc/jsdoc/index.html)
 * [IntelliJ Platform SDK ](http://www.jetbrains.org/intellij/sdk/docs/welcome.html)
 * [GitHub官方教程](https://lab.github.com/courses)
+* [CSS预处理器stylus](http://stylus-lang.com/)
 
 ## 教程
 * [菜鸟教程](https://www.runoob.com)
@@ -82,9 +85,11 @@ top: 100
 * [SVG格式Logo](https://www.vectorlogo.zone)
 * [千库网](https://588ku.com/image/gudianbiankuang.html)
 * [无版权插图库](https://gallery.manypixels.co)
+* [PPT模板](http://www.1ppt.com)
 
 ## 资源
 * [Kindle电子书分享网](https://kindle.51nazhun.pub/)
+* [开源项目/资源收集分类](https://www.ctolib.com/)
 
 ## 网络
 * [wireshark-网络数据包分析](https://www.wireshark.org)
