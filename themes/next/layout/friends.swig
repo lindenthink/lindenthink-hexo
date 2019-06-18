@@ -15,8 +15,10 @@
     {% for friend in theme.friends %}
         <ul>
             <li>
-              <img />
-              <a href={{ friend.href }} target="_blank">{{ friend.name }}</a>
+              <span> {{ friend.name }} </span>
+              <a href={{ friend.href }} target="_blank">
+                <img src={{ friend.snapshot }} alt= {{ friend.slogan }} />
+              </a>
             </li>
         </ul>
     {% endfor %}
