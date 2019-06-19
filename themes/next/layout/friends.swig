@@ -7,7 +7,7 @@
     <div class="warning">
       <i id="animate" class="fa fa-volume-up"></i>
       <marquee bgcolor="f3f3f3">
-        可以发送邮件或者每天9:00-18:00在线申请互链，为了保证质量，要求贵方博客内容完整且至少发表十篇以上原创文章，谢谢配合!
+        以下为您精选了一些博客，可以欣赏到不一样的精彩！如果您的博客也想在这里展示，请参考“关于”页面！
       </marquee>
     </div>
 
