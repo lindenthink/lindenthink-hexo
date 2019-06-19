@@ -49,6 +49,10 @@
 
 
 
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
 
 
 
@@ -80,10 +84,10 @@
     sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
     back2top: true,
     back2top_sidebar: false,
-    fancybox: false,
+    fancybox: true,
     fastclick: false,
     lazyload: false,
-    tabs: false,
+    tabs: true,
     motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
@@ -93,7 +97,6 @@
       labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
-  !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
 </script>
 
 
@@ -118,6 +121,11 @@
 <!-- /Chatra {/literal} -->
 
 
+<!-- 心型点击效果 -->
+<script>
+  !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
+</script>
+
   <meta name="description" content="主要记录了一些常用的样式代码片段和实现效果，将持续进行收集和更新。">
 <meta name="keywords" content="CSS">
 <meta property="og:type" content="article">
@@ -128,7 +136,9 @@
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%A4%96%E5%B1%82%E7%9B%92%E9%98%B4%E5%BD%B1.png">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/transparent.png">
-<meta property="og:updated_time" content="2019-06-14T00:41:20.832Z">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%88%97%E8%A1%A8%E7%BA%B8%E8%B4%A8%E6%95%88%E6%9E%9C.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E7%BC%9D%E5%90%88%E6%95%88%E6%9E%9C.png">
+<meta property="og:updated_time" content="2019-06-19T02:48:03.129Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用CSS代码片段">
 <meta name="twitter:description" content="主要记录了一些常用的样式代码片段和实现效果，将持续进行收集和更新。">
@@ -321,6 +331,23 @@
     <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-friends">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
 
       
       
@@ -466,7 +493,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-14 08:41:20" itemprop="dateModified" datetime="2019-06-14T08:41:20+08:00">2019-06-14</time>
+                <time title="修改时间：2019-06-19 10:48:03" itemprop="dateModified" datetime="2019-06-19T10:48:03+08:00">2019-06-19</time>
               
             
           </span>
@@ -557,11 +584,11 @@
 </blockquote>
 <a id="more"></a>
 <h2 id="外层盒阴影"><a href="#外层盒阴影" class="headerlink" title="外层盒阴影"></a>外层盒阴影</h2><blockquote>
-<p>盒阴影在网页中比较常用，能够很好的组织和区分各个模块。</p>
+<p>盒阴影在网页中比较常用，能够很好的组织和区分各个模块。以下利用<span class="label info">CSS3</span>的box-shadown实现，具体参数含义参考<a href="http://www.w3school.com.cn/cssref/pr_box-shadow.asp" target="_blank" rel="noopener">box-shadown参数说明</a></p>
 </blockquote>
 <ul>
 <li><p>代码</p>
-<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outer-shadow</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.52);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.52);</span><br><span class="line">     <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.52);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.outer-shadow</span> &#123;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">10px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.52);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">10px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.52);</span><br><span class="line">     <span class="attribute">box-shadow</span>: <span class="number">2px</span> <span class="number">2px</span> <span class="number">10px</span> <span class="number">2px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.52);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>效果<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%A4%96%E5%B1%82%E7%9B%92%E9%98%B4%E5%BD%B1.png" alt="外层盒阴影"></p>
 </li>
@@ -574,6 +601,20 @@
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.transparent</span> &#123;</span><br><span class="line">    <span class="attribute">filter</span>: <span class="built_in">alpha</span>(opacity=50);</span><br><span class="line">    <span class="attribute">-moz-opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">    <span class="attribute">-khtml-opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">     <span class="attribute">opacity</span>: <span class="number">0.5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>效果<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/transparent.png" alt="透明"></p>
+</li>
+</ul>
+<h2 id="列表纸质效果"><a href="#列表纸质效果" class="headerlink" title="列表纸质效果"></a>列表纸质效果</h2><ul>
+<li><p>代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.box</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="comment">/* prevent shadows falling behind containers with backgrounds */</span></span><br><span class="line">    <span class="attribute">overflow</span>: hidden;</span><br><span class="line">    <span class="attribute">list-style</span>: none;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.box</span> <span class="selector-tag">li</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">float</span>: left;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">250px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">150px</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">1px</span> solid <span class="number">#efefef</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">0</span> <span class="number">30px</span> <span class="number">30px</span> <span class="number">0</span>;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.27), <span class="number">0</span> <span class="number">0</span> <span class="number">40px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.06) inset;</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.27), <span class="number">0</span> <span class="number">0</span> <span class="number">40px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.06) inset;</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">1px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.27), <span class="number">0</span> <span class="number">0</span> <span class="number">40px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.06) inset;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.box</span> <span class="selector-tag">li</span><span class="selector-pseudo">:before</span>,</span><br><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.box</span> <span class="selector-tag">li</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">''</span>;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">width</span>: <span class="number">70%</span>;</span><br><span class="line">    <span class="attribute">max-width</span>: <span class="number">300px</span>;</span><br><span class="line">    <span class="comment">/* avoid rotation causing ugly appearance at large container widths */</span></span><br><span class="line">    <span class="attribute">max-height</span>: <span class="number">100px</span>;</span><br><span class="line">    <span class="attribute">height</span>: <span class="number">55%</span>;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">16px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.3);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">16px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.3);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">8px</span> <span class="number">16px</span> <span class="built_in">rgba</span>(0, 0, 0, 0.3);</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">skew</span>(-15deg) <span class="built_in">rotate</span>(-6deg);</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">skew</span>(-15deg) <span class="built_in">rotate</span>(-6deg);</span><br><span class="line">    <span class="attribute">-ms-transform</span>: <span class="built_in">skew</span>(-15deg) <span class="built_in">rotate</span>(-6deg);</span><br><span class="line">    <span class="attribute">-o-transform</span>: <span class="built_in">skew</span>(-15deg) <span class="built_in">rotate</span>(-6deg);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">skew</span>(-15deg) <span class="built_in">rotate</span>(-6deg);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">ul</span><span class="selector-class">.box</span> <span class="selector-tag">li</span><span class="selector-pseudo">:after</span> &#123;</span><br><span class="line">    <span class="attribute">left</span>: auto;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">-webkit-transform</span>: <span class="built_in">skew</span>(15deg) <span class="built_in">rotate</span>(6deg);</span><br><span class="line">    <span class="attribute">-moz-transform</span>: <span class="built_in">skew</span>(15deg) <span class="built_in">rotate</span>(6deg);</span><br><span class="line">    <span class="attribute">-ms-transform</span>: <span class="built_in">skew</span>(15deg) <span class="built_in">rotate</span>(6deg);</span><br><span class="line">    <span class="attribute">-o-transform</span>: <span class="built_in">skew</span>(15deg) <span class="built_in">rotate</span>(6deg);</span><br><span class="line">    <span class="attribute">transform</span>: <span class="built_in">skew</span>(15deg) <span class="built_in">rotate</span>(6deg);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效果<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%88%97%E8%A1%A8%E7%BA%B8%E8%B4%A8%E6%95%88%E6%9E%9C.png" alt="列表纸质效果"></p>
+</li>
+</ul>
+<h2 id="缝合效果"><a href="#缝合效果" class="headerlink" title="缝合效果"></a>缝合效果</h2><ul>
+<li><p>代码</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-tag">p</span> &#123;</span><br><span class="line">    <span class="attribute">position</span>: relative;</span><br><span class="line">    <span class="attribute">z-index</span>: <span class="number">1</span>;</span><br><span class="line">    <span class="attribute">padding</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">margin</span>: <span class="number">10px</span>;</span><br><span class="line">    <span class="attribute">font-size</span>: <span class="number">21px</span>;</span><br><span class="line">    <span class="attribute">line-height</span>: <span class="number">1.3em</span>;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">background</span>: lightblue;</span><br><span class="line">    <span class="attribute">-webkit-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">4px</span> lightblue, <span class="number">2px</span> <span class="number">1px</span> <span class="number">4px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(10, 10, 0, .5);</span><br><span class="line">    <span class="attribute">-moz-box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">4px</span> lightblue, <span class="number">2px</span> <span class="number">1px</span> <span class="number">4px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(10, 10, 0, .5);</span><br><span class="line">    <span class="attribute">box-shadow</span>: <span class="number">0</span> <span class="number">0</span> <span class="number">0</span> <span class="number">4px</span> lightblue, <span class="number">2px</span> <span class="number">1px</span> <span class="number">6px</span> <span class="number">4px</span> <span class="built_in">rgba</span>(10, 10, 0, .5);</span><br><span class="line">    <span class="attribute">-webkit-border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">-moz-border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">border-radius</span>: <span class="number">3px</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span><span class="selector-pseudo">:before</span> &#123;</span><br><span class="line">    <span class="attribute">content</span>: <span class="string">""</span>;</span><br><span class="line">    <span class="attribute">position</span>: absolute;</span><br><span class="line">    <span class="attribute">z-index</span>: -<span class="number">1</span>;</span><br><span class="line">    <span class="attribute">top</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">bottom</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">left</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">right</span>: <span class="number">3px</span>;</span><br><span class="line">    <span class="attribute">border</span>: <span class="number">2px</span> dashed <span class="number">#fff</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">a</span> &#123;</span><br><span class="line">    <span class="attribute">color</span>: <span class="number">#fff</span>;</span><br><span class="line">    <span class="attribute">text-decoration</span>: none;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">a</span><span class="selector-pseudo">:hover</span>,</span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">a</span><span class="selector-pseudo">:focus</span>,</span><br><span class="line"><span class="selector-tag">p</span> <span class="selector-tag">a</span><span class="selector-pseudo">:active</span> &#123;</span><br><span class="line">    <span class="attribute">text-decoration</span>: underline;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>效果<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E7%BC%9D%E5%90%88%E6%95%88%E6%9E%9C.png" alt="缝合效果"></p>
 </li>
 </ul>
 
@@ -806,16 +847,6 @@
           
 
           
-             <div class="cc-license motion-element" itemprop="license">
-              
-              
-                
-              
-              
-              
-              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
-             </div>
-          
 
           
           
@@ -839,7 +870,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#外层盒阴影"><span class="nav-number">1.</span> <span class="nav-text">外层盒阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透明"><span class="nav-number">2.</span> <span class="nav-text">透明</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#外层盒阴影"><span class="nav-number">1.</span> <span class="nav-text">外层盒阴影</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#透明"><span class="nav-number">2.</span> <span class="nav-text">透明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#列表纸质效果"><span class="nav-number">3.</span> <span class="nav-text">列表纸质效果</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#缝合效果"><span class="nav-number">4.</span> <span class="nav-text">缝合效果</span></a></li></ol></div>
             
 
           </div>
@@ -898,7 +929,7 @@
 
   
     <span class="post-meta-item-icon">
-      <i class="fa fa-eye"></i>浏览次数
+      <i class="fa fa-eye"></i>浏览总量
     </span>
     <span class="site-pv" title="总访问量">
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
@@ -953,6 +984,8 @@
 
 
 
+  
+
 
 
   
@@ -981,6 +1014,9 @@
 
   
   <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
 
 
   
