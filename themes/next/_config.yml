@@ -919,7 +919,7 @@ note:
 
 # Tabs tag
 tabs:
-  enable: false
+  enable: true
   transition:
     tabs: false
     labels: true
