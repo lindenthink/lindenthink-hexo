@@ -1096,6 +1096,7 @@ pre .javascript .function {
   background: #222;
 }
 .site-meta {
+  background: url("../../../../../images/bg5.gif") round !important;
   margin: 0;
   text-align: center;
 }
@@ -1853,7 +1854,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff9ca3;
+  background: #e0be7a;
 }
 .feed-link,
 .chat {
