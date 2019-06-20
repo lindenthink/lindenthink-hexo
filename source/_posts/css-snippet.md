@@ -23,7 +23,7 @@ date: 2019-06-11 23:42:49
 }
 ```
 * 效果
-![外层盒阴影](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%A4%96%E5%B1%82%E7%9B%92%E9%98%B4%E5%BD%B1.png)
+![外层盒阴影](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%A4%96%E5%B1%82%E9%98%B4%E5%BD%B1.png)
 
 ## 透明
 > 在一些地方经常需要用到透明字体，比如输入框的占位符等，下面给出了适应于不同浏览器的实现。
@@ -38,7 +38,7 @@ date: 2019-06-11 23:42:49
 }
 ```
 * 效果
-![透明](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/transparent.png)
+![透明](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E9%80%8F%E6%98%8E.png)
 
 ## 列表纸质效果
 * 代码
@@ -146,3 +146,30 @@ date: 2019-06-11 23:42:49
 ```
 * 效果
 ![缝合效果](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E7%BC%9D%E5%90%88%E6%95%88%E6%9E%9C.png)
+
+## 垂直居中
+* 代码
+```CSS
+.container {
+  min-height: 10em;
+  display: table-cell;
+  vertical-align: middle;
+}
+```
+* 效果
+![垂直居中](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD.png)
+
+
+## 文本溢出省略
+* 代码
+```CSS
+.text-ellipsis {
+    border: 1px solid lightgray;
+    width: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+```
+* 效果
+![文本溢出省略](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/css-snippt/%E6%96%87%E6%9C%AC%E6%BA%A2%E5%87%BA%E7%9C%81%E7%95%A5.png)

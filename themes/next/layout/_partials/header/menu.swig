@@ -1,5 +1,4 @@
 {% import '../../_macro/menu/menu-item.swig' as menu_item %}
-
 <nav class="site-nav">
   {% if theme.menu %}
     <ul id="menu" class="menu">
