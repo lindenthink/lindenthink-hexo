@@ -1,11 +1,10 @@
----
 title: 常用网站集合
-date: 2019-06-11 23:36:43
-tags: 
-	- 工具
+tags:
+  - 工具
 categories:
-	- 工具
+  - 工具
 top: 100
+date: 2019-06-11 23:36:43
 ---
 > 主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。
 
@@ -67,6 +66,7 @@ top: 100
 * [IntelliJ Platform SDK ](http://www.jetbrains.org/intellij/sdk/docs/welcome.html)
 * [GitHub官方教程](https://lab.github.com/courses)
 * [CSS预处理器stylus](http://stylus-lang.com/)
+* [Swig文档](http://node-swig.github.io/swig-templates/docs/)
 
 ## 教程
 * [菜鸟教程](https://www.runoob.com)
@@ -90,6 +90,8 @@ top: 100
 ## 资源
 * [Kindle电子书分享网](https://kindle.51nazhun.pub/)
 * [开源项目/资源收集分类](https://www.ctolib.com/)
+* [Chrome插件整理](https://github.com/zhaoolee/ChromeAppHeroes)
+* [静态网站生成器](https://my.oschina.net/editorial-story/blog/1596258?from=20180101)
 
 ## 网络
 * [wireshark-网络数据包分析](https://www.wireshark.org)
