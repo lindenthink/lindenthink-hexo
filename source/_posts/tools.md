@@ -30,6 +30,7 @@ date: 2019-06-11 23:36:43
 * [cron表达式生成器](http://cron.qqe2.com/)
 * [文字转图片](https://www.qt86.com/22)
 * [在线国际化](https://i18ns.com/zh/index.html)
+* [函数图形](https://www.desmos.com/calculator/)，可生成动态演示
 
 ## 编辑器
 * [在线Markdown编辑器](https://www.zybuluo.com/mdeditor)
@@ -61,12 +62,14 @@ date: 2019-06-11 23:36:43
 * [RFC文档](http://www.rfcreader.com/)
 * [谷歌JS编码规范](https://google.github.io/styleguide/jsguide.html)
 * [Node的API文档](https://nodejs.org/api/stream.html)
-* [JEP](http://openjdk.java.net/jeps/0)
+* [JEP](http://openjdk.java.net/jeps/0)，Java增强提案(JDK Enhancement Proposal)
 * [JSDoc中文文档](https://www.html.cn/doc/jsdoc/index.html)
 * [IntelliJ Platform SDK ](http://www.jetbrains.org/intellij/sdk/docs/welcome.html)
 * [GitHub官方教程](https://lab.github.com/courses)
 * [CSS预处理器stylus](http://stylus-lang.com/)
 * [Swig文档](http://node-swig.github.io/swig-templates/docs/)
+* [JSR](https://www.jcp.org/en/jsr/overview)，Java规范请求(Java Specification Requests)
+* [Java SE官方文档](https://docs.oracle.com/en/java/javase/index.html)
 
 ## 教程
 * [菜鸟教程](https://www.runoob.com)
@@ -86,12 +89,18 @@ date: 2019-06-11 23:36:43
 * [千库网](https://588ku.com/image/gudianbiankuang.html)
 * [无版权插图库](https://gallery.manypixels.co)
 * [PPT模板](http://www.1ppt.com)
+* [CSS特效](https://cssfx.dev/)
+* [pixabay免费图片](https://pixabay.com/zh/)
+
+## 搜索引擎
+* [多吉](https://dogedoge.com/)
 
 ## 资源
 * [Kindle电子书分享网](https://kindle.51nazhun.pub/)
 * [开源项目/资源收集分类](https://www.ctolib.com/)
 * [Chrome插件整理](https://github.com/zhaoolee/ChromeAppHeroes)
 * [静态网站生成器](https://my.oschina.net/editorial-story/blog/1596258?from=20180101)
+* [海盗湾中文网BT资源](https://www.hdwan.net/)
 
 ## 网络
 * [wireshark-网络数据包分析](https://www.wireshark.org)

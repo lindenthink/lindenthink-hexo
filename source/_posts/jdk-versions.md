@@ -165,13 +165,20 @@ var x = new ArrayList<String>();
 {% endnote %}
 
 ## 简介
-2018年09月26日发布，这是自1.8版本以后又一个长期维护的版本(LTS，每三年发布一次)。
+2018年9月26日发布，这是自1.8版本以后又一个LTS(Long-Term-Support，长期支持，每三年发布一次)版本，完整特性参考[What's New in JDK 11](https://www.oracle.com/technetwork/java/javase/11-relnote-issues-5012449.html#NewFeature)。
 
 ## 新特性
+* ZGC(Z Garbage Collector，实验性)，可扩展低延迟
+* Epsilo无操作垃圾收集器（Epsilon 垃圾回收器，又被称为"No-Op"回收器） 
+* HTTP Client
+* 移除了很多包和模块，比如JavaFX、JMC等
 
 # {% note info %}JDK12
 {% endnote %}
 
 ## 简介
+2019年3月20日发布，完整特性参考[What's New in JDK 12](https://www.oracle.com/technetwork/java/javase/12-relnote-issues-5211422.html#NewFeature)
 
 ## 新特性
+* JVM常量API
+* Switch表达式
