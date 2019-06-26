@@ -9,18 +9,20 @@ date: 2019-06-24 22:39:17
 > 记录了JDK的发展历史以及各版本的主要特性，将持续进行收集和更新。
 
 <!-- more -->
-# {% note info %} JDK1.0 
+{% note info %}
+# JDK1.0
 {% endnote %}
 
 ## 简介
-1996年1月23日，JDK1.0发布，这是Java语言的第一个正式版本。
+1996年1月23日发布，这是Java语言的第一个正式版本。
 
 ## 新特性
 * Java虚拟机
 * Applet
 * AWT
 
-# {% note info %}JDK1.1
+{% note info %}
+# JDK1.1
 {% endnote %}
 
 ## 简介
@@ -34,11 +36,12 @@ date: 2019-06-24 22:39:17
 * 内部类
 * 反射
 
-# {% note info %} JDK1.2
+{% note info %}
+# JDK1.2
 {% endnote %}
 
 ## 简介
-1998年12月4日发布，工程代号Playground(竞技场)，这是一个里程碑式的版本，它将Java技术体系分为3个方向，就是我们熟知的面向桌面应用开发的J2SE(Java 2 Platform, Standard Edition)、面向企业级开发的J2EE(Java 2 Platform, Enterprise Edition)和J2ME(Java 2 Platform, Micro Edition)。
+1998年12月4日发布，工程代号Playground(竞技场)，这是一个里程碑式的版本，它将Java技术体系分为3个方向，就是我们熟知的面向桌面应用开发的J2SE(Java 2 Platform, Standard Edition)、面向企业级开发的J2EE(Java 2 Platform, Enterprise Edition)和面向移动端开发的J2ME(Java 2 Platform, Micro Edition)。
 
 ## 新特性
 * EJB
@@ -49,8 +52,8 @@ date: 2019-06-24 22:39:17
 * 增加strictfp关键字
 * Collections集合类
 
-
-# {% note info %}JDK1.3
+{% note info %}
+# JDK1.3
 {% endnote %}
 
 ## 简介
@@ -62,11 +65,12 @@ date: 2019-06-24 22:39:17
 * 改进JAVA 2D，新增大量API
 * 新增JavaSound类库
 
-# {% note info %}JDK1.4
+{% note info %}
+# JDK1.4
 {% endnote %}
 
 ## 简介
-2002年2月13日发布，工程代号Merlin(灰背隼)。于此同时，微软的.NET Framework也在此时发布，它在技术实现和目标客户上都与Java有很多相近之处。
+2002年2月13日发布，工程代号Merlin(灰背隼)。与此同时，微软的.NET Framework也在此时发布，它在技术实现和目标客户上都与Java有很多相近之处。
 
 ## 新特性
 * NIO
@@ -75,7 +79,8 @@ date: 2019-06-24 22:39:17
 * 日志类
 * XML解析器和XLST转换器
 
-# {% note info %}JDK5
+{% note info %}
+# JDK5
 {% endnote %}
 
 ## 简介
@@ -91,8 +96,8 @@ date: 2019-06-24 22:39:17
 * 可变长参数
 * 遍历循环(foreach循环)
 
-
-# {% note info %}JDK6
+{% note info %}
+# JDK6
 {% endnote %}
 
 ## 简介
@@ -104,8 +109,8 @@ date: 2019-06-24 22:39:17
 * 微型HTTP服务器API
 * 改进了锁与同步、垃圾收集和类加载等
 
-
-# {% note info %}JDK7
+{% note info %}
+# JDK7
 {% endnote %}
 
 ## 简介
@@ -117,7 +122,8 @@ date: 2019-06-24 22:39:17
 * 升级类加载架构
 * Try-With-Resources
 
-# {% note info %}JDK8
+{% note info %}
+# JDK8
 {% endnote %}
 
 ## 简介
@@ -132,7 +138,8 @@ date: 2019-06-24 22:39:17
 * 移除持久代(PermGen)
 * 新的Nashorn javascript引擎 
 
-# {% note info %}JDK9
+{% note info %}
+# JDK9
 {% endnote %}
 
 ## 简介
@@ -145,7 +152,8 @@ date: 2019-06-24 22:39:17
 * 提供了消息发布订阅框架
 * 私有接口方法
 
-# {% note info %}JDK10
+{% note info %}
+# JDK10
 {% endnote %}
 
 ## 简介
@@ -156,12 +164,13 @@ date: 2019-06-24 22:39:17
 ```JAVA
 var x = new ArrayList<String>();
 ```
-* 垃圾收集器接口。
+* 垃圾收集器接口
 * 向G1引入并行Full GC
 * 在备用内存设备上分配堆内存。允许 HotSpot 虚拟机在备用内存设备上分配 Java 对象堆
 * 基于Java的JIT编译器（试验版本） 
 
-# {% note info %}JDK11
+{% note info %}
+# JDK11
 {% endnote %}
 
 ## 简介
@@ -169,11 +178,12 @@ var x = new ArrayList<String>();
 
 ## 新特性
 * ZGC(Z Garbage Collector，实验性)，可扩展低延迟
-* Epsilo无操作垃圾收集器（Epsilon 垃圾回收器，又被称为"No-Op"回收器） 
+* Epsilon无操作垃圾回收器（Epsilon 垃圾回收器，又被称为"No-Op"回收器） 
 * HTTP Client
 * 移除了很多包和模块，比如JavaFX、JMC等
 
-# {% note info %}JDK12
+{% note info %}
+# JDK12
 {% endnote %}
 
 ## 简介
