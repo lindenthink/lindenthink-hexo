@@ -9,6 +9,10 @@ date: 2019-06-11 23:36:43
 > 主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。
 
 <!-- more -->
+## 工具箱
+* [oschina在线工具](http://tool.oschina.net/)
+* [一个工具箱](http://www.atoolbox.net/)
+
 ## 编程
 * [在线接口测试](http://www.atool9.com/httptest.php)
 * [在线正则表达式测试](http://tool.oschina.net/regex/)
@@ -31,6 +35,8 @@ date: 2019-06-11 23:36:43
 * [文字转图片](https://www.qt86.com/22)
 * [在线国际化](https://i18ns.com/zh/index.html)
 * [函数图形](https://www.desmos.com/calculator/)，可生成动态演示
+* [AsciiMath](http://asciimath.org)，网页工具，可以将 ASCII 字符的公式转为数学字体显示
+* [表格转换为各种格式](https://tableconvert.com/)，支持markdown/json/csv/json等格式
 
 ## 编辑器
 * [在线Markdown编辑器](https://www.zybuluo.com/mdeditor)
@@ -56,6 +62,8 @@ date: 2019-06-11 23:36:43
 ## 趣味
 * [需要我帮你百度吗](https://lmbtfy.cn/)
 * [演示汉字笔画顺序的JS库](https://chanind.github.io/hanzi-writer/docs.html)
+* [各种绳结打法并配有视频教学](https://www.animatedknots.com/complete-knot-list)
+* [各种表情包收集项目](https://github.com/zhaoolee/ChineseBQB)
 
 ## 参照/文档
 * [HTTP状态码详解](http://tool.oschina.net/commons?type=5)
@@ -101,6 +109,7 @@ date: 2019-06-11 23:36:43
 * [Chrome插件整理](https://github.com/zhaoolee/ChromeAppHeroes)
 * [静态网站生成器](https://my.oschina.net/editorial-story/blog/1596258?from=20180101)
 * [海盗湾中文网BT资源](https://www.hdwan.net/)
+* [jsdelivr](https://www.jsdelivr.com/)，npm/git的JS资源开源CDN
 
 ## 网络
 * [wireshark-网络数据包分析](https://www.wireshark.org)
