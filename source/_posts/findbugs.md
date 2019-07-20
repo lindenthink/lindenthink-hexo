@@ -18,7 +18,7 @@ categories:
 ## IDEA中安装使用
 {% endnote %}
 ### 安装
-* 在IDEL中{% label info@ctrl+alt+s %}打开设置面板，找到"Plugins"选项；
+* 在IDEA中{% label info@ctrl+alt+s %}打开设置面板，找到"Plugins"选项；
 * 然后选择"Browse repositories..."在搜索框中输入"findbugs"查找插件，结果列表中选择"FindBugs-IDEA"并安装；
 <img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/findbugs/%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png"  width="25%" height="25%">
 * 安装完成后重启IDEA方可生效。
