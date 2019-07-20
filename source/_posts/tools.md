@@ -6,6 +6,8 @@ categories:
 top: 100
 date: 2019-06-11 23:36:43
 ---
+
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563616241564&di=d4b053d5918b4ed6c7b34a9078c9a77d&imgtype=0&src=http%3A%2F%2Fwww.juimg.com%2Ftuku%2Fyulantu%2F130904%2F328517-130Z41J43398.jpg"  width="25%" height="25%">
 > 主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。
 
 <!-- more -->
@@ -46,6 +48,7 @@ date: 2019-06-11 23:36:43
 * [codesandbox-前端代码沙盒](https://codesandbox.io/docs/embedding)，可以嵌入到页面
 * [vscode网页版](https://microsoft.github.io/monaco-editor/index.html)
 * [在线拾色器](https://www.w3cschool.cn/tools/index?name=cpicker)
+* [在线比较文本差异](https://differ.netlify.com)，支持普通文本、json和xml格式
 
 ## 加密/解密
 * [在线加密/解密](http://tool.chacuo.net/cryptaes)
