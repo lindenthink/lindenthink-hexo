@@ -126,16 +126,22 @@
   !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
 </script>
 
-  <meta name="description" content="书到用时方恨少，事非经过不知难。">
-<meta property="og:type" content="website">
-<meta property="og:title" content="菩提思">
-<meta property="og:url" content="http://47.104.243.84/archives/2019/06/index.html">
+  <meta name="description" content="FindBugs用来静态分析和查找Java代码中存在的Bugs，它的运行需要依赖1.7或更高版本的JRE(或JDK)，但是它可以分析从1.0到1.8各个版本的JDK编译出的程序。本文介绍了如何在IDEA中使用FindBugs，同时详细列出了FindBugs分析结果中可能出现的Bug类型。">
+<meta name="keywords" content="工具,Java,FindBugs">
+<meta property="og:type" content="article">
+<meta property="og:title" content="在IDEA中使用FindBugs">
+<meta property="og:url" content="http://47.104.243.84/2019/07/20/findbugs/index.html">
 <meta property="og:site_name" content="菩提思">
-<meta property="og:description" content="书到用时方恨少，事非经过不知难。">
+<meta property="og:description" content="FindBugs用来静态分析和查找Java代码中存在的Bugs，它的运行需要依赖1.7或更高版本的JRE(或JDK)，但是它可以分析从1.0到1.8各个版本的JDK编译出的程序。本文介绍了如何在IDEA中使用FindBugs，同时详细列出了FindBugs分析结果中可能出现的Bug类型。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://findbugs.sourceforge.net/umdFindbugs.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/findbugs/%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/findbugs/FindBugs%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C.png">
+<meta property="og:updated_time" content="2019-07-20T09:14:34.183Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="菩提思">
-<meta name="twitter:description" content="书到用时方恨少，事非经过不知难。">
+<meta name="twitter:title" content="在IDEA中使用FindBugs">
+<meta name="twitter:description" content="FindBugs用来静态分析和查找Java代码中存在的Bugs，它的运行需要依赖1.7或更高版本的JRE(或JDK)，但是它可以分析从1.0到1.8各个版本的JDK编译出的程序。本文介绍了如何在IDEA中使用FindBugs，同时详细列出了FindBugs分析结果中可能出现的Bug类型。">
+<meta name="twitter:image" content="http://findbugs.sourceforge.net/umdFindbugs.png">
 
 
 
@@ -143,7 +149,7 @@
 
   
   
-  <link rel="canonical" href="http://47.104.243.84/archives/2019/06/">
+  <link rel="canonical" href="http://47.104.243.84/2019/07/20/findbugs/">
 
 
 
@@ -153,7 +159,7 @@
   };
 </script>
 
-  <title>归档 | 菩提思</title>
+  <title>在IDEA中使用FindBugs | 菩提思</title>
   
 
 
@@ -201,7 +207,7 @@
     
   
 
-  <div class="container sidebar-position-left page-archive">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -293,7 +299,7 @@
         
         
           
-          <li class="menu-item menu-item-archives menu-item-active">
+          <li class="menu-item menu-item-archives">
 
     
     
@@ -405,177 +411,286 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block archive">
-    <div id="posts" class="posts-collapse">
-      <span class="archive-move-on"></span>
+  <div id="posts" class="posts-expand">
+    
 
-      
-      <span class="archive-page-counter">
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://47.104.243.84/2019/07/20/findbugs/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Linden">
+      <meta itemprop="description" content="书到用时方恨少，事非经过不知难。">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菩提思">
+    </span>
+
+    
+      <header class="post-header">
+
         
         
+          <h1 class="post-title" itemprop="name headline">在IDEA中使用FindBugs
+
+              
+            
+          </h1>
         
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-20 10:57:33 / 修改时间：17:14:34" itemprop="dateCreated datePublished" datetime="2019-07-20T10:57:33+08:00">2019-07-20</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
           
-        
-        嗯..! 目前共计 4 篇日志。 继续努力。
-      </span>
-      
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/工具/" itemprop="url" rel="index"><span itemprop="name">工具</span></a></span>
 
-      
-
-        
-        
-        
-
-        
+                
+                
+              
+            </span>
           
-          <div class="collection-title">
-            <h1 class="archive-year" id="archive-year-2019">2019</h1>
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/07/20/findbugs/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/07/20/findbugs/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="http://findbugs.sourceforge.net/umdFindbugs.png" alt></p>
+<blockquote>
+<p>FindBugs用来静态分析和查找Java代码中存在的Bugs，它的运行需要依赖1.7或更高版本的JRE(或JDK)，但是它可以分析从1.0到1.8各个版本的JDK编译出的程序。本文介绍了如何在IDEA中使用FindBugs，同时详细列出了FindBugs分析结果中可能出现的Bug类型。</p>
+</blockquote>
+<a id="more"></a>
+<div class="note info">
+            <h2 id="IDEA中安装使用"><a href="#IDEA中安装使用" class="headerlink" title="IDEA中安装使用"></a>IDEA中安装使用</h2>
           </div>
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/06/24/jdk-versions/" itemprop="url">
-            
-              <span itemprop="name">JDK版本历史</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-24T22:39:17+08:00" content="2019-06-24">
-          06-24
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/06/11/css-snippet/" itemprop="url">
-            
-              <span itemprop="name">常用CSS代码片段</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-11T23:42:49+08:00" content="2019-06-11">
-          06-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><ul>
+<li>在IDEA中<span class="label info">ctrl+alt+s</span>打开设置面板，找到”Plugins”选项；</li>
+<li>然后选择”Browse repositories…”在搜索框中输入”findbugs”查找插件，结果列表中选择”FindBugs-IDEA”并安装；<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/findbugs/%E5%AE%89%E8%A3%85%E6%8F%92%E4%BB%B6.png" width="25%" height="25%"></li>
+<li>安装完成后重启IDEA方可生效。</li>
+</ul>
+<h3 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h3><ul>
+<li>重启后，可以在下列截图中看到最下方工具栏中多出了”FindBugs-IDEA”一项，同时右键选项中也多出了”FindBugs”选项。截图分成了4列，其中第一列中是FindBugs工具栏，可以选择分析范围和分析结果分组；第二列是分析结果列，在该列中选择一个分析出来的Bug后，第三列和第四列会相应展示这个Bug出现的位置以及Bug的详细说明。<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/findbugs/FindBugs%E5%88%86%E6%9E%90%E7%BB%93%E6%9E%9C.png" width="25%" height="25%"></li>
+</ul>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><h4 id="分析范围"><a href="#分析范围" class="headerlink" title="分析范围"></a>分析范围</h4><ul>
+<li>当前文件</li>
+<li>当前类(对于含内部类的文件，可以选择只分析光标所在类)</li>
+<li>当前包</li>
+<li>当前模块</li>
+<li>当前工程</li>
+<li>指定范围</li>
+<li>所有修改的文件(需要结合VCS)</li>
+<li>changelist中的类(需要结合VCS)</li>
+</ul>
+<h4 id="结果分组"><a href="#结果分组" class="headerlink" title="结果分组"></a>结果分组</h4><ul>
+<li>根据Bug类型分组，这也是默认的分组</li>
+<li>根据类分组</li>
+<li>根据包分组</li>
+<li>根据Bug严重级别分组，工作中推荐使用的，可以相应优先处理严重级别较高的Bug。</li>
+</ul>
+<h4 id="严重级别"><a href="#严重级别" class="headerlink" title="严重级别"></a>严重级别</h4><ul>
+<li>Of Concren - 建议, 如果遵循能更好的完善代码</li>
+<li>Troubling - 不好的, 可能会引发不良后果</li>
+<li>Scary - 严重问题, 在某种情况下一定会出现问题</li>
+<li>Scariest - 非常严重, 已经影响到当前程序功能</li>
+</ul>
+<h3 id="Bug类型"><a href="#Bug类型" class="headerlink" title="Bug类型"></a>Bug类型</h3><p>详细介绍请参考<a href="http://findbugs.sourceforge.net/bugDescriptions.html" target="_blank" rel="noopener">FindBugs Bug Descriptions</a></p>
 
       
-
-        
-        
-        
-
-        
-        
-
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/06/11/tools/" itemprop="url">
-            
-              <span itemprop="name">常用网站集合</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-06-11T23:36:43+08:00" content="2019-06-11">
-          06-11
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
-
-      
-
     </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Linden</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://47.104.243.84/2019/07/20/findbugs/" title="在IDEA中使用FindBugs">http://47.104.243.84/2019/07/20/findbugs/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/工具/" rel="tag"><i class="fa fa-tag"></i> 工具</a>
+          
+            <a href="/tags/Java/" rel="tag"><i class="fa fa-tag"></i> Java</a>
+          
+            <a href="/tags/FindBugs/" rel="tag"><i class="fa fa-tag"></i> FindBugs</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/06/24/jdk-versions/" rel="next" title="JDK版本历史">
+                <i class="fa fa-chevron-left"></i> JDK版本历史
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+  </div>
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -595,8 +710,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -720,6 +844,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#IDEA中安装使用"><span class="nav-number">1.</span> <span class="nav-text">IDEA中安装使用</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#安装"><span class="nav-number">1.1.</span> <span class="nav-text">安装</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用"><span class="nav-number">1.2.</span> <span class="nav-text">使用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#说明"><span class="nav-number">1.3.</span> <span class="nav-text">说明</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#分析范围"><span class="nav-number">1.3.1.</span> <span class="nav-text">分析范围</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#结果分组"><span class="nav-number">1.3.2.</span> <span class="nav-text">结果分组</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#严重级别"><span class="nav-number">1.3.3.</span> <span class="nav-text">严重级别</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bug类型"><span class="nav-number">1.4.</span> <span class="nav-text">Bug类型</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -884,6 +1025,10 @@
 
 
   
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
 
   
 
@@ -929,6 +1074,8 @@
 
 
 
+
+  
 
 
   
@@ -1282,7 +1429,7 @@
   <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
   <script>
   
-    bookmark.loadBookmark();
+    bookmark.scrollToMark('auto', "#更多");
   
   </script>
 
