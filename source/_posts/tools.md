@@ -67,6 +67,8 @@ date: 2019-06-11 23:36:43
 * [演示汉字笔画顺序的JS库](https://chanind.github.io/hanzi-writer/docs.html)
 * [各种绳结打法并配有视频教学](https://www.animatedknots.com/complete-knot-list)
 * [各种表情包收集项目](https://github.com/zhaoolee/ChineseBQB)
+* [独角兽公司榜单](https://dujiaoshou.io/)，实时更新估值超过10亿美元的创业公司
+* [前端技术实现的仿黑客帝国文字雨](https://codepen.io/yuanchuan/pen/YoqWeR)
 
 ## 参照/文档
 * [HTTP状态码详解](http://tool.oschina.net/commons?type=5)

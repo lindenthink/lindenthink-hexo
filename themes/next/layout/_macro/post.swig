@@ -33,7 +33,6 @@
 
     {% if not headlessPost %}
       <header class="post-header">
-
         {# Not to show title for quote posts that do not have a title #}
         {% if not (is_index and post.type === 'quote' and not post.title) %}
           <{% if theme.seo %}h2{% else %}h1{% endif %} class="post-title{% if post.direction && post.direction.toLowerCase() === 'rtl' %} rtl{% endif %}" itemprop="name headline">{#
@@ -66,6 +65,15 @@
         {% endif %}
 
         <div class="post-meta">
+         {# 文章类型开始 #}
+            {% if post.type === 'reprint'%}
+              <span class="post-type-reprint">转</span>
+            {% elif post.type === 'translate' %}
+              <span class="post-type-translate">译</span>
+            {% else %}
+              <span class="post-type-original">原</span>
+            {% endif %}
+         {# 文章类型结束 #}
           <span class="post-time">
 
             {% set date_diff = date(post.date) != date(post.updated) %}
