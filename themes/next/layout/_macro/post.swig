@@ -68,7 +68,7 @@
          {# 文章类型开始 #}
             {% set postTypeStyle = 'display: inline-block;text-align: center;line-height: 15px;margin-right: 5px;height: 15px;width: 15px;border-radius: 7.5px;' %}
             {% if post.type === 'reprint'%}
-              <span style="{{ postTypeStyle }}color: yellow;border: 1px dotted yellow;">转</span>
+              <span style="{{ postTypeStyle }}color: orange;border: 1px dotted orange;">转</span>
             {% elif post.type === 'translate' %}
               <span style="{{ postTypeStyle }}color: red;border: 1px dotted red;">译</span>
             {% else %}
