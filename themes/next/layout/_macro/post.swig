@@ -67,11 +67,11 @@
         <div class="post-meta">
          {# 文章类型开始 #}
             {% if post.type === 'reprint'%}
-              <span style="post-type-reprint" style="border: 1px dotted yellow;">转</span>
+              <span class="post-type" style="color: yellow;border: 1px dotted yellow;border-radius: 7.5px;">转</span>
             {% elif post.type === 'translate' %}
-              <span class="post-type-translate" style="border: 1px dotted red;">译</span>
+              <span class="post-type" style="color: red;border: 1px dotted red;border-radius: 7.5px;">译</span>
             {% else %}
-              <span class="post-type-original" style="border: 1px dotted green;">原</span>
+              <span class="post-type" style="color: green;border: 1px dotted green;border-radius: 7.5px;">原</span>
             {% endif %}
          {# 文章类型结束 #}
           <span class="post-time">
