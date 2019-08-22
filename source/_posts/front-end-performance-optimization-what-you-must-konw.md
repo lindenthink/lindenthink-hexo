@@ -25,10 +25,12 @@ categories:
 8. 初始的 HTML 被完全加载和解析后会触发 DOMContentLoaded 事件
 9. CSSOM 树和 DOM 树构建完成后会开始生成 Render 树，这一步就是确定页面元素的布局、样式等等诸多方面的东西
 10. 在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了
+
 我们从输入 URL 到显示页面这个过程中，涉及到网络层面的，有三个主要过程：
 * DNS 解析
 * TCP 连接
 * HTTP 请求/响应
+
 对于 DNS 解析和 TCP 连接两个步骤，我们前端可以做的努力非常有限。相比之下，HTTP 连接这一层面的优化才是我们网络优化的核心。
 HTTP 优化有两个大的方向：
 * 减少请求次数
@@ -58,6 +60,7 @@ ervice Worker 是一种独立于主线程之外的 Javascript 线程。它脱离
 5. 创建响应，缓存会用新的首部和已缓存的主体来构建一条响应报文。
 6. 发送，缓存通过网络将响应发回给客服端。
 7. 日志
+![HTTP Cache](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%20Cache.png)
 
 #### 强缓存
 强缓存是利用 http 头中的 Expires 和 Cache-Control 两个字段来控制的。强缓存中，当请求再次发出时，浏览器会根据其中的 expires 和 cache-control 判断目标资源是否“命中”强缓存，若命中则直接从缓存中获取资源，不会再与服务端发生通信。
@@ -77,6 +80,7 @@ no-store与no-cache，no-cache 绕开了浏览器：我们为资源设置了 no-
 协商缓存的实现：从 Last-Modified 到 Etag，详细自己百度，这里不再详细展开。
 
 #### HTTP缓存决策
+![HTTP缓存策略](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5.jpg)
 当我们的资源内容不可复用时，直接为 Cache-Control 设置 no-store，拒绝一切形式的缓存；否则考虑是否每次都需要向服务器进行缓存有效确认，如果需要，那么设 Cache-Control 的值为 no-cache；否则考虑该资源是否可以被代理服务器缓存，根据其结果决定是设置为 private 还是 public；然后考虑该资源的过期时间，设置对应的 max-age 和 s-maxage 值；最后，配置协商缓存需要用到的 Etag、Last-Modified 等参数。
 
 ### Push Cache
