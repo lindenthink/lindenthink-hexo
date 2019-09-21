@@ -92,6 +92,9 @@ date: 2019-06-11 23:36:43
 * [第九频道](https://channel9.msdn.com/Browse/AllContent)，包括很多课程视频
 * [运维学校](http://www.opsschool.org/)
 * [免费编程笔记下载](https://goalkicker.com/)
+* [Linux系统免费教程](https://linuxjourney.com)
+* [处理器设计](http://www.gamezero.com/team-0/articles/math_magic/micro/index.html)
+* [CPU是怎样工作的](https://milapneupane.com.np/2019/07/06/how-does-a-cpu-work/)
 
 ## 素材
 * [17素材](http://www.17sucai.com/)
@@ -107,6 +110,7 @@ date: 2019-06-11 23:36:43
 
 ## 搜索引擎
 * [多吉](https://dogedoge.com/)
+* [中文搜索聚合网站](http://www.suiyuanka.com)
 
 ## 资源
 * [Kindle电子书分享网](https://kindle.51nazhun.pub/)
