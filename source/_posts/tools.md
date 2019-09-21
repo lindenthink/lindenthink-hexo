@@ -14,6 +14,7 @@ date: 2019-06-11 23:36:43
 ## 工具箱
 * [oschina在线工具](http://tool.oschina.net/)
 * [一个工具箱](http://www.atoolbox.net/)
+* [toolfk-程序员在线工具大全](https://www.toolfk.com/)
 
 ## 编程
 * [在线接口测试](http://www.atool9.com/httptest.php)
@@ -25,6 +26,7 @@ date: 2019-06-11 23:36:43
 
 ## 许可证
 * [开源许可证选择](https://choosealicense.com)
+* [国内第一个开源协议-木兰宽松许可证](https://license.coscl.org.cn/MulanPSL/)
 
 ## 排版/转换
 * [复制内容转为Markdown格式](https://euangoddard.github.io/clipboard2markdown)
@@ -83,6 +85,7 @@ date: 2019-06-11 23:36:43
 * [Swig文档](http://node-swig.github.io/swig-templates/docs/)
 * [JSR](https://www.jcp.org/en/jsr/overview)，Java规范请求(Java Specification Requests)
 * [Java SE官方文档](https://docs.oracle.com/en/java/javase/index.html)
+* [MDN-Web开发技术文档](https://developer.mozilla.org/zh-CN/docs/Web)
 
 ## 教程
 * [菜鸟教程](https://www.runoob.com)
@@ -107,6 +110,8 @@ date: 2019-06-11 23:36:43
 * [PPT模板](http://www.1ppt.com)
 * [CSS特效](https://cssfx.dev/)
 * [pixabay免费图片](https://pixabay.com/zh/)
+* [33个免费图标网站](https://blog.usepastel.com/post/33-beautiful-free-icon-sets)
+* [常用的SVG图标库](https://github.com/edent/SuperTinyIcons)
 
 ## 搜索引擎
 * [多吉](https://dogedoge.com/)
@@ -119,13 +124,17 @@ date: 2019-06-11 23:36:43
 * [静态网站生成器](https://my.oschina.net/editorial-story/blog/1596258?from=20180101)
 * [海盗湾中文网BT资源](https://www.hdwan.net/)
 * [jsdelivr](https://www.jsdelivr.com/)，npm/git的JS资源开源CDN
+* [快速查看搜素Linux内核源码](https://elixir.bootlin.com/linux/latest/source/kernel/acct.c)
+* [植物画册](https://www.c82.net/twining/plants/)
 
 ## 网络
 * [wireshark-网络数据包分析](https://www.wireshark.org)
 * [在线测速](https://www.speedtest.net)
+* [anydesk-windows远程桌面连接工具](https://anydesk.com/en/downloads)，类似teamview，兼容性更好
 
 ## 学术
 * [龙猫学术导航](http://www.6453.net/)
 * [在线古籍](https://ctext.org/huangdi-neijing/shang-gu-tian-zhen-lun/zhs)
+* [鲁迅资料在线检索系统](http://cx.luxunmuseum.com.cn/)
 
 ## 未完待续...
