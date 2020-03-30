@@ -1,0 +1,1538 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpeg?v=7.1.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <!-- Chatra {literal} -->
+  <script>
+      (function(d, w, c) {
+          w.ChatraID = 'NYntaGXsFmsvsYuvw';
+          var s = d.createElement('script');
+          w[c] = w[c] || function() {
+              (w[c].q = w[c].q || []).push(arguments);
+          };
+          s.async = true;
+          s.src = 'https://call.chatra.io/chatra.js';
+          if (d.head) d.head.appendChild(s);
+      })(document, window, 'Chatra');
+  </script>
+<!-- /Chatra {/literal} -->
+
+
+<!-- 心型点击效果 -->
+<script>
+  !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
+</script>
+
+  <meta name="description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。">
+<meta name="keywords" content="Drone,Jenkins">
+<meta property="og:type" content="article">
+<meta property="og:title" content="初探Drone">
+<meta property="og:url" content="http://47.104.243.84/2020/03/30/first-exploration-of-drone/index.html">
+<meta property="og:site_name" content="菩提思">
+<meta property="og:description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/github_application_create.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/github_application_created.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/GitHub%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E7%99%BB%E9%99%86%E6%88%90%E5%8A%9F.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E5%8D%A1%E4%BD%8F.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E6%88%90%E5%8A%9F.png?Expires=1585596395&OSSAccessKeyId=TMP.3KhPBpYPpx6i4WaQyArTcgQidYvT5cuAV2xgg41z5rn4TmFH3wiKJr5zZxfxeXXRgyXfoxZgZvLtGt8hsG6P6YtcfgnLA1&Signature=MIYK7hqIjlXomCRDgFBxulvw2vM%3D">
+<meta property="og:updated_time" content="2020-03-30T01:30:48.214Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="初探Drone">
+<meta name="twitter:description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。">
+<meta name="twitter:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://47.104.243.84/2020/03/30/first-exploration-of-drone/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>初探Drone | 菩提思</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菩提思</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一花一世界，一叶一菩提。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-friends">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/lindenthink" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-original" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://47.104.243.84/2020/03/30/first-exploration-of-drone/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Linden">
+      <meta itemprop="description" content="书到用时方恨少，事非经过不知难。">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菩提思">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">初探Drone
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+         
+            
+            
+              <span style="display: inline-block;text-align: center;line-height: 15px;margin-right: 5px;height: 15px;width: 15px;border-radius: 7.5px;color: green;border: 1px dotted green;">原</span>
+            
+         
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-03-30 09:04:13 / 修改时间：09:30:48" itemprop="dateCreated datePublished" datetime="2020-03-30T09:04:13+08:00">2020-03-30</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2020/03/30/first-exploration-of-drone/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2020/03/30/first-exploration-of-drone/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <p><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg" alt></p>
+<blockquote>
+<p>Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。<br>上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。</p>
+</blockquote>
+<a id="more"></a>
+<p>在大概了解一番后，我想着试用下看看，于是在网上搜了下，不过发现资料不是很多，而且比较坑的是搜到的文章中部署使用方法和官网描述的不太一致，这一点在具体过程中再细说。没有办法，只能完全参考官网的教程了，以下是具体的过程：<br><div class="note info">
+            <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2>
+          </div><br>我用的是阿里云的ECS，装有CentOS7系统，并且已经安装了Docker。</p>
+<div class="note info">
+            <h2 id="服务安装"><a href="#服务安装" class="headerlink" title="服务安装"></a>服务安装</h2>
+          </div>
+<p>Drone支持集成很多代码托管平台，包括GitHub、GitLab、Gitea等，以下以GitHub为例：</p>
+<h3 id="第一步：准备"><a href="#第一步：准备" class="headerlink" title="第一步：准备"></a>第一步：准备</h3><h4 id="创建一个GitHub的OAuth认证应用"><a href="#创建一个GitHub的OAuth认证应用" class="headerlink" title="创建一个GitHub的OAuth认证应用"></a>创建一个GitHub的OAuth认证应用</h4><p>这一步主要是为了获取客户端ID和客户端秘钥，Drone服务在启动时候需要指定这两个参数，后续才有权限从GitHub拉取代码等一系列操作：<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/github_application_create.png" alt="创建OAuth认证"></p>
+<p><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/github_application_created.png" alt="创建OAuth认证成功"></p>
+<h4 id="创建一个可共享秘钥"><a href="#创建一个可共享秘钥" class="headerlink" title="创建一个可共享秘钥"></a>创建一个可共享秘钥</h4><p>通过<code>openssl</code>命令创建(这一步感觉可以省略，后面会设置Drone服务为”http”方式)：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ openssl rand -hex 16</span><br><span class="line">bea26a2221fd8090ea38720fc445eca6</span><br></pre></td></tr></table></figure></p>
+<h3 id="第二步：下载镜像"><a href="#第二步：下载镜像" class="headerlink" title="第二步：下载镜像"></a>第二步：下载镜像</h3><p>我们上面说到了Drone是基于Docker的，Drone服务也是如此：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker pull drone/drone</span><br></pre></td></tr></table></figure></p>
+<p>官网上指定了版本”1”，这里我们默认使用”latest”。</p>
+<h3 id="第三步：配置"><a href="#第三步：配置" class="headerlink" title="第三步：配置"></a>第三步：配置</h3><ul>
+<li>DRONE_GITHUB_CLIENT_ID，第一步中获取到的客户端ID</li>
+<li>DRONE_GITHUB_CLIENT_SECRET，第一步中获取到的客户端秘钥</li>
+<li>DRONE_RPC_SECRET，第一步中openssl命令创建的共享秘钥</li>
+<li>DRONE_SERVER_HOST，Drone服务所在主机域名或者公网IP</li>
+<li>DRONE_SERVER_PROTO，Drone服务协议，可选”http”和”https”</li>
+</ul>
+<h3 id="第四步：启动服务"><a href="#第四步：启动服务" class="headerlink" title="第四步：启动服务"></a>第四步：启动服务</h3><p>以下是完整的Drone服务运行参数：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">docker pull drone/drone</span><br><span class="line">docker run \</span><br><span class="line">--volume=/var/lib/drone:/data \</span><br><span class="line">--env=DRONE_GITHUB_CLIENT_ID=XXX \</span><br><span class="line">--env=DRONE_GITHUB_CLIENT_SECRET=XXX \</span><br><span class="line">--env=DRONE_RPC_SECRET=bea26a2221fd8090ea38720fc445eca6 \</span><br><span class="line">--env=DRONE_SERVER_HOST=47.104.243.84:9001 \</span><br><span class="line">--env=DRONE_SERVER_PROTO=http \</span><br><span class="line">--publish=9001:80 \</span><br><span class="line">--publish=443:443 \</span><br><span class="line">--restart=always \</span><br><span class="line">--detach=<span class="literal">true</span> \</span><br><span class="line">--name=drone \</span><br><span class="line">drone/drone</span><br></pre></td></tr></table></figure></p>
+<p>映射端口根据实际需要进行调整，执行完该命令后，Drone服务已经运行起来了，我们可以在浏览器中打开<code>http://47.104.243.84:9001</code>，会出现GitHub授权登陆界面：<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/GitHub%E6%8E%88%E6%9D%83%E7%99%BB%E9%99%86.png" alt="GitHub授权登陆"><br>用GitHub授权成功后，可以进入到服务管理页面。<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E7%99%BB%E9%99%86%E6%88%90%E5%8A%9F.png" alt="登陆成功页面"></p>
+<div class="note info">
+            <h2 id="执行器安装"><a href="#执行器安装" class="headerlink" title="执行器安装"></a>执行器安装</h2>
+          </div>
+<p>服务启动成功之后我就迫不及待的去GitHub上建了个用来测试的项目”drone-demo”，不用具体的实现就放一个README.md就可以了，并且按照官网文档在项目根目录增加了一个配置文件<code>.drone.yml</code>：<br><figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">kind:</span> <span class="string">pipeline</span></span><br><span class="line"><span class="attr">type:</span> <span class="string">exec</span></span><br><span class="line"><span class="attr">name:</span> <span class="string">default</span></span><br><span class="line"><span class="attr">platform:</span></span><br><span class="line"><span class="attr">  os:</span> <span class="string">linux</span></span><br><span class="line"><span class="attr">  arch:</span> <span class="number">386</span></span><br><span class="line"><span class="attr">steps:</span></span><br><span class="line"><span class="attr">- name:</span> <span class="string">build</span></span><br><span class="line"><span class="attr">  commands:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">pwd</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">ls</span> <span class="bullet">-la</span></span><br><span class="line"><span class="attr">trigger:</span></span><br><span class="line"><span class="attr">  branch:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">master</span></span><br></pre></td></tr></table></figure></p>
+<p>回到服务管理页面点击”SYNC”，发现”drone-demo”已经在列表中了，我们在列表中点击对应的”ACTIVATE”链接激活该项目，这样才会触发Drone的构建操作。随便更改drone-demo中的代码然后提交上传，再回到管理页面发现已经触发了构建但问题是一直卡在那里不动了：<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E5%8D%A1%E4%BD%8F.png" alt="构建卡住"><br>在网上搜了下，发现基本上都说需要安装<code>drone-agent</code>，而且使用docker-compose一次性安装服务和代理，看起来挺靠谱的，但问题是官网上没有代理的相关描述！不管怎么样，我们还是能看出来是缺少了什么导致的，再回到官网细看才发现还需要安装执行器”Runner”，而执行器分为以下几种：</p>
+<ul>
+<li>Docker Runner，在相关的docker容器中执行构建步骤，比如我们可以根据需要在不同版本的node容器中执行构建</li>
+<li>Kubernetes Runner</li>
+<li>Exec Runner，这个执行器比较特殊，本次就是使用的这个执行器，其他的几个执行器都是可以通过docker容器形式提供服务，这个是以原生的服务提供，具体安装过程和参数配置这里不细说了，官网上已经很详细了，可以参考<a href="https://docs.drone.io/runner/exec/installation/linux/" target="_blank" rel="noopener">官网：在Linux安装Exec执行器</a></li>
+<li>SSH Runner</li>
+<li>Digital Ocean Runner<br>安装并成功启动exec执行器之后，我们发现原先的构建已经成功了：<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E6%88%90%E5%8A%9F.png?Expires=1585596395&amp;OSSAccessKeyId=TMP.3KhPBpYPpx6i4WaQyArTcgQidYvT5cuAV2xgg41z5rn4TmFH3wiKJr5zZxfxeXXRgyXfoxZgZvLtGt8hsG6P6YtcfgnLA1&amp;Signature=MIYK7hqIjlXomCRDgFBxulvw2vM%3D" alt="构建成功"><br>过程也还算顺利，比当初我在使用Jenkins的时候容易多了。如果安装其他的执行器的话可以使用docker-compose，这样服务和执行器可以一起安装比较方便，这里提供一个docker-compose的配置文件以供参考(只包含Drone服务，根据需要自行添加执行器的相关配置)：<figure class="highlight yml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">version:</span> <span class="string">'3'</span></span><br><span class="line"><span class="attr">services:</span></span><br><span class="line"><span class="attr">  drone-server:</span></span><br><span class="line"><span class="attr">    image:</span> <span class="string">drone/drone</span></span><br><span class="line"><span class="attr">    ports:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="number">9001</span><span class="string">:80</span></span><br><span class="line"><span class="attr">    container_name:</span> <span class="string">drone</span></span><br><span class="line"><span class="attr">    volumes:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">/var/lib/drone:/data</span></span><br><span class="line"><span class="attr">    restart:</span> <span class="string">always</span></span><br><span class="line"><span class="attr">    environment:</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">DRONE_GITHUB_CLIENT_ID=XXX</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">DRONE_GITHUB_CLIENT_SECRET=XXX</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">DRONE_RPC_SECRET=cf51230bedda724d772507cb7140596f</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">DRONE_SERVER_HOST=47.104.243.84:9001</span></span><br><span class="line"><span class="bullet">    -</span> <span class="string">DRONE_SERVER_PROTO=http</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<div class="note info">
+            <h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2>
+          </div>
+<p>我现在还只是停留在试用阶段，Drone的很多功能还有待进一步探索，有兴趣的朋友也可以自己试用一下。</p>
+<hr>
+<p>参考资料：</p>
+<ol>
+<li><a href="https://docs.drone.io/" target="_blank" rel="noopener">https://docs.drone.io/</a></li>
+<li><a href="https://www.cntofu.com/book/139/cases/ci/drone.md" target="_blank" rel="noopener">https://www.cntofu.com/book/139/cases/ci/drone.md</a></li>
+</ol>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Linden</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://47.104.243.84/2020/03/30/first-exploration-of-drone/" title="初探Drone">http://47.104.243.84/2020/03/30/first-exploration-of-drone/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Drone/" rel="tag"><i class="fa fa-tag"></i> Drone</a>
+          
+            <a href="/tags/Jenkins/" rel="tag"><i class="fa fa-tag"></i> Jenkins</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/25/hot-technologies-of-2019/" rel="next" title="2019热门技术合集">
+                <i class="fa fa-chevron-left"></i> 2019热门技术合集
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Linden">
+            
+              <p class="site-author-name" itemprop="name">Linden</p>
+              <div class="site-description motion-element" itemprop="description">书到用时方恨少，事非经过不知难。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lindenthink" title="GitHub &rarr; https://github.com/lindenthink" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:84449541@qq.com" title="E-Mail &rarr; mailto:84449541@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#环境准备"><span class="nav-number">1.</span> <span class="nav-text">环境准备</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#服务安装"><span class="nav-number">2.</span> <span class="nav-text">服务安装</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#第一步：准备"><span class="nav-number">2.1.</span> <span class="nav-text">第一步：准备</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个GitHub的OAuth认证应用"><span class="nav-number">2.1.1.</span> <span class="nav-text">创建一个GitHub的OAuth认证应用</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#创建一个可共享秘钥"><span class="nav-number">2.1.2.</span> <span class="nav-text">创建一个可共享秘钥</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第二步：下载镜像"><span class="nav-number">2.2.</span> <span class="nav-text">第二步：下载镜像</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第三步：配置"><span class="nav-number">2.3.</span> <span class="nav-text">第三步：配置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#第四步：启动服务"><span class="nav-number">2.4.</span> <span class="nav-text">第四步：启动服务</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行器安装"><span class="nav-number">3.</span> <span class="nav-text">执行器安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">4.</span> <span class="nav-text">后记</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-pencil"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Linden</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>访问人数
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>浏览总量
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.6" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'oWo6kKY3sMJSHgETPN0wToR9-gzGzoHsz',
+    appKey: 'VLjcJi2mwUj7XeGj4Vq2sUmx',
+    placeholder: '敬请留言，你的支持是我最大的动力！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = 'NYntaGXsFmsvsYuvw';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
+
+  
+
+</body>
+</html>

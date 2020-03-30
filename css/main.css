@@ -444,6 +444,9 @@ body {
 }
 .container {
   position: relative;
+  background: url("../../../images/bg.jpg") no-repeat;
+  background-attachment: fixed;
+  background-size: cover;
 }
 .header-inner {
   margin: 0 auto;
@@ -1854,7 +1857,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #41c77c;
+  background: #46a255;
 }
 .feed-link,
 .chat {

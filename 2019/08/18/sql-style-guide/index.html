@@ -1,0 +1,1570 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpeg?v=7.1.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <!-- Chatra {literal} -->
+  <script>
+      (function(d, w, c) {
+          w.ChatraID = 'NYntaGXsFmsvsYuvw';
+          var s = d.createElement('script');
+          w[c] = w[c] || function() {
+              (w[c].q = w[c].q || []).push(arguments);
+          };
+          s.async = true;
+          s.src = 'https://call.chatra.io/chatra.js';
+          if (d.head) d.head.appendChild(s);
+      })(document, window, 'Chatra');
+  </script>
+<!-- /Chatra {/literal} -->
+
+
+<!-- 心型点击效果 -->
+<script>
+  !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
+</script>
+
+  <meta name="description" content="您好!我是Matt Mazur，是一名数据分析师，曾在多家初创公司工作，帮助他们利用数据发展业务。本指南试图记录我对格式化SQL的偏好，以期对其他人有所帮助。如果您或您的团队还没有SQL样式指南，那么这可能是一个很好的起点，您可以根据自己的喜好采用和更新。">
+<meta name="keywords" content="SQL">
+<meta property="og:type" content="article">
+<meta property="og:title" content="SQL风格指南">
+<meta property="og:url" content="http://47.104.243.84/2019/08/18/sql-style-guide/index.html">
+<meta property="og:site_name" content="菩提思">
+<meta property="og:description" content="您好!我是Matt Mazur，是一名数据分析师，曾在多家初创公司工作，帮助他们利用数据发展业务。本指南试图记录我对格式化SQL的偏好，以期对其他人有所帮助。如果您或您的团队还没有SQL样式指南，那么这可能是一个很好的起点，您可以根据自己的喜好采用和更新。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-08-19T06:54:16.083Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="SQL风格指南">
+<meta name="twitter:description" content="您好!我是Matt Mazur，是一名数据分析师，曾在多家初创公司工作，帮助他们利用数据发展业务。本指南试图记录我对格式化SQL的偏好，以期对其他人有所帮助。如果您或您的团队还没有SQL样式指南，那么这可能是一个很好的起点，您可以根据自己的喜好采用和更新。">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://47.104.243.84/2019/08/18/sql-style-guide/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>SQL风格指南 | 菩提思</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菩提思</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一花一世界，一叶一菩提。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-friends">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/lindenthink" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-translate" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://47.104.243.84/2019/08/18/sql-style-guide/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Linden">
+      <meta itemprop="description" content="书到用时方恨少，事非经过不知难。">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菩提思">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">SQL风格指南
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+         
+            
+            
+              <span style="display: inline-block;text-align: center;line-height: 15px;margin-right: 5px;height: 15px;width: 15px;border-radius: 7.5px;color: red;border: 1px dotted red;">译</span>
+            
+         
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-18 23:22:19" itemprop="dateCreated datePublished" datetime="2019-08-18T23:22:19+08:00">2019-08-18</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-08-19 14:54:16" itemprop="dateModified" datetime="2019-08-19T14:54:16+08:00">2019-08-19</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/" itemprop="url" rel="index"><span itemprop="name">数据库</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/数据库/SQL/" itemprop="url" rel="index"><span itemprop="name">SQL</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/18/sql-style-guide/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/18/sql-style-guide/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>您好!我是Matt Mazur，是一名数据分析师，曾在多家初创公司工作，帮助他们利用数据发展业务。本指南试图记录我对格式化SQL的偏好，以期对其他人有所帮助。如果您或您的团队还没有SQL样式指南，那么这可能是一个很好的起点，您可以根据自己的喜好采用和更新。</p>
+</blockquote>
+<a id="more"></a>
+<p>另外，我是一个<a href="https://medium.com/@ameet/strong-opinions-weakly-held-a-framework-for-thinking-6530d417e364" target="_blank" rel="noopener">意见偏激者</a>，所以如果您不同意任何一点，<a href="https://mattmazur.com/contact/" target="_blank" rel="noopener">给我一个便条</a>，我很乐意去探讨。</p>
+<p>如果您对这个主题感兴趣，您可能同样会对我的<a href="http://eepurl.com/dITJS9" target="_blank" rel="noopener">Matt on Analytics</a>新闻稿件和我写的关于分析学和数据分析的<a href="https://mattmazur.com/category/analytics/" target="_blank" rel="noopener">博客</a>感兴趣。</p>
+<div class="note info">
+            <h2 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h2>
+          </div>
+<p>下面是一个非常重要的查询，让您能够了解这个风格指南在实践中是什么样子的：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> hubspot_interest <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        email,</span><br><span class="line">        timestamp_millis(property_beacon_interest) <span class="keyword">as</span> expressed_interest_at</span><br><span class="line">    <span class="keyword">from</span> hubspot.contact</span><br><span class="line">    <span class="keyword">where</span> property_beacon_interest <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span></span><br><span class="line"></span><br><span class="line">), </span><br><span class="line"></span><br><span class="line">support_interest <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line">    <span class="keyword">select</span> </span><br><span class="line">        email,</span><br><span class="line">        created_at <span class="keyword">as</span> expressed_interest_at</span><br><span class="line">    <span class="keyword">from</span> helpscout.conversation</span><br><span class="line">    <span class="keyword">inner</span> <span class="keyword">join</span> helpscout.conversation_tag <span class="keyword">on</span> conversation.id = conversation_tag.conversation_id</span><br><span class="line">    <span class="keyword">where</span> tag = <span class="string">'beacon-interest'</span></span><br><span class="line"></span><br><span class="line">), </span><br><span class="line"></span><br><span class="line">combined_interest <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> hubspot_interest</span><br><span class="line">    <span class="keyword">union</span> <span class="keyword">all</span></span><br><span class="line">    <span class="keyword">select</span> * <span class="keyword">from</span> support_interest</span><br><span class="line"></span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line">    <span class="keyword">select</span> </span><br><span class="line">        email,</span><br><span class="line">        <span class="keyword">min</span>(expressed_interest_at) <span class="keyword">as</span> expressed_interest_at</span><br><span class="line">    <span class="keyword">from</span> combined_interest</span><br><span class="line">    <span class="keyword">group</span> <span class="keyword">by</span> email</span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">final</span></span><br></pre></td></tr></table></figure></p>
+<div class="note info">
+            <h2 id="准则"><a href="#准则" class="headerlink" title="准则"></a>准则</h2>
+          </div>
+<h3 id="使用小写SQL"><a href="#使用小写SQL" class="headerlink" title="使用小写SQL"></a>使用小写SQL</h3><p>它和大写的SQL一样可读，您不必一直按住SHIFT键。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">Select</span> * <span class="keyword">From</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="单行查询与多行查询"><a href="#单行查询与多行查询" class="headerlink" title="单行查询与多行查询"></a>单行查询与多行查询</h3><p>当你进行以下查询时才可以将所有SQL放到同一行：</p>
+<ul>
+<li>所有列（*）或选择1或2列</li>
+<li>而且在您的查询中没有额外的复杂性<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span> <span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, email <span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>原因很简单，当所有东西都在一条线上时，仍然很容易阅读。但是，一旦您开始添加更多的列或更复杂的列，如果它位于多行上，则更容易阅读：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email,</span><br><span class="line">    created_at</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> email = <span class="string">'example@domain.com'</span></span><br></pre></td></tr></table></figure></p>
+<p>对于具有1列或2列的查询，可以将列放在同一行上。对于3+列，将每个列名称放在自己的行上，包括第一项：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> email <span class="keyword">like</span> <span class="string">'%@gmail.com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> user_id, <span class="keyword">count</span>(*) <span class="keyword">as</span> total_charges</span><br><span class="line"><span class="keyword">from</span> charges</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email,</span><br><span class="line">    created_at</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, email, created_at</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>,</span><br><span class="line">    email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="所有内容左对齐"><a href="#所有内容左对齐" class="headerlink" title="所有内容左对齐"></a>所有内容左对齐</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> email <span class="keyword">like</span> <span class="string">'%@gmail.com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, email</span><br><span class="line">  <span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"> <span class="keyword">where</span> email <span class="keyword">like</span> <span class="string">'%@gmail.com'</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用单引号"><a href="#使用单引号" class="headerlink" title="使用单引号"></a>使用单引号</h3><p>一些SQL方言（如BigQuery）支持使用双引号，但对于大多数方言来说，双引号最终会引用列名。因此，最好使用单引号：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> email = <span class="string">'example@domain.com'</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> email = <span class="string">"example@domain.com"</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用而不是"><a href="#使用而不是" class="headerlink" title="使用而不是"></a>使用<span class="label info">!=</span>而不是<span class="label info"><></span></h3><p>只是因为<span class="label info">!=</span>读起来像“不等于”，这更接近于我们怎么大声说出来。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">as</span> paying_users_count</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> plan_name != <span class="string">'free'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="逗号应在行尾"><a href="#逗号应在行尾" class="headerlink" title="逗号应在行尾"></a>逗号应在行尾</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span></span><br><span class="line">    , email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure>
+<h3 id="缩进Where条件"><a href="#缩进Where条件" class="headerlink" title="缩进Where条件"></a>缩进Where条件</h3><p>当只有一个Where条件时，请将其与<span class="label info">where</span>保持在同一行：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> = <span class="number">1234</span></span><br></pre></td></tr></table></figure></p>
+<p>如果存在多个条件，则将每个级别缩进到比<span class="label info">where</span>更深的一个级别。将逻辑运算符放在前一个条件的末尾：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">select</span> <span class="keyword">id</span>, email</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> </span><br><span class="line">    created_at &gt;= <span class="string">'2019-03-01'</span> <span class="keyword">and</span> </span><br><span class="line">    vertical = <span class="string">'work'</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="避免括号内有空格"><a href="#避免括号内有空格" class="headerlink" title="避免括号内有空格"></a>避免括号内有空格</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> (<span class="number">1</span>, <span class="number">2</span>)</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> <span class="keyword">id</span> <span class="keyword">in</span> ( <span class="number">1</span>, <span class="number">2</span> )</span><br></pre></td></tr></table></figure>
+<h3 id="将查询值的长列表分隔为多个缩进行"><a href="#将查询值的长列表分隔为多个缩进行" class="headerlink" title="将查询值的长列表分隔为多个缩进行"></a>将<span class="label info">in</span>查询值的长列表分隔为多个缩进行</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> *</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">where</span> email <span class="keyword">in</span> (</span><br><span class="line">    <span class="string">'user-1@example.com'</span>,</span><br><span class="line">    <span class="string">'user-2@example.com'</span>,</span><br><span class="line">    <span class="string">'user-3@example.com'</span>,</span><br><span class="line">    <span class="string">'user-4@example.com'</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h3 id="表名应该是蛇形连接复数形式"><a href="#表名应该是蛇形连接复数形式" class="headerlink" title="表名应该是蛇形连接复数形式"></a>表名应该是蛇形连接复数形式</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email,</span><br><span class="line">    timestamp_trunc(created_at, <span class="keyword">month</span>) <span class="keyword">as</span> signup_month</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email,</span><br><span class="line">    timestamp_trunc(created_at, <span class="keyword">month</span>) <span class="keyword">as</span> SignupMonth</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure>
+<h3 id="列名约定"><a href="#列名约定" class="headerlink" title="列名约定"></a>列名约定</h3><ul>
+<li>布尔型字段应以<span class="label info">is_</span>，<span class="label info">has_</span>或<span class="label info">does_</span>开头，如：is_customer, has_unsubscribed等。</li>
+<li>日期型字段应以<span class="label info">_date</span>结尾，如：report_date。</li>
+<li>日期时间型字段应以<span class="label info">_at</span>结尾，如：created_at, posted_at等。</li>
+</ul>
+<h3 id="列顺序约定"><a href="#列顺序约定" class="headerlink" title="列顺序约定"></a>列顺序约定</h3><p>首先放置主键，接着是外键，然后放置所有其他列。如果表中有任何系统列(created_at, updated_at, is_deleted等)，则放到最后。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    created_at</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    created_at,</span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="内连接中包含"><a href="#内连接中包含" class="headerlink" title="内连接中包含"></a>内连接中包含<span class="label info">inner</span></h3><p>最好是显式的，以便连接类型清晰明了：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> charges <span class="keyword">on</span> users.id = charges.user_id</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">join</span> charges <span class="keyword">on</span> users.id = charges.user_id</span><br></pre></td></tr></table></figure></p>
+<h3 id="对于联接条件，将首先引用的表放在紧邻之后"><a href="#对于联接条件，将首先引用的表放在紧邻之后" class="headerlink" title="对于联接条件，将首先引用的表放在紧邻之后"></a>对于联接条件，将首先引用的表放在紧邻<span class="label info">on</span>之后</h3><p>这样做可以更容易地确定连接是否会导致结果分散：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> charges <span class="keyword">on</span> users.id = charges.user_id</span><br><span class="line"><span class="comment">-- primary_key = foreign_key --&gt; one-to-many --&gt; fanout</span></span><br><span class="line">  </span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">from</span> charges</span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> <span class="keyword">users</span> <span class="keyword">on</span> charges.user_id = users.id</span><br><span class="line"><span class="comment">-- foreign_key = primary_key --&gt; many-to-one --&gt; no fanout</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    ...</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">left</span> <span class="keyword">join</span> charges <span class="keyword">on</span> charges.user_id = users.id</span><br></pre></td></tr></table></figure></p>
+<h3 id="单个联接条件应与在同一行上"><a href="#单个联接条件应与在同一行上" class="headerlink" title="单个联接条件应与在同一行上"></a>单个联接条件应与<span class="label info">join</span>在同一行上</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> charges <span class="keyword">on</span> users.id = charges.user_id</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> email</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> charges</span><br><span class="line"><span class="keyword">on</span> users.id = charges.user_id</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> email</span><br></pre></td></tr></table></figure>
+<p>当有多个连接条件时，将每个条件放置在各自的缩进行上：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> charges <span class="keyword">on</span> </span><br><span class="line">    users.id = charges.user_id <span class="keyword">and</span></span><br><span class="line">    refunded = <span class="literal">false</span></span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> email</span><br></pre></td></tr></table></figure></p>
+<h3 id="避免表别名"><a href="#避免表别名" class="headerlink" title="避免表别名"></a>避免表别名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> charges <span class="keyword">on</span> users.id = charges.user_id</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    email,</span><br><span class="line">    <span class="keyword">sum</span>(amount) <span class="keyword">as</span> total_revenue</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span> u</span><br><span class="line"><span class="keyword">inner</span> <span class="keyword">join</span> charges c <span class="keyword">on</span> u.id = c.user_id</span><br></pre></td></tr></table></figure>
+<p>唯一的例外是，当您需要多次联接到一个表上并需要区分它们时。</p>
+<h3 id="如非必须不要包含表名"><a href="#如非必须不要包含表名" class="headerlink" title="如非必须不要包含表名"></a>如非必须不要包含表名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> companies</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    companies.id,</span><br><span class="line">    companies.name</span><br><span class="line"><span class="keyword">from</span> companies</span><br></pre></td></tr></table></figure>
+<h3 id="总是重命名聚合和函数包装的参数"><a href="#总是重命名聚合和函数包装的参数" class="headerlink" title="总是重命名聚合和函数包装的参数"></a>总是重命名聚合和函数包装的参数</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*) <span class="keyword">as</span> total_users</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> <span class="keyword">count</span>(*)</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> timestamp_millis(property_beacon_interest) <span class="keyword">as</span> expressed_interest_at</span><br><span class="line"><span class="keyword">from</span> hubspot.contact</span><br><span class="line"><span class="keyword">where</span> property_beacon_interest <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> timestamp_millis(property_beacon_interest)</span><br><span class="line"><span class="keyword">from</span> hubspot.contact</span><br><span class="line"><span class="keyword">where</span> property_beacon_interest <span class="keyword">is</span> <span class="keyword">not</span> <span class="literal">null</span></span><br></pre></td></tr></table></figure>
+<h3 id="确保布尔条件是显示的"><a href="#确保布尔条件是显示的" class="headerlink" title="确保布尔条件是显示的"></a>确保布尔条件是显示的</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers <span class="keyword">where</span> is_cancelled = <span class="literal">true</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers <span class="keyword">where</span> is_cancelled = <span class="literal">false</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers <span class="keyword">where</span> is_cancelled</span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> customers <span class="keyword">where</span> <span class="keyword">not</span> is_cancelled</span><br></pre></td></tr></table></figure>
+<h3 id="使用定义列别名"><a href="#使用定义列别名" class="headerlink" title="使用定义列别名"></a>使用<span class="label info">as</span>定义列别名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email,</span><br><span class="line">    timestamp_trunc(created_at, <span class="keyword">month</span>) <span class="keyword">as</span> signup_month</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">id</span>,</span><br><span class="line">    email,</span><br><span class="line">    timestamp_trunc(created_at, <span class="keyword">month</span>) signup_month</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">users</span></span><br></pre></td></tr></table></figure>
+<h3 id="用列名而不是序号做分组"><a href="#用列名而不是序号做分组" class="headerlink" title="用列名而不是序号做分组"></a>用列名而不是序号做分组</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span> user_id, <span class="keyword">count</span>(*) <span class="keyword">as</span> total_charges</span><br><span class="line"><span class="keyword">from</span> charges</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> user_id</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    <span class="keyword">count</span>(*) <span class="keyword">as</span> total_charges</span><br><span class="line"><span class="keyword">from</span> charges</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<h3 id="使用列别名"><a href="#使用列别名" class="headerlink" title="使用列别名"></a>使用列别名</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">  timestamp_trunc(com_created_at, <span class="keyword">year</span>) <span class="keyword">as</span> signup_year,</span><br><span class="line">  <span class="keyword">count</span>(*) <span class="keyword">as</span> total_companies</span><br><span class="line"><span class="keyword">from</span> companies</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> signup_year</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">  timestamp_trunc(com_created_at, <span class="keyword">year</span>) <span class="keyword">as</span> signup_year,</span><br><span class="line">  <span class="keyword">count</span>(*) <span class="keyword">as</span> total_companies</span><br><span class="line"><span class="keyword">from</span> companies</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> timestamp_trunc(com_created_at, <span class="keyword">year</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="分组列应置于最前"><a href="#分组列应置于最前" class="headerlink" title="分组列应置于最前"></a>分组列应置于最前</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">  timestamp_trunc(com_created_at, <span class="keyword">year</span>) <span class="keyword">as</span> signup_year,</span><br><span class="line">  <span class="keyword">count</span>(*) <span class="keyword">as</span> total_companies</span><br><span class="line"><span class="keyword">from</span> companies</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> signup_year</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">  <span class="keyword">count</span>(*) <span class="keyword">as</span> total_companies,</span><br><span class="line">  timestamp_trunc(com_created_at, <span class="keyword">year</span>) <span class="keyword">as</span> signup_year</span><br><span class="line"><span class="keyword">from</span> mysql_helpscout.helpscout_companies</span><br><span class="line"><span class="keyword">group</span> <span class="keyword">by</span> signup_year</span><br></pre></td></tr></table></figure>
+<h3 id="对齐case-when语句"><a href="#对齐case-when语句" class="headerlink" title="对齐case/when语句"></a>对齐case/when语句</h3><p>每个<span class="label info">when</span>都应该在自己的行上（<span class="label info">case</span>所在行没有任何内容），并且应该缩进比<span class="label info">case</span>行深一层。<span class="label info">then</span>可以和<span class="label info">when</span>在同一行上或者在下一行，这样做只是为了保持一致。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span></span><br><span class="line">        <span class="keyword">when</span> event_name = <span class="string">'viewed_homepage'</span> <span class="keyword">then</span> <span class="string">'Homepage'</span></span><br><span class="line">        <span class="keyword">when</span> event_name = <span class="string">'viewed_editor'</span> <span class="keyword">then</span> <span class="string">'Editor'</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">as</span> page_name</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">events</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good too</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span></span><br><span class="line">        <span class="keyword">when</span> event_name = <span class="string">'viewed_homepage'</span></span><br><span class="line">            <span class="keyword">then</span> <span class="string">'Homepage'</span></span><br><span class="line">        <span class="keyword">when</span> event_name = <span class="string">'viewed_editor'</span></span><br><span class="line">            <span class="keyword">then</span> <span class="string">'Editor'</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">as</span> page_name</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">events</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad </span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    <span class="keyword">case</span> <span class="keyword">when</span> event_name = <span class="string">'viewed_homepage'</span> <span class="keyword">then</span> <span class="string">'Homepage'</span></span><br><span class="line">        <span class="keyword">when</span> event_name = <span class="string">'viewed_editor'</span> <span class="keyword">then</span> <span class="string">'Editor'</span></span><br><span class="line">    <span class="keyword">end</span> <span class="keyword">as</span> page_name</span><br><span class="line"><span class="keyword">from</span> <span class="keyword">events</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用通CTEs而非子查询"><a href="#使用通CTEs而非子查询" class="headerlink" title="使用通CTEs而非子查询"></a>使用通CTEs而非子查询</h3><p>避免子查询，CTE（通用表表达式）将使您的查询更容易阅读和解释。<br>使用CTE时，请用新行填充查询。<br>如果使用任何CTE，请始终在末尾使用名为final的CTE，并选择<code>* from final</code>。这样，您就可以快速检查查询中用于调试结果的其他CTE的输出。<br>关闭CTE括号应使用与WITH和CTE名称相同的缩进级别。<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">with</span> ordered_details <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        user_id,</span><br><span class="line">        <span class="keyword">name</span>,</span><br><span class="line">        row_number() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> date_updated <span class="keyword">desc</span>) <span class="keyword">as</span> details_rank</span><br><span class="line">    <span class="keyword">from</span> billingdaddy.billing_stored_details</span><br><span class="line"></span><br><span class="line">),</span><br><span class="line"></span><br><span class="line"><span class="keyword">final</span> <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line">    <span class="keyword">select</span> user_id, <span class="keyword">name</span></span><br><span class="line">    <span class="keyword">from</span> ordered_details</span><br><span class="line">    <span class="keyword">where</span> details_rank = <span class="number">1</span></span><br><span class="line"></span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"><span class="keyword">select</span> * <span class="keyword">from</span> <span class="keyword">final</span></span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">select</span> user_id, <span class="keyword">name</span></span><br><span class="line"><span class="keyword">from</span> (</span><br><span class="line">    <span class="keyword">select</span></span><br><span class="line">        user_id,</span><br><span class="line">        <span class="keyword">name</span>,</span><br><span class="line">        row_number() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> date_updated <span class="keyword">desc</span>) <span class="keyword">as</span> details_rank</span><br><span class="line">    <span class="keyword">from</span> billingdaddy.billing_stored_details</span><br><span class="line">) ranked</span><br><span class="line"><span class="keyword">where</span> details_rank = <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="使用有意义的CTE名称"><a href="#使用有意义的CTE名称" class="headerlink" title="使用有意义的CTE名称"></a>使用有意义的CTE名称</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">with</span> ordered_details <span class="keyword">as</span> (</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Bad</span></span><br><span class="line"><span class="keyword">with</span> d1 <span class="keyword">as</span> (</span><br></pre></td></tr></table></figure>
+<h3 id="窗口函数"><a href="#窗口函数" class="headerlink" title="窗口函数"></a>窗口函数</h3><p>您可以将其全部保留在自己的行中，也可以根据其长度将其拆分为多个：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    row_number() <span class="keyword">over</span> (<span class="keyword">partition</span> <span class="keyword">by</span> user_id <span class="keyword">order</span> <span class="keyword">by</span> date_updated <span class="keyword">desc</span>) <span class="keyword">as</span> details_rank</span><br><span class="line"><span class="keyword">from</span> billingdaddy.billing_stored_details</span><br><span class="line"></span><br><span class="line"><span class="comment">-- Good</span></span><br><span class="line"><span class="keyword">select</span></span><br><span class="line">    user_id,</span><br><span class="line">    <span class="keyword">name</span>,</span><br><span class="line">    row_number() <span class="keyword">over</span> (</span><br><span class="line">        <span class="keyword">partition</span> <span class="keyword">by</span> user_id</span><br><span class="line">        <span class="keyword">order</span> <span class="keyword">by</span> date_updated <span class="keyword">desc</span></span><br><span class="line">    ) <span class="keyword">as</span> details_rank</span><br><span class="line"><span class="keyword">from</span> billingdaddy.billing_stored_details</span><br></pre></td></tr></table></figure></p>
+<div class="note info">
+            <h2 id="感谢"><a href="#感谢" class="headerlink" title="感谢"></a>感谢</h2>
+          </div>
+<p>本风格指南灵感来源于：</p>
+<ul>
+<li><a href="https://github.com/fishtown-analytics/corp/blob/master/dbt_coding_conventions.md#sql-style-guide" target="_blank" rel="noopener">Fishtown Analytics’ dbt Style Guide</a></li>
+<li><a href="https://gist.github.com/fredbenenson/7bb92718e19138c20591" target="_blank" rel="noopener">KickStarter’s SQL Style Guide</a></li>
+<li><a href="https://about.gitlab.com/handbook/business-ops/data-team/sql-style-guide/" target="_blank" rel="noopener">GitLab’s SQL Style Guide</a></li>
+</ul>
+<p>向Peter Butler、Dan Wyman、Simon Ouderkirk、Alex Cano、Adam Stone、Brian Kim和Claire Carroll提供关于本指南的反馈意见表示感谢。</p>
+<hr>
+<ul>
+<li>本文译自<a href="https://github.com/mattm/sql-style-guide#guidelines" target="_blank" rel="noopener">https://github.com/mattm/sql-style-guide#guidelines</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Linden</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://47.104.243.84/2019/08/18/sql-style-guide/" title="SQL风格指南">http://47.104.243.84/2019/08/18/sql-style-guide/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/SQL/" rel="tag"><i class="fa fa-tag"></i> SQL</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/07/22/daily-design-pattern-preface/" rel="next" title="每天一个设计模式-前言">
+                <i class="fa fa-chevron-left"></i> 每天一个设计模式-前言
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/20/front-end-performance-optimization-what-you-must-konw/" rel="prev" title="你必须懂的前端性能优化">
+                你必须懂的前端性能优化 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Linden">
+            
+              <p class="site-author-name" itemprop="name">Linden</p>
+              <div class="site-description motion-element" itemprop="description">书到用时方恨少，事非经过不知难。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lindenthink" title="GitHub &rarr; https://github.com/lindenthink" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:84449541@qq.com" title="E-Mail &rarr; mailto:84449541@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#示例"><span class="nav-number">1.</span> <span class="nav-text">示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#准则"><span class="nav-number">2.</span> <span class="nav-text">准则</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#使用小写SQL"><span class="nav-number">2.1.</span> <span class="nav-text">使用小写SQL</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单行查询与多行查询"><span class="nav-number">2.2.</span> <span class="nav-text">单行查询与多行查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#所有内容左对齐"><span class="nav-number">2.3.</span> <span class="nav-text">所有内容左对齐</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用单引号"><span class="nav-number">2.4.</span> <span class="nav-text">使用单引号</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用而不是"><span class="nav-number">2.5.</span> <span class="nav-text">使用!=而不是&lt;&gt;</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#逗号应在行尾"><span class="nav-number">2.6.</span> <span class="nav-text">逗号应在行尾</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缩进Where条件"><span class="nav-number">2.7.</span> <span class="nav-text">缩进Where条件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免括号内有空格"><span class="nav-number">2.8.</span> <span class="nav-text">避免括号内有空格</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#将查询值的长列表分隔为多个缩进行"><span class="nav-number">2.9.</span> <span class="nav-text">将in查询值的长列表分隔为多个缩进行</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#表名应该是蛇形连接复数形式"><span class="nav-number">2.10.</span> <span class="nav-text">表名应该是蛇形连接复数形式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列名约定"><span class="nav-number">2.11.</span> <span class="nav-text">列名约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#列顺序约定"><span class="nav-number">2.12.</span> <span class="nav-text">列顺序约定</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#内连接中包含"><span class="nav-number">2.13.</span> <span class="nav-text">内连接中包含inner</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对于联接条件，将首先引用的表放在紧邻之后"><span class="nav-number">2.14.</span> <span class="nav-text">对于联接条件，将首先引用的表放在紧邻on之后</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#单个联接条件应与在同一行上"><span class="nav-number">2.15.</span> <span class="nav-text">单个联接条件应与join在同一行上</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#避免表别名"><span class="nav-number">2.16.</span> <span class="nav-text">避免表别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如非必须不要包含表名"><span class="nav-number">2.17.</span> <span class="nav-text">如非必须不要包含表名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#总是重命名聚合和函数包装的参数"><span class="nav-number">2.18.</span> <span class="nav-text">总是重命名聚合和函数包装的参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确保布尔条件是显示的"><span class="nav-number">2.19.</span> <span class="nav-text">确保布尔条件是显示的</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用定义列别名"><span class="nav-number">2.20.</span> <span class="nav-text">使用as定义列别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#用列名而不是序号做分组"><span class="nav-number">2.21.</span> <span class="nav-text">用列名而不是序号做分组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用列别名"><span class="nav-number">2.22.</span> <span class="nav-text">使用列别名</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#分组列应置于最前"><span class="nav-number">2.23.</span> <span class="nav-text">分组列应置于最前</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#对齐case-when语句"><span class="nav-number">2.24.</span> <span class="nav-text">对齐case/when语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用通CTEs而非子查询"><span class="nav-number">2.25.</span> <span class="nav-text">使用通CTEs而非子查询</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用有意义的CTE名称"><span class="nav-number">2.26.</span> <span class="nav-text">使用有意义的CTE名称</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#窗口函数"><span class="nav-number">2.27.</span> <span class="nav-text">窗口函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#感谢"><span class="nav-number">3.</span> <span class="nav-text">感谢</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-pencil"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Linden</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>访问人数
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>浏览总量
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.6" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'oWo6kKY3sMJSHgETPN0wToR9-gzGzoHsz',
+    appKey: 'VLjcJi2mwUj7XeGj4Vq2sUmx',
+    placeholder: '敬请留言，你的支持是我最大的动力！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = 'NYntaGXsFmsvsYuvw';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
+
+  
+
+</body>
+</html>

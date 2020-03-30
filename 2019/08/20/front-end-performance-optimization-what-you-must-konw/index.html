@@ -1,0 +1,1672 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+  
+  
+    
+    
+  <script src="/lib/pace/pace.min.js?v=1.0.2"></script>
+  <link rel="stylesheet" href="/lib/pace/pace-theme-minimal.min.css?v=1.0.2">
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/Han/dist/han.min.css?v=3.3">
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link rel="stylesheet" href="/lib/fancybox/source/jquery.fancybox.css">
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=7.1.0">
+
+
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.jpeg?v=7.1.0">
+
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '7.1.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: true,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <!-- Chatra {literal} -->
+  <script>
+      (function(d, w, c) {
+          w.ChatraID = 'NYntaGXsFmsvsYuvw';
+          var s = d.createElement('script');
+          w[c] = w[c] || function() {
+              (w[c].q = w[c].q || []).push(arguments);
+          };
+          s.async = true;
+          s.src = 'https://call.chatra.io/chatra.js';
+          if (d.head) d.head.appendChild(s);
+      })(document, window, 'Chatra');
+  </script>
+<!-- /Chatra {/literal} -->
+
+
+<!-- 心型点击效果 -->
+<script>
+  !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
+</script>
+
+  <meta name="description" content="本文作者从页面加载过程、浏览器缓存策略、CDN、图片优化和渲染优化等几个方面详细介绍了前端的相关概念和优化方法。">
+<meta name="keywords" content="性能优化">
+<meta property="og:type" content="article">
+<meta property="og:title" content="你必须懂的前端性能优化">
+<meta property="og:url" content="http://47.104.243.84/2019/08/20/front-end-performance-optimization-what-you-must-konw/index.html">
+<meta property="og:site_name" content="菩提思">
+<meta property="og:description" content="本文作者从页面加载过程、浏览器缓存策略、CDN、图片优化和渲染优化等几个方面详细介绍了前端的相关概念和优化方法。">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%20Cache.png">
+<meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5.jpg">
+<meta property="og:updated_time" content="2019-09-21T02:21:56.920Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="你必须懂的前端性能优化">
+<meta name="twitter:description" content="本文作者从页面加载过程、浏览器缓存策略、CDN、图片优化和渲染优化等几个方面详细介绍了前端的相关概念和优化方法。">
+<meta name="twitter:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%20Cache.png">
+
+
+
+
+
+  
+  
+  <link rel="canonical" href="http://47.104.243.84/2019/08/20/front-end-performance-optimization-what-you-must-konw/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>你必须懂的前端性能优化 | 菩提思</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">菩提思</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <p class="site-subtitle">一花一世界，一叶一菩提。</p>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-friends">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/friends/" rel="section"><i class="menu-item-icon fa fa-fw fa-link"></i> <br>友链</a>
+
+  </li>
+
+      
+      
+        <li class="menu-item menu-item-search">
+          
+            <a href="javascript:;" class="popup-trigger">
+          
+            
+              <i class="menu-item-icon fa fa-search fa-fw"></i> <br>搜索</a>
+        </li>
+      
+    </ul>
+  
+
+  
+
+  
+    <div class="site-search">
+      
+  <div class="popup search-popup local-search-popup">
+  <div class="local-search-header clearfix">
+    <span class="search-icon">
+      <i class="fa fa-search"></i>
+    </span>
+    <span class="popup-btn-close">
+      <i class="fa fa-times-circle"></i>
+    </span>
+    <div class="local-search-input-wrapper">
+      <input autocomplete="off" placeholder="搜索..." spellcheck="false" type="text" id="local-search-input">
+    </div>
+  </div>
+  <div id="local-search-result"></div>
+</div>
+
+
+
+    </div>
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+
+  
+
+  <a href="https://github.com/lindenthink" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-reprint" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://47.104.243.84/2019/08/20/front-end-performance-optimization-what-you-must-konw/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Linden">
+      <meta itemprop="description" content="书到用时方恨少，事非经过不知难。">
+      <meta itemprop="image" content="/images/avatar.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="菩提思">
+    </span>
+
+    
+      <header class="post-header">
+        
+        
+          <h1 class="post-title" itemprop="name headline">你必须懂的前端性能优化
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+         
+            
+            
+              <span style="display: inline-block;text-align: center;line-height: 15px;margin-right: 5px;height: 15px;width: 15px;border-radius: 7.5px;color: orange;border: 1px dotted orange;">转</span>
+            
+         
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-08-20 23:54:10" itemprop="dateCreated datePublished" datetime="2019-08-20T23:54:10+08:00">2019-08-20</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-09-21 10:21:56" itemprop="dateModified" datetime="2019-09-21T10:21:56+08:00">2019-09-21</time>
+              
+            
+          </span>
+
+          
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">分类于</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/" itemprop="url" rel="index"><span itemprop="name">编程</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/前端/" itemprop="url" rel="index"><span itemprop="name">前端</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/编程/前端/性能优化/" itemprop="url" rel="index"><span itemprop="name">性能优化</span></a></span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+            
+              
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/08/20/front-end-performance-optimization-what-you-must-konw/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count valine-comment-count" data-xid="/2019/08/20/front-end-performance-optimization-what-you-must-konw/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body han-init-context" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>本文作者从页面加载过程、浏览器缓存策略、CDN、图片优化和渲染优化等几个方面详细介绍了前端的相关概念和优化方法。</p>
+</blockquote>
+<a id="more"></a>
+<div class="note info">
+            <h2 id="从输入URL加载起看方向"><a href="#从输入URL加载起看方向" class="headerlink" title="从输入URL加载起看方向"></a>从输入URL加载起看方向</h2>
+          </div>
+<ol>
+<li>首先做 DNS 查询，如果这一步做了智能 DNS 解析的话，会提供访问速度最快的 IP 地址回来</li>
+<li>接下来是 TCP 握手，应用层会下发数据给传输层，这里 TCP 协议会指明两端的端口号，然后下发给网络层。网络层中的 IP 协议会确定 IP 地址，并且指示了数据传输中如何跳转路由器。然后包会再被封装到数据链路层的数据帧结构中，最后就是物理层面的传输了</li>
+<li>TCP 握手结束后会进行 TLS 握手，然后就开始正式的传输数据</li>
+<li>数据在进入服务端之前，可能还会先经过负责负载均衡的服务器，它的作用就是将请求合理的分发到多台服务器上，这时假设服务端会响应一个 HTML 文件</li>
+<li>首先浏览器会判断状态码是什么，如果是 200 那就继续解析，如果 400 或 500 的话就会报错，如果 300 的话会进行重定向，这里会有个重定向计数器，避免过多次的重定向，超过次数也会报错</li>
+<li>浏览器开始解析文件，如果是 gzip 格式的话会先解压一下，然后通过文件的编码格式知道该如何去解码文件</li>
+<li>文件解码成功后会正式开始渲染流程，先会根据 HTML 构建 DOM 树，有 CSS 的话会去构建 CSSOM 树。如果遇到 script 标签的话，会判断是否存在 async 或者 defer ，前者会并行进行下载并执行 JS，后者会先下载文件，然后等待 HTML 解析完成后顺序执行，如果以上都没有，就会阻塞住渲染流程直到 JS 执行完毕。遇到文件下载的会去下载文件，这里如果使用 HTTP 2.0 协议的话会极大的提高多图的下载效率</li>
+<li>初始的 HTML 被完全加载和解析后会触发 DOMContentLoaded 事件</li>
+<li>CSSOM 树和 DOM 树构建完成后会开始生成 Render 树，这一步就是确定页面元素的布局、样式等等诸多方面的东西</li>
+<li>在生成 Render 树的过程中，浏览器就开始调用 GPU 绘制，合成图层，将内容显示在屏幕上了</li>
+</ol>
+<p>我们从输入 URL 到显示页面这个过程中，涉及到网络层面的，有三个主要过程：</p>
+<ul>
+<li>DNS 解析</li>
+<li>TCP 连接</li>
+<li>HTTP 请求/响应</li>
+</ul>
+<p>对于 DNS 解析和 TCP 连接两个步骤，我们前端可以做的努力非常有限。相比之下，HTTP 连接这一层面的优化才是我们网络优化的核心。<br>HTTP 优化有两个大的方向：</p>
+<ul>
+<li>减少请求次数</li>
+<li>减少单次请求所花费的时间</li>
+</ul>
+<div class="note info">
+            <h2 id="浏览器缓存策略"><a href="#浏览器缓存策略" class="headerlink" title="浏览器缓存策略"></a>浏览器缓存策略</h2>
+          </div>
+<p>浏览器缓存机制有四个方面，它们按照获取资源时请求的优先级依次排列如下：</p>
+<ol>
+<li>Memory Cache</li>
+<li>Service Worker Cache</li>
+<li>HTTP Cache</li>
+<li>Push Cache</li>
+</ol>
+<h3 id="MemoryCache"><a href="#MemoryCache" class="headerlink" title="MemoryCache"></a>MemoryCache</h3><p>MemoryCache，是指存在内存中的缓存。从优先级上来说，它是浏览器最先尝试去命中的一种缓存。从效率上来说，它是响应速度最快的一种缓存。浏览器秉承的是“节约原则”，我们发现，Base64 格式的图片，几乎永远可以被塞进 memory cache，这可以视作浏览器为节省渲染开销的“自保行为”；此外，体积不大的 JS、CSS 文件，也有较大地被写入内存的几率——相比之下，较大的 JS、CSS 文件就没有这个待遇了，内存资源是有限的，它们往往被直接甩进磁盘。</p>
+<h3 id="Service-Worker-Cache"><a href="#Service-Worker-Cache" class="headerlink" title="Service Worker Cache"></a>Service Worker Cache</h3><p>ervice Worker 是一种独立于主线程之外的 Javascript 线程。它脱离于浏览器窗体，因此无法直接访问 DOM。这样独立的个性使得 Service Worker 的“个人行为”无法干扰页面的性能，这个“幕后工作者”可以帮我们实现离线缓存、消息推送和网络代理等功能。我们借助 Service worker 实现的离线缓存就称为 Service Worker Cache。</p>
+<h3 id="HTTP-Cache"><a href="#HTTP-Cache" class="headerlink" title="HTTP Cache"></a>HTTP Cache</h3><p>对一条http get 报文的基本缓存处理过程包括7个步骤：</p>
+<ol>
+<li>接收</li>
+<li>解析</li>
+<li>查询，缓存查看是否有本地副本可用，如果没有，就获取一份副本</li>
+<li>新鲜度检测， 缓存查看已缓存副本是否足够新鲜，如果不是，就询问服务器是否有任何更新。</li>
+<li>创建响应，缓存会用新的首部和已缓存的主体来构建一条响应报文。</li>
+<li>发送，缓存通过网络将响应发回给客服端。</li>
+<li>日志<br><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%20Cache.png" alt="HTTP Cache"></li>
+</ol>
+<h4 id="强缓存"><a href="#强缓存" class="headerlink" title="强缓存"></a>强缓存</h4><p>强缓存是利用 http 头中的 Expires 和 Cache-Control 两个字段来控制的。强缓存中，当请求再次发出时，浏览器会根据其中的 expires 和 cache-control 判断目标资源是否“命中”强缓存，若命中则直接从缓存中获取资源，不会再与服务端发生通信。</p>
+<p>是否足够新鲜时期：通过 Expires: XXXX XXX XXX GMT （绝对日期时间，http/1.0） 或者 Cache-Control:max-age=XXXX （相对日期时间，http/1.1）在文档标明过期日期。</p>
+<p>Cache-Control 相对于 expires 更加准确，它的优先级也更高。当 Cache-Control 与 expires 同时出现时，我们以 Cache-Control 为准。</p>
+<h4 id="关键字理解"><a href="#关键字理解" class="headerlink" title="关键字理解"></a>关键字理解</h4><p>public 与 private 是针对资源是否能够被代理服务缓存而存在的一组对立概念。如果我们为资源设置了 public，那么它既可以被浏览器缓存，也可以被代理服务器缓存；如果我们设置了 private，则该资源只能被浏览器缓存。private 为默认值。</p>
+<p>no-store与no-cache，no-cache 绕开了浏览器：我们为资源设置了 no-cache 后，每一次发起请求都不会再去询问浏览器的缓存情况，而是直接向服务端去确认该资源是否过期（即走我们下文即将讲解的协商缓存的路线）。no-store 比较绝情，顾名思义就是不使用任何缓存策略。在 no-cache 的基础上，它连服务端的缓存确认也绕开了，只允许你直接向服务端发送请求、并下载完整的响应。</p>
+<h4 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h4><p>协商缓存依赖于服务端与浏览器之间的通信。协商缓存机制下，浏览器需要向服务器去询问缓存的相关信息，进而判断是重新发起请求、下载完整的响应，还是从本地获取缓存的资源。如果服务端提示缓存资源未改动（Not Modified），资源会被重定向到浏览器缓存，这种情况下网络请求对应的状态码是 304。</p>
+<p>协商缓存的实现：从 Last-Modified 到 Etag，详细自己百度，这里不再详细展开。</p>
+<h4 id="HTTP缓存决策"><a href="#HTTP缓存决策" class="headerlink" title="HTTP缓存决策"></a>HTTP缓存决策</h4><p><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/front-end-performance-optimization-what-you-must-konw/HTTP%E7%BC%93%E5%AD%98%E7%AD%96%E7%95%A5.jpg" alt="HTTP缓存策略"><br>当我们的资源内容不可复用时，直接为 Cache-Control 设置 no-store，拒绝一切形式的缓存；否则考虑是否每次都需要向服务器进行缓存有效确认，如果需要，那么设 Cache-Control 的值为 no-cache；否则考虑该资源是否可以被代理服务器缓存，根据其结果决定是设置为 private 还是 public；然后考虑该资源的过期时间，设置对应的 max-age 和 s-maxage 值；最后，配置协商缓存需要用到的 Etag、Last-Modified 等参数。</p>
+<h3 id="Push-Cache"><a href="#Push-Cache" class="headerlink" title="Push Cache"></a>Push Cache</h3><p>Push Cache 是指 HTTP2 在 server push 阶段存在的缓存。</p>
+<ul>
+<li>Push Cache 是缓存的最后一道防线。浏览器只有在 Memory Cache、HTTP Cache 和 Service Worker Cache 均未命中的情况下才会去询问 Push Cache。</li>
+<li>Push Cache 是一种存在于会话阶段的缓存，当 session 终止时，缓存也随之释放。</li>
+<li>不同的页面只要共享了同一个 HTTP2 连接，那么它们就可以共享同一个 Push Cache。</li>
+</ul>
+<div class="note info">
+            <h2 id="CDN了解一番"><a href="#CDN了解一番" class="headerlink" title="CDN了解一番"></a>CDN了解一番</h2>
+          </div>
+<p>CDN 的核心点有两个，一个是缓存，一个是回源。</p>
+<p>“缓存”就是说我们把资源 copy 一份到 CDN 服务器上这个过程，“回源”就是说 CDN 发现自己没有这个资源（一般是缓存的数据过期了），转头向根服务器（或者它的上层服务器）去要这个资源的过程。<br>CDN 往往被用来存放静态资源。所谓“静态资源”，就是像 JS、CSS、图片等不需要业务服务器进行计算即得的资源。而“动态资源”，顾名思义是需要后端实时动态生成的资源，较为常见的就是 JSP、ASP 或者依赖服务端渲染得到的 HTML 页面。</p>
+<p>那“非纯静态资源”呢？它是指需要服务器在页面之外作额外计算的 HTML 页面。具体来说，当我打开某一网站之前，该网站需要通过权限认证等一系列手段确认我的身份、进而决定是否要把 HTML 页面呈现给我。这种情况下 HTML 确实是静态的，但它和业务服务器的操作耦合，我们把它丢到CDN 上显然是不合适的。</p>
+<p>另外，CDN的域名必须和主业务服务器的域名不一样，要不，同一个域名下面的Cookie各处跑，浪费了性能流量的开销，CDN域名放在不同的域名下，可以完美地避免了不必要的 Cookie 的出现！</p>
+<div class="note info">
+            <h2 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h2>
+          </div>
+<h3 id="二进制位数与色彩的关系"><a href="#二进制位数与色彩的关系" class="headerlink" title="二进制位数与色彩的关系"></a>二进制位数与色彩的关系</h3><p>在计算机中，像素用二进制数来表示。不同的图片格式中像素与二进制位数之间的对应关系是不同的。一个像素对应的二进制位数越多，它可以表示的颜色种类就越多，成像效果也就越细腻，文件体积相应也会越大。</p>
+<p>一个二进制位表示两种颜色（0|1 对应黑|白），如果一种图片格式对应的二进制位数有 n 个，那么它就可以呈现 2^n 种颜色。</p>
+<h3 id="计算图片大小"><a href="#计算图片大小" class="headerlink" title="计算图片大小"></a>计算图片大小</h3><p>对于一张 100 100 像素的图片来说，图像上有 10000 个像素点，如果每个像素的值是 RGBA 存储的话，那么也就是说每个像素有 4 个通道，每个通道 1 个字节（8 位 = 1个字节），所以该图片大小大概为 39KB（10000 1 * 4 / 1024）。<br>但是在实际项目中，一张图片可能并不需要使用那么多颜色去显示，我们可以通过减少每个像素的调色板来相应缩小图片的大小。<br>了解了如何计算图片大小的知识，那么对于如何优化图片，想必大家已经有 2 个思路了：</p>
+<ul>
+<li>减少像素点</li>
+<li>减少每个像素点能够显示的颜色</li>
+</ul>
+<h3 id="图片类型要点"><a href="#图片类型要点" class="headerlink" title="图片类型要点"></a>图片类型要点</h3><p><code>PEG/JPG</code> 特点：有损压缩、体积小、加载快、不支持透明,JPG 最大的特点是有损压缩。这种高效的压缩算法使它成为了一种非常轻巧的图片格式。另一方面，即使被称为“有损”压缩，JPG的压缩方式仍然是一种高质量的压缩方式：当我们把图片体积压缩至原有体积的 50% 以下时，JPG 仍然可以保持住 60% 的品质。但当它处理矢量图形和 Logo 等线条感较强、颜色对比强烈的图像时，人为压缩导致的图片模糊会相当明显。</p>
+<p><code>PNG</code> 特点：无损压缩、质量高、体积大、支持透明，PNG（可移植网络图形格式）是一种无损压缩的高保真的图片格式。8 和 24，这里都是二进制数的位数。按照我们前置知识里提到的对应关系，8 位的 PNG 最多支持 256 种颜色，而 24 位的可以呈现约 1600 万种颜色。PNG 图片具有比 JPG 更强的色彩表现力，对线条的处理更加细腻，对透明度有良好的支持。它弥补了上文我们提到的 JPG 的局限性，唯一的 BUG 就是体积太大。</p>
+<p><code>SVG</code> 特点：文本文件、体积小、不失真、兼容性好，SVG（可缩放矢量图形）是一种基于 XML 语法的图像格式。它和本文提及的其它图片种类有着本质的不同：SVG 对图像的处理不是基于像素点，而是是基于对图像的形状描述。</p>
+<p><code>Base64</code> 特点：文本文件、依赖编码、小图标解决方案，Base64 并非一种图片格式，而是一种编码方式。Base64 和雪碧图一样，是作为小图标解决方案而存在的。</p>
+<p><code>WebP</code> 特点：年轻的全能型选手，WebP 像 JPEG 一样对细节丰富的图片信手拈来，像 PNG 一样支持透明，像 GIF 一样可以显示动态图片——它集多种图片文件格式的优点于一身。但是毕竟年轻，兼容性存在一些问题。</p>
+<div class="note info">
+            <h2 id="渲染优化"><a href="#渲染优化" class="headerlink" title="渲染优化"></a>渲染优化</h2>
+          </div>
+<h3 id="客户端渲染"><a href="#客户端渲染" class="headerlink" title="客户端渲染"></a>客户端渲染</h3><p>在客户端渲染模式下，服务端会把渲染需要的静态文件发送给客户端，客户端加载过来之后，自己在浏览器里跑一遍 JS，根据 JS 的运行结果，生成相应的 DOM。页面上呈现的内容，你在 html 源文件里里找不到——这正是它的特点。</p>
+<h3 id="服务端渲染"><a href="#服务端渲染" class="headerlink" title="服务端渲染"></a>服务端渲染</h3><p>在服务端渲染的模式下，当用户第一次请求页面时，由服务器把需要的组件或页面渲染成HTML字符串，然后把它返回给客户端。页面上呈现的内容，我们在 html 源文件里也能找到。服务端渲染解决了一个非常关键的性能问题——首屏加载速度过慢，也解决了SEO搜索引擎的问题。</p>
+<h3 id="浏览器渲染过程解析"><a href="#浏览器渲染过程解析" class="headerlink" title="浏览器渲染过程解析"></a>浏览器渲染过程解析</h3><p>浏览器的渲染机制一般分为以下几个步骤：</p>
+<ol>
+<li>处理 HTML 并构建 DOM 树。</li>
+<li>处理 CSS 构建 CSSOM 树</li>
+<li>将 DOM 与 CSSOM 合并成一个渲染树。</li>
+<li>根据渲染树来布局，计算每个节点的位置。</li>
+<li>调用 GPU 绘制，合成图层，显示在屏幕上。</li>
+</ol>
+<p>在渲染DOM的时候，浏览器所做的工作实际上是：</p>
+<ol>
+<li>获取DOM后分割为多个图层</li>
+<li>对每个图层的节点计算样式结果（Recalculate style–样式重计算）</li>
+<li>为每个节点生成图形和位置（Layout–回流和重布局）</li>
+<li>将每个节点绘制填充到图层位图中（Paint Setup和Paint–重绘）</li>
+<li>图层作为纹理上传至GPU</li>
+<li>复合多个图层到页面上生成最终屏幕图像（Composite Layers–图层重组）</li>
+</ol>
+<h3 id="基于渲染流程的-CSS-优化建议"><a href="#基于渲染流程的-CSS-优化建议" class="headerlink" title="基于渲染流程的 CSS 优化建议"></a>基于渲染流程的 CSS 优化建议</h3><p>CSS 选择符是从右到左进行匹配的，比如<code>#myList li {}</code>实际开销相当高。</p>
+<ol>
+<li>避免使用通配符，只对需要用到的元素进行选择。</li>
+<li>关注可以通过继承实现的属性，避免重复匹配重复定义。</li>
+<li>少用标签选择器。如果可以，用类选择器替代。 错误：#dataList li{} 正确：.dataList{}</li>
+<li>不要画蛇添足，id 和 class 选择器不应该被多余的标签选择器拖后腿。错误：.dataList#title 正确： #title</li>
+<li>减少嵌套。后代选择器的开销是最高的，因此我们应该尽量将选择器的深度降到最低（最高不要超过三层），尽可能使用类来关联每一个标签元素。</li>
+</ol>
+<h3 id="CSS-的阻塞"><a href="#CSS-的阻塞" class="headerlink" title="CSS 的阻塞"></a>CSS 的阻塞</h3><p>CSS 是阻塞的资源。浏览器在构建 CSSOM 的过程中，不会渲染任何已处理的内容。即便 DOM 已经解析完毕了，只要 CSSOM 不 OK，那么渲染这个事情就不 OK。我们将 CSS 放在 head 标签里 和尽快 启用 CDN 实现静态资源加载速度的优化。</p>
+<h3 id="JS-的阻塞"><a href="#JS-的阻塞" class="headerlink" title="JS 的阻塞"></a>JS 的阻塞</h3><p>JS 引擎是独立于渲染引擎存在的。我们的 JS 代码在文档的何处插入，就在何处执行。当 HTML 解析器遇到一个 script 标签时，它会暂停渲染过程，将控制权交给 JS 引擎。JS 引擎对内联的 JS 代码会直接执行，对外部 JS 文件还要先获取到脚本、再进行执行。等 JS 引擎运行完毕，浏览器又会把控制权还给渲染引擎，继续 CSSOM 和 DOM 的构建。</p>
+<h3 id="DOM渲染优化"><a href="#DOM渲染优化" class="headerlink" title="DOM渲染优化"></a>DOM渲染优化</h3><h4 id="先了解回流和重绘"><a href="#先了解回流和重绘" class="headerlink" title="先了解回流和重绘"></a>先了解回流和重绘</h4><ul>
+<li>回流：当我们对 DOM 的修改引发了 DOM 几何尺寸的变化（比如修改元素的宽、高或隐藏元素等）时，浏览器需要重新计算元素的几何属性（其他元素的几何属性和位置也会因此受到影响），然后再将计算的结果绘制出来。这个过程就是回流（也叫重排）。</li>
+<li>重绘：当我们对 DOM 的修改导致了样式的变化、却并未影响其几何属性（比如修改了颜色或背景色）时，浏览器不需重新计算元素的几何属性、直接为该元素绘制新的样式（跳过了上图所示的回流环节）。这个过程叫做重绘。</li>
+</ul>
+<p>重绘不一定导致回流，回流一定会导致重绘。回流比重绘做的事情更多，带来的开销也更大。在开发中，要从代码层面出发，尽可能把回流和重绘的次数最小化。</p>
+<h4 id="例子剖析"><a href="#例子剖析" class="headerlink" title="例子剖析"></a>例子剖析</h4><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>DOM操作测试<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"container"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> count=<span class="number">0</span>;count&lt;<span class="number">10000</span>;count++)&#123; </span><br><span class="line">  <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>).innerHTML+=<span class="string">'&lt;span&gt;我是一个小测试&lt;/span&gt;'</span>  <span class="comment">//我们每一次循环都调用 DOM 接口重新获取了一次 container 元素，额外开销</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>进化一：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 只获取一次container</span></span><br><span class="line"><span class="keyword">let</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> count=<span class="number">0</span>;count&lt;<span class="number">10000</span>;count++)&#123; </span><br><span class="line">  container.innerHTML += <span class="string">'&lt;span&gt;我是一个小测试&lt;/span&gt;'</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>进化二：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//减少不必要的DOM更改</span></span><br><span class="line"><span class="keyword">let</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</span><br><span class="line"><span class="keyword">let</span> content = <span class="string">''</span></span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> count=<span class="number">0</span>;count&lt;<span class="number">10000</span>;count++)&#123; </span><br><span class="line">  <span class="comment">// 先对内容进行操作</span></span><br><span class="line">  content += <span class="string">'&lt;span&gt;我是一个小测试&lt;/span&gt;'</span></span><br><span class="line">&#125; </span><br><span class="line"><span class="comment">// 内容处理好了,最后再触发DOM的更改</span></span><br><span class="line">container.innerHTML = content</span><br></pre></td></tr></table></figure></p>
+<p>事实上，考虑JS 的运行速度，比 DOM 快得多这个特性。我们减少 DOM 操作的核心思路，就是让 JS 去给 DOM 分压。</p>
+<p>在 DOM Fragment 中，DocumentFragment 接口表示一个没有父级文件的最小文档对象。它被当做一个轻量版的 Document 使用，用于存储已排好版的或尚未打理好格式的XML片段。因为 DocumentFragment 不是真实 DOM 树的一部分，它的变化不会引起 DOM 树的重新渲染的操作（reflow），且不会导致性能等问题。</p>
+<p>进化三：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> container = <span class="built_in">document</span>.getElementById(<span class="string">'container'</span>)</span><br><span class="line"><span class="comment">// 创建一个DOM Fragment对象作为容器</span></span><br><span class="line"><span class="keyword">let</span> content = <span class="built_in">document</span>.createDocumentFragment()</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">let</span> count=<span class="number">0</span>;count&lt;<span class="number">10000</span>;count++)&#123;</span><br><span class="line">  <span class="comment">// span此时可以通过DOM API去创建</span></span><br><span class="line">  <span class="keyword">let</span> oSpan = <span class="built_in">document</span>.createElement(<span class="string">"span"</span>)</span><br><span class="line">  oSpan.innerHTML = <span class="string">'我是一个小测试'</span></span><br><span class="line">  <span class="comment">// 像操作真实DOM一样操作DOM Fragment对象</span></span><br><span class="line">  content.appendChild(oSpan)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 内容处理好了,最后再触发真实DOM的更改</span></span><br><span class="line">container.appendChild(content)</span><br></pre></td></tr></table></figure></p>
+<p>进化四：<br>当涉及到过万调数据进行渲染，而且要求不卡住画面，如何解决？<br>如何在不卡住页面的情况下渲染数据，也就是说不能一次性将几万条都渲染出来，而应该一次渲染部分 DOM，那么就可以通过 requestAnimationFrame 来每 16 ms 刷新一次。<br><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">meta</span> <span class="attr">http-equiv</span>=<span class="string">"X-UA-Compatible"</span> <span class="attr">content</span>=<span class="string">"ie=edge"</span> /&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">title</span>&gt;</span>Document<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">ul</span>&gt;</span></span><br><span class="line">      控件</span><br><span class="line">    <span class="tag">&lt;/<span class="name">ul</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="javascript">      setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span></span><br><span class="line"><span class="javascript">        <span class="comment">// 插入十万条数据</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> total = <span class="number">100000</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 一次插入 20 条，如果觉得性能不好就减少</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> once = <span class="number">20</span></span></span><br><span class="line"><span class="javascript">        <span class="comment">// 渲染数据总共需要几次</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">const</span> loopCount = total / once</span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> countOfRender = <span class="number">0</span></span></span><br><span class="line"><span class="javascript">        <span class="keyword">let</span> ul = <span class="built_in">document</span>.querySelector(<span class="string">'ul'</span>)</span></span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">add</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="comment">// 优化性能，插入不会造成回流</span></span></span><br><span class="line"><span class="javascript">          <span class="keyword">const</span> fragment = <span class="built_in">document</span>.createDocumentFragment()</span></span><br><span class="line"><span class="javascript">          <span class="keyword">for</span> (<span class="keyword">let</span> i = <span class="number">0</span>; i &lt; once; i++) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">const</span> li = <span class="built_in">document</span>.createElement(<span class="string">'li'</span>)</span></span><br><span class="line"><span class="javascript">            li.innerText = <span class="built_in">Math</span>.floor(<span class="built_in">Math</span>.random() * total)</span></span><br><span class="line">            fragment.appendChild(li)</span><br><span class="line">          &#125;</span><br><span class="line">          ul.appendChild(fragment)</span><br><span class="line">          countOfRender += 1</span><br><span class="line">          loop()</span><br><span class="line">        &#125;</span><br><span class="line"><span class="javascript">        <span class="function"><span class="keyword">function</span> <span class="title">loop</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">          <span class="keyword">if</span> (countOfRender &lt; loopCount) &#123;</span></span><br><span class="line"><span class="javascript">            <span class="built_in">window</span>.requestAnimationFrame(add)</span></span><br><span class="line">          &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        loop()</span><br><span class="line">      &#125;, 0)</span><br><span class="line">    <span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>window.requestAnimationFrame() 方法告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。</p>
+<p>注意：若您想要在下次重绘时产生另一个动画画面，您的回调例程必须调用 requestAnimationFrame()。</p>
+<h3 id="Event-Loop"><a href="#Event-Loop" class="headerlink" title="Event Loop"></a>Event Loop</h3><p>我们先了解javascript运行机制，对渲染是大有帮助的，可以看我历史文章<a href="http://blog.zhangbing.club/Javascript/JavaScript%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6/" target="_blank" rel="noopener">JavaScript运行机制</a>，<a href="http://blog.zhangbing.club/Javascript/Javascript%E8%BF%90%E8%A1%8C%E6%9C%BA%E5%88%B6%E6%B7%B1%E5%85%A5/" target="_blank" rel="noopener">Javascript运行机制深入</a>。</p>
+<p>事件循环中的异步队列有两种：macro（宏任务）队列和 micro（微任务）队列。<br>常见的 macro-task 比如： setTimeout、setInterval、 setImmediate、script（整体代码）、 I/O 操作、UI 渲染等。<br>常见的 micro-task 比如: process.nextTick、Promise、MutationObserver 等。</p>
+<p>例子分析：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// task是一个用于修改DOM的回调</span></span><br><span class="line">setTimeout(task, <span class="number">0</span>)</span><br></pre></td></tr></table></figure></p>
+<p>上面代码，现在 task 被推入的 macro 队列。但因为 script 脚本本身是一个 macro 任务，所以本次执行完 script 脚本之后，下一个步骤就要去处理 micro 队列了，再往下就去执行了一次 render,必须等待下一次的loop。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve().then(task)</span><br></pre></td></tr></table></figure></p>
+<p>上面代码，我们结束了对 script 脚本的执行，是不是紧接着就去处理 micro-task 队列了？micro-task 处理完，DOM 修改好了，紧接着就可以走 render 流程了——不需要再消耗多余的一次渲染，不需要再等待一轮事件循环，直接为用户呈现最即时的更新结果。</p>
+<p>当我们需要在异步任务中实现 DOM 修改时，把它包装成 micro 任务是相对明智的选择。</p>
+<p>上面说了重绘与回流，Event loop，但很多人不知道的是，重绘和回流其实和 Event loop 有关。</p>
+<ol>
+<li>当 Event loop 执行完 Microtasks 后，会判断 document 是否需要更新。因为浏览器是 60Hz 的刷新率，每 16ms 才会更新一次。</li>
+<li>然后判断是否有 resize 或者 scroll ，有的话会去触发事件，所以 resize 和 scroll 事件也是至少 16ms 才会触发一次，并且自带节流功能。</li>
+<li>判断是否触发了 media query</li>
+<li>更新动画并且发送事件</li>
+<li>判断是否有全屏操作事件</li>
+<li>执行 requestAnimationFrame 回调</li>
+<li>执行 IntersectionObserver 回调，该方法用于判断元素是否可见，可以用于懒加载上，但是兼容性不好</li>
+<li>更新界面</li>
+<li>以上就是一帧中可能会做的事情。如果在一帧中有空闲时间，就会去执行 requestIdleCallback 回调。</li>
+</ol>
+<div class="note info">
+            <h2 id="节流与防抖"><a href="#节流与防抖" class="headerlink" title="节流与防抖"></a>节流与防抖</h2>
+          </div>
+<p>当用户进行滚动，触发scroll事件，用户的每一次滚动都将触发我们的监听函数。函数执行是吃性能的，频繁地响应某个事件将造成大量不必要的页面计算。因此，我们需要针对那些有可能被频繁触发的事件作进一步地优化。节流与防抖就很有必要了！</p>
+<p>详细看历史文章<a href="http://blog.zhangbing.club/Javascript/%E9%98%B2%E6%8A%96%E5%8A%A8%E4%B8%8E%E8%8A%82%E6%B5%81/" target="_blank" rel="noopener">防抖动与节流</a>。</p>
+<hr>
+<p>本文转自<a href="https://segmentfault.com/a/1190000019897234。" target="_blank" rel="noopener">https://segmentfault.com/a/1190000019897234。</a></p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+      <div>
+        
+
+
+
+
+  
+
+
+
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Linden</li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    
+    <a href="http://47.104.243.84/2019/08/20/front-end-performance-optimization-what-you-must-konw/" title="你必须懂的前端性能优化">http://47.104.243.84/2019/08/20/front-end-performance-optimization-what-you-must-konw/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！</li>
+</ul>
+
+      </div>
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/性能优化/" rel="tag"><i class="fa fa-tag"></i> 性能优化</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/18/sql-style-guide/" rel="next" title="SQL风格指南">
+                <i class="fa fa-chevron-left"></i> SQL风格指南
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/08/25/hot-technologies-of-2019/" rel="prev" title="2019热门技术合集">
+                2019热门技术合集 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/avatar.jpeg" alt="Linden">
+            
+              <p class="site-author-name" itemprop="name">Linden</p>
+              <div class="site-description motion-element" itemprop="description">书到用时方恨少，事非经过不知难。</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">9</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  
+                    
+                      <a href="/categories/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/lindenthink" title="GitHub &rarr; https://github.com/lindenthink" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:84449541@qq.com" title="E-Mail &rarr; mailto:84449541@qq.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+            </div>
+          
+
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#从输入URL加载起看方向"><span class="nav-number">1.</span> <span class="nav-text">从输入URL加载起看方向</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#浏览器缓存策略"><span class="nav-number">2.</span> <span class="nav-text">浏览器缓存策略</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MemoryCache"><span class="nav-number">2.1.</span> <span class="nav-text">MemoryCache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Service-Worker-Cache"><span class="nav-number">2.2.</span> <span class="nav-text">Service Worker Cache</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#HTTP-Cache"><span class="nav-number">2.3.</span> <span class="nav-text">HTTP Cache</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#强缓存"><span class="nav-number">2.3.1.</span> <span class="nav-text">强缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#关键字理解"><span class="nav-number">2.3.2.</span> <span class="nav-text">关键字理解</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#协商缓存"><span class="nav-number">2.3.3.</span> <span class="nav-text">协商缓存</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#HTTP缓存决策"><span class="nav-number">2.3.4.</span> <span class="nav-text">HTTP缓存决策</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Push-Cache"><span class="nav-number">2.4.</span> <span class="nav-text">Push Cache</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#CDN了解一番"><span class="nav-number">3.</span> <span class="nav-text">CDN了解一番</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#图片优化"><span class="nav-number">4.</span> <span class="nav-text">图片优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#二进制位数与色彩的关系"><span class="nav-number">4.1.</span> <span class="nav-text">二进制位数与色彩的关系</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#计算图片大小"><span class="nav-number">4.2.</span> <span class="nav-text">计算图片大小</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#图片类型要点"><span class="nav-number">4.3.</span> <span class="nav-text">图片类型要点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#渲染优化"><span class="nav-number">5.</span> <span class="nav-text">渲染优化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#客户端渲染"><span class="nav-number">5.1.</span> <span class="nav-text">客户端渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#服务端渲染"><span class="nav-number">5.2.</span> <span class="nav-text">服务端渲染</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#浏览器渲染过程解析"><span class="nav-number">5.3.</span> <span class="nav-text">浏览器渲染过程解析</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#基于渲染流程的-CSS-优化建议"><span class="nav-number">5.4.</span> <span class="nav-text">基于渲染流程的 CSS 优化建议</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#CSS-的阻塞"><span class="nav-number">5.5.</span> <span class="nav-text">CSS 的阻塞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#JS-的阻塞"><span class="nav-number">5.6.</span> <span class="nav-text">JS 的阻塞</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#DOM渲染优化"><span class="nav-number">5.7.</span> <span class="nav-text">DOM渲染优化</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#先了解回流和重绘"><span class="nav-number">5.7.1.</span> <span class="nav-text">先了解回流和重绘</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#例子剖析"><span class="nav-number">5.7.2.</span> <span class="nav-text">例子剖析</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Event-Loop"><span class="nav-number">5.8.</span> <span class="nav-text">Event Loop</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#节流与防抖"><span class="nav-number">6.</span> <span class="nav-text">节流与防抖</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-pencil"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Linden</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>访问人数
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>浏览总量
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+          <span id="scrollpercent"><span>0</span>%</span>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+    
+    
+  
+  <script color="0,0,255" opacity="0.6" zindex="-1" count="99" src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/fancybox/source/jquery.fancybox.pack.js"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.1.0"></script>
+
+  <script src="/js/motion.js?v=7.1.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/affix.js?v=7.1.0"></script>
+
+  <script src="/js/schemes/pisces.js?v=7.1.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.1.0"></script>
+<script src="/js/post-details.js?v=7.1.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.1.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+
+<script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+
+
+
+  
+
+<script src="https://cdn.jsdelivr.net/npm/valine@1.3.9/dist/Valine.min.js"></script>
+
+<script>
+  var GUEST = ['nick', 'mail', 'link'];
+  var guest = 'nick,mail,link';
+  guest = guest.split(',').filter(function(item) {
+    return GUEST.indexOf(item) > -1;
+  });
+  new Valine({
+    el: '#comments',
+    verify: true,
+    notify: true,
+    appId: 'oWo6kKY3sMJSHgETPN0wToR9-gzGzoHsz',
+    appKey: 'VLjcJi2mwUj7XeGj4Vq2sUmx',
+    placeholder: '敬请留言，你的支持是我最大的动力！',
+    avatar: 'mm',
+    meta: guest,
+    pageSize: '10' || 10,
+    visitor: false,
+    lang: '' || 'zh-cn'
+  });
+</script>
+
+
+
+
+  
+
+
+  
+  <script>
+    // Popup Window;
+    var isfetched = false;
+    var isXml = true;
+    // Search DB path;
+    var search_path = "search.xml";
+    if (search_path.length === 0) {
+      search_path = "search.xml";
+    } else if (/json$/i.test(search_path)) {
+      isXml = false;
+    }
+    var path = "/" + search_path;
+    // monitor main search box;
+
+    var onPopupClose = function (e) {
+      $('.popup').hide();
+      $('#local-search-input').val('');
+      $('.search-result-list').remove();
+      $('#no-result').remove();
+      $(".local-search-pop-overlay").remove();
+      $('body').css('overflow', '');
+    }
+
+    function proceedsearch() {
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay"></div>')
+        .css('overflow', 'hidden');
+      $('.search-popup-overlay').click(onPopupClose);
+      $('.popup').toggle();
+      var $localSearchInput = $('#local-search-input');
+      $localSearchInput.attr("autocapitalize", "none");
+      $localSearchInput.attr("autocorrect", "off");
+      $localSearchInput.focus();
+    }
+
+    // search function;
+    var searchFunc = function(path, search_id, content_id) {
+      'use strict';
+
+      // start loading animation
+      $("body")
+        .append('<div class="search-popup-overlay local-search-pop-overlay">' +
+          '<div id="search-loading-icon">' +
+          '<i class="fa fa-spinner fa-pulse fa-5x fa-fw"></i>' +
+          '</div>' +
+          '</div>')
+        .css('overflow', 'hidden');
+      $("#search-loading-icon").css('margin', '20% auto 0 auto').css('text-align', 'center');
+
+      
+
+      $.ajax({
+        url: path,
+        dataType: isXml ? "xml" : "json",
+        async: true,
+        success: function(res) {
+          // get the contents from search data
+          isfetched = true;
+          $('.popup').detach().appendTo('.header-inner');
+          var datas = isXml ? $("entry", res).map(function() {
+            return {
+              title: $("title", this).text(),
+              content: $("content",this).text(),
+              url: $("url" , this).text()
+            };
+          }).get() : res;
+          var input = document.getElementById(search_id);
+          var resultContent = document.getElementById(content_id);
+          var inputEventFunction = function() {
+            var searchText = input.value.trim().toLowerCase();
+            var keywords = searchText.split(/[\s\-]+/);
+            if (keywords.length > 1) {
+              keywords.push(searchText);
+            }
+            var resultItems = [];
+            if (searchText.length > 0) {
+              // perform local searching
+              datas.forEach(function(data) {
+                var isMatch = false;
+                var hitCount = 0;
+                var searchTextCount = 0;
+                var title = data.title.trim();
+                var titleInLowerCase = title.toLowerCase();
+                var content = data.content.trim().replace(/<[^>]+>/g,"");
+                
+                var contentInLowerCase = content.toLowerCase();
+                var articleUrl = decodeURIComponent(data.url).replace(/\/{2,}/g, '/');
+                var indexOfTitle = [];
+                var indexOfContent = [];
+                // only match articles with not empty titles
+                if(title != '') {
+                  keywords.forEach(function(keyword) {
+                    function getIndexByWord(word, text, caseSensitive) {
+                      var wordLen = word.length;
+                      if (wordLen === 0) {
+                        return [];
+                      }
+                      var startPosition = 0, position = [], index = [];
+                      if (!caseSensitive) {
+                        text = text.toLowerCase();
+                        word = word.toLowerCase();
+                      }
+                      while ((position = text.indexOf(word, startPosition)) > -1) {
+                        index.push({position: position, word: word});
+                        startPosition = position + wordLen;
+                      }
+                      return index;
+                    }
+
+                    indexOfTitle = indexOfTitle.concat(getIndexByWord(keyword, titleInLowerCase, false));
+                    indexOfContent = indexOfContent.concat(getIndexByWord(keyword, contentInLowerCase, false));
+                  });
+                  if (indexOfTitle.length > 0 || indexOfContent.length > 0) {
+                    isMatch = true;
+                    hitCount = indexOfTitle.length + indexOfContent.length;
+                  }
+                }
+
+                // show search results
+
+                if (isMatch) {
+                  // sort index by position of keyword
+
+                  [indexOfTitle, indexOfContent].forEach(function (index) {
+                    index.sort(function (itemLeft, itemRight) {
+                      if (itemRight.position !== itemLeft.position) {
+                        return itemRight.position - itemLeft.position;
+                      } else {
+                        return itemLeft.word.length - itemRight.word.length;
+                      }
+                    });
+                  });
+
+                  // merge hits into slices
+
+                  function mergeIntoSlice(text, start, end, index) {
+                    var item = index[index.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    var hits = [];
+                    var searchTextCountInSlice = 0;
+                    while (position + word.length <= end && index.length != 0) {
+                      if (word === searchText) {
+                        searchTextCountInSlice++;
+                      }
+                      hits.push({position: position, length: word.length});
+                      var wordEnd = position + word.length;
+
+                      // move to next position of hit
+
+                      index.pop();
+                      while (index.length != 0) {
+                        item = index[index.length - 1];
+                        position = item.position;
+                        word = item.word;
+                        if (wordEnd > position) {
+                          index.pop();
+                        } else {
+                          break;
+                        }
+                      }
+                    }
+                    searchTextCount += searchTextCountInSlice;
+                    return {
+                      hits: hits,
+                      start: start,
+                      end: end,
+                      searchTextCount: searchTextCountInSlice
+                    };
+                  }
+
+                  var slicesOfTitle = [];
+                  if (indexOfTitle.length != 0) {
+                    slicesOfTitle.push(mergeIntoSlice(title, 0, title.length, indexOfTitle));
+                  }
+
+                  var slicesOfContent = [];
+                  while (indexOfContent.length != 0) {
+                    var item = indexOfContent[indexOfContent.length - 1];
+                    var position = item.position;
+                    var word = item.word;
+                    // cut out 100 characters
+                    var start = position - 20;
+                    var end = position + 80;
+                    if(start < 0){
+                      start = 0;
+                    }
+                    if (end < position + word.length) {
+                      end = position + word.length;
+                    }
+                    if(end > content.length){
+                      end = content.length;
+                    }
+                    slicesOfContent.push(mergeIntoSlice(content, start, end, indexOfContent));
+                  }
+
+                  // sort slices in content by search text's count and hits' count
+
+                  slicesOfContent.sort(function (sliceLeft, sliceRight) {
+                    if (sliceLeft.searchTextCount !== sliceRight.searchTextCount) {
+                      return sliceRight.searchTextCount - sliceLeft.searchTextCount;
+                    } else if (sliceLeft.hits.length !== sliceRight.hits.length) {
+                      return sliceRight.hits.length - sliceLeft.hits.length;
+                    } else {
+                      return sliceLeft.start - sliceRight.start;
+                    }
+                  });
+
+                  // select top N slices in content
+
+                  var upperBound = parseInt('1');
+                  if (upperBound >= 0) {
+                    slicesOfContent = slicesOfContent.slice(0, upperBound);
+                  }
+
+                  // highlight title and content
+
+                  function highlightKeyword(text, slice) {
+                    var result = '';
+                    var prevEnd = slice.start;
+                    slice.hits.forEach(function (hit) {
+                      result += text.substring(prevEnd, hit.position);
+                      var end = hit.position + hit.length;
+                      result += '<b class="search-keyword">' + text.substring(hit.position, end) + '</b>';
+                      prevEnd = end;
+                    });
+                    result += text.substring(prevEnd, slice.end);
+                    return result;
+                  }
+
+                  var resultItem = '';
+
+                  if (slicesOfTitle.length != 0) {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + highlightKeyword(title, slicesOfTitle[0]) + "</a>";
+                  } else {
+                    resultItem += "<li><a href='" + articleUrl + "' class='search-result-title'>" + title + "</a>";
+                  }
+
+                  slicesOfContent.forEach(function (slice) {
+                    resultItem += "<a href='" + articleUrl + "'>" +
+                      "<p class=\"search-result\">" + highlightKeyword(content, slice) +
+                      "...</p>" + "</a>";
+                  });
+
+                  resultItem += "</li>";
+                  resultItems.push({
+                    item: resultItem,
+                    searchTextCount: searchTextCount,
+                    hitCount: hitCount,
+                    id: resultItems.length
+                  });
+                }
+              })
+            };
+            if (keywords.length === 1 && keywords[0] === "") {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-search fa-5x"></i></div>'
+            } else if (resultItems.length === 0) {
+              resultContent.innerHTML = '<div id="no-result"><i class="fa fa-frown-o fa-5x"></i></div>'
+            } else {
+              resultItems.sort(function (resultLeft, resultRight) {
+                if (resultLeft.searchTextCount !== resultRight.searchTextCount) {
+                  return resultRight.searchTextCount - resultLeft.searchTextCount;
+                } else if (resultLeft.hitCount !== resultRight.hitCount) {
+                  return resultRight.hitCount - resultLeft.hitCount;
+                } else {
+                  return resultRight.id - resultLeft.id;
+                }
+              });
+              var searchResultList = '<ul class=\"search-result-list\">';
+              resultItems.forEach(function (result) {
+                searchResultList += result.item;
+              })
+              searchResultList += "</ul>";
+              resultContent.innerHTML = searchResultList;
+            }
+          }
+
+          if ('auto' === 'auto') {
+            input.addEventListener('input', inputEventFunction);
+          } else {
+            $('.search-icon').click(inputEventFunction);
+            input.addEventListener('keypress', function (event) {
+              if (event.keyCode === 13) {
+                inputEventFunction();
+              }
+            });
+          }
+
+          // remove loading animation
+          $(".local-search-pop-overlay").remove();
+          $('body').css('overflow', '');
+
+          proceedsearch();
+        }
+      });
+    }
+
+    // handle and trigger popup window;
+    $('.popup-trigger').click(function(e) {
+      e.stopPropagation();
+      if (isfetched === false) {
+        searchFunc(path, 'local-search-input', 'local-search-result');
+      } else {
+        proceedsearch();
+      };
+    });
+
+    $('.popup-btn-close').click(onPopupClose);
+    $('.popup').click(function(e){
+      e.stopPropagation();
+    });
+    $(document).on('keyup', function (event) {
+      var shouldDismissSearchPopup = event.which === 27 &&
+        $('.search-popup').is(':visible');
+      if (shouldDismissSearchPopup) {
+        onPopupClose();
+      }
+    });
+  </script>
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+  
+  <script src="/lib/bookmark/bookmark.min.js?v=1.0"></script>
+  <script>
+  
+    bookmark.scrollToMark('auto', "#更多");
+  
+  </script>
+
+
+  
+<script>
+  $('.highlight').each(function(i, e) {
+    var $wrap = $('<div>').addClass('highlight-wrap');
+    $(e).after($wrap);
+    $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function(e) {
+      var code = $(this).parent().find('.code').find('.line').map(function(i, e) {
+        return $(e).text();
+      }).toArray().join('\n');
+      var ta = document.createElement('textarea');
+      var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+      ta.style.top = yPosition + 'px'; // Prevent page scroll
+      ta.style.position = 'absolute';
+      ta.style.opacity = '0';
+      ta.readOnly = true;
+      ta.value = code;
+      document.body.appendChild(ta);
+      ta.select();
+      ta.setSelectionRange(0, code.length);
+      ta.readOnly = false;
+      var result = document.execCommand('copy');
+      
+        if (result) $(this).text('复制成功');
+        else $(this).text('复制失败');
+      
+      ta.blur(); // For iOS
+      $(this).blur();
+    })).on('mouseleave', function(e) {
+      var $b = $(this).find('.copy-btn');
+      setTimeout(function() {
+        $b.text('复制');
+      }, 300);
+    }).append(e);
+  })
+</script>
+
+
+  
+	
+	<script>
+		(function(d, w, c) {
+			w.ChatraID = 'NYntaGXsFmsvsYuvw';
+			var s = d.createElement('script');
+			w[c] = w[c] || function() {
+				(w[c].q = w[c].q || []).push(arguments);
+			};
+			s.async = true;
+			s.src = 'https://call.chatra.io/chatra.js';
+			if (d.head) d.head.appendChild(s);
+		})(document, window, 'Chatra');
+	</script>
+
+
+  
+
+</body>
+</html>
