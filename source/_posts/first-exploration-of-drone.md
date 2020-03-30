@@ -10,9 +10,10 @@ categories:
 ---
 ![](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg)
 > Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。
-上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。
 
 <!-- more -->
+
+上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。
 
 在大概了解一番后，我想着试用下看看，于是在网上搜了下，不过发现资料不是很多，而且比较坑的是搜到的文章中部署使用方法和官网描述的不太一致，这一点在具体过程中再细说。没有办法，只能完全参考官网的教程了，以下是具体的过程：
 {% note info %}
