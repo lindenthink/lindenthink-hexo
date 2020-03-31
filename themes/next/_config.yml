@@ -60,7 +60,7 @@ footer:
     # If you want to animate the icon, set it to true.
     animated: true
     # Change the color of icon, using Hex Code.
-    color: "#808080"
+    color: "lightblue"
 
   # If not defined, `author` from Hexo main config will be used.
   copyright:
