@@ -193,3 +193,27 @@ var x = new ArrayList<String>();
 ### 新特性
 * JVM常量API
 * Switch表达式
+
+{% note info %}
+## JDK13
+{% endnote %}
+
+### 简介
+2019年9月17日发布，完整特性参考[What's New in JDK 13](https://www.oracle.com/technetwork/java/javase/13-relnote-issues-5460548.html#NewFeature)
+### 新特性
+* core-libs/java.nio
+ * 增加方法`FileSystems.newFileSystem(Path, Map<String, ?>)`
+ * 
+* core-libs/java.util:i18n
+ * 支持Unicode 12.1
+* hotspot/gc
+ * JEP 351中的ZGC不提交未使用的内存
+ * 增加标记启用ZGC下标记`-XXSoftMaxHeapSize`
+ * ZGC最大管理堆大小从4TB增加到16TB
+* hotspot/runtime
+
+{% note info %}
+## JDK14
+{% endnote %}
+### 简介
+2020年3月19日发布，完整特性参考[What's New in JDK 14](https://www.oracle.com/technetwork/java/javase/14-relnote-issues-5809570.html#NewFeature)
