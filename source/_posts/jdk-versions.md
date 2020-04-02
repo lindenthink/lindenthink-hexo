@@ -7,7 +7,7 @@ categories:
 date: 2019-06-24 22:39:17
 ---
 ![](https://docs.oracle.com/en/java/javase/12/sp_common/shared-images/1-java.png)
-> 记录了JDK的发展历史以及各版本的主要特性，将持续进行收集和更新。
+> 记录了JDK的发展历史以及各版本的主要特性，从1.7版本开始会结合示例进行说明和讲解，本文将持续进行收集和更新。
 
 <!-- more -->
 {% note info %}
@@ -120,8 +120,36 @@ date: 2019-06-24 22:39:17
 
 ### 新特性
 * 提供新的G1收集器
+从JDK1.3开始，HotSpot团队一直努力朝着高效收集、减少停顿(STW: Stop The World)的方向努力，贡献了从串行到并行再到CMS乃至最新的G1在内的一系列优秀的垃圾收集器。G1(Garbage First)最大的特点是引入分区的思想，弱化了分代的概念，合理利用垃圾收集各个周期的资源，解决了其他收集器甚至CMS的众多缺陷。
+&nbsp;
+JDK默认垃圾回收器查看方法：
+```
+java -XX:+PrintCommandLineFlags -version
+```
 * 升级类加载架构
 * Try-With-Resources
+操作的类只要是实现了`AutoCloseable`接口就可以在try语句块退出的时候自动调用close方法关闭流资源。
+```java
+try ( InputStream is  = new FileInputStream("source.txt");
+      OutputStream os = new FileOutputStream("target.txt")
+) {
+    // ...
+}
+// 代码块执行结束时JVM自动关闭流
+```
+* `switch`支持字符串判断条件
+```java
+String str = "xxx";
+switch (str){
+  case "xxx":
+  //...
+  break;
+}
+```
+* 泛型推导
+```java
+List<String> list = new ArrayList<>();
+```
 
 {% note info %}
 ## JDK8
@@ -203,17 +231,22 @@ var x = new ArrayList<String>();
 ### 新特性
 * core-libs/java.nio
  * 增加方法`FileSystems.newFileSystem(Path, Map<String, ?>)`
- * 
+ * 新的`java.nio.ByteBuffer`批量获取/放置方法无需考虑缓冲区位置即可传输字节 
 * core-libs/java.util:i18n
  * 支持Unicode 12.1
 * hotspot/gc
  * JEP 351中的ZGC不提交未使用的内存
  * 增加标记启用ZGC下标记`-XXSoftMaxHeapSize`
  * ZGC最大管理堆大小从4TB增加到16TB
-* hotspot/runtime
+* 
 
 {% note info %}
 ## JDK14
 {% endnote %}
 ### 简介
 2020年3月19日发布，完整特性参考[What's New in JDK 14](https://www.oracle.com/technetwork/java/javase/14-relnote-issues-5809570.html#NewFeature)
+
+---
+参考资料：
+* https://www.oracle.com/technetwork/java/javase/overview/index.html
+* https://blog.csdn.net/fenglllle/article/details/81975222

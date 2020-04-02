@@ -7,6 +7,7 @@ tags:
     - Jenkins
 categories:
     - 运维
+    - CI/CD
 ---
 ![](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg)
 > Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。
@@ -131,5 +132,5 @@ services:
 
 ---
 参考资料：
- 1. https://docs.drone.io/
- 2. https://www.cntofu.com/book/139/cases/ci/drone.md
+* https://docs.drone.io/
+* https://www.cntofu.com/book/139/cases/ci/drone.md
