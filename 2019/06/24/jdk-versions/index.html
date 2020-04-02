@@ -126,21 +126,21 @@
   !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
 </script>
 
-  <meta name="description" content="记录了JDK的发展历史以及各版本的主要特性，将持续进行收集和更新。">
+  <meta name="description" content="记录了JDK的发展历史以及各版本的主要特性，从1.7版本开始会结合示例进行说明和讲解，本文将持续进行收集和更新。">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="JDK版本历史">
 <meta property="og:url" content="http://47.104.243.84/2019/06/24/jdk-versions/index.html">
 <meta property="og:site_name" content="菩提思">
-<meta property="og:description" content="记录了JDK的发展历史以及各版本的主要特性，将持续进行收集和更新。">
+<meta property="og:description" content="记录了JDK的发展历史以及各版本的主要特性，从1.7版本开始会结合示例进行说明和讲解，本文将持续进行收集和更新。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://docs.oracle.com/en/java/javase/12/sp_common/shared-images/1-java.png">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/jdk-versions/JDK1.6%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/jdk-versions/JDK1.7%E6%9E%B6%E6%9E%84%E5%9B%BE.png">
-<meta property="og:updated_time" content="2019-07-20T06:23:27.765Z">
+<meta property="og:updated_time" content="2020-04-02T01:59:28.212Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JDK版本历史">
-<meta name="twitter:description" content="记录了JDK的发展历史以及各版本的主要特性，将持续进行收集和更新。">
+<meta name="twitter:description" content="记录了JDK的发展历史以及各版本的主要特性，从1.7版本开始会结合示例进行说明和讲解，本文将持续进行收集和更新。">
 <meta name="twitter:image" content="https://docs.oracle.com/en/java/javase/12/sp_common/shared-images/1-java.png">
 
 
@@ -496,7 +496,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-20 14:23:27" itemprop="dateModified" datetime="2019-07-20T14:23:27+08:00">2019-07-20</time>
+                <time title="修改时间：2020-04-02 09:59:28" itemprop="dateModified" datetime="2020-04-02T09:59:28+08:00">2020-04-02</time>
               
             
           </span>
@@ -566,6 +566,34 @@
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">12k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">11 分钟</span>
+              
+            </div>
+          
 
           
 
@@ -584,7 +612,7 @@
       
         <p><img src="https://docs.oracle.com/en/java/javase/12/sp_common/shared-images/1-java.png" alt></p>
 <blockquote>
-<p>记录了JDK的发展历史以及各版本的主要特性，将持续进行收集和更新。</p>
+<p>记录了JDK的发展历史以及各版本的主要特性，从1.7版本开始会结合示例进行说明和讲解，本文将持续进行收集和更新。</p>
 </blockquote>
 <a id="more"></a>
 <div class="note info">
@@ -671,9 +699,20 @@
           </div>
 <h3 id="简介-7"><a href="#简介-7" class="headerlink" title="简介"></a>简介</h3><p>2009年2月19日发布，工程代号Dolphin(海豚)。同年4月20日，Oracle正式收购Sun公司, JDK开始开源(OpenJDK)，这注定是一个多事之秋，最开始规划的很多内容包括Lambda表达式等都延迟到了JDK1.8才实现；这也是Java的一次机遇，Oracle收购Sun公司后，取得了三大虚拟机中的其中两个：JRockit(BEA公司)和HotSpot(Sun公司，另外一个为IBM的J9)，宣布把这两个优秀的虚拟机互相取长补短，因此在随后的一个版本中虚拟机技术将会产生巨大的变化。 <img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/jdk-versions/JDK1.7%E6%9E%B6%E6%9E%84%E5%9B%BE.png" alt="JDK1.7架构图"></p>
 <h3 id="新特性-7"><a href="#新特性-7" class="headerlink" title="新特性"></a>新特性</h3><ul>
-<li>提供新的G1收集器</li>
-<li>升级类加载架构</li>
-<li>Try-With-Resources</li>
+<li><p>提供新的G1收集器<br>从JDK1.3开始，HotSpot团队一直努力朝着高效收集、减少停顿(STW: Stop The World)的方向努力，贡献了从串行到并行再到CMS乃至最新的G1在内的一系列优秀的垃圾收集器。G1(Garbage First)最大的特点是引入分区的思想，弱化了分代的概念，合理利用垃圾收集各个周期的资源，解决了其他收集器甚至CMS的众多缺陷。<br>&nbsp;<br>JDK默认垃圾回收器查看方法：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">java -XX:+PrintCommandLineFlags -version</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>升级类加载架构</p>
+</li>
+<li><p>Try-With-Resources<br>操作的类只要是实现了<code>AutoCloseable</code>接口就可以在try语句块退出的时候自动调用close方法关闭流资源。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> ( InputStream is  = <span class="keyword">new</span> FileInputStream(<span class="string">"source.txt"</span>);</span><br><span class="line">      OutputStream os = <span class="keyword">new</span> FileOutputStream(<span class="string">"target.txt"</span>)</span><br><span class="line">) &#123;</span><br><span class="line">    <span class="comment">// ...</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 代码块执行结束时JVM自动关闭流</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><code>switch</code>支持字符串判断条件</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">String str = <span class="string">"xxx"</span>;</span><br><span class="line"><span class="keyword">switch</span> (str)&#123;</span><br><span class="line">  <span class="keyword">case</span> <span class="string">"xxx"</span>:</span><br><span class="line">  <span class="comment">//...</span></span><br><span class="line">  <span class="keyword">break</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>泛型推导</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">List&lt;String&gt; list = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br></pre></td></tr></table></figure>
+</li>
 </ul>
 <div class="note info">
             <h2 id="JDK8"><a href="#JDK8" class="headerlink" title="JDK8"></a>JDK8</h2>
@@ -730,6 +769,38 @@
 <h3 id="新特性-12"><a href="#新特性-12" class="headerlink" title="新特性"></a>新特性</h3><ul>
 <li>JVM常量API</li>
 <li>Switch表达式</li>
+</ul>
+<div class="note info">
+            <h2 id="JDK13"><a href="#JDK13" class="headerlink" title="JDK13"></a>JDK13</h2>
+          </div>
+<h3 id="简介-13"><a href="#简介-13" class="headerlink" title="简介"></a>简介</h3><p>2019年9月17日发布，完整特性参考<a href="https://www.oracle.com/technetwork/java/javase/13-relnote-issues-5460548.html#NewFeature" target="_blank" rel="noopener">What’s New in JDK 13</a></p>
+<h3 id="新特性-13"><a href="#新特性-13" class="headerlink" title="新特性"></a>新特性</h3><ul>
+<li>core-libs/java.nio<ul>
+<li>增加方法<code>FileSystems.newFileSystem(Path, Map&lt;String, ?&gt;)</code></li>
+<li>新的<code>java.nio.ByteBuffer</code>批量获取/放置方法无需考虑缓冲区位置即可传输字节 </li>
+</ul>
+</li>
+<li>core-libs/java.util:i18n<ul>
+<li>支持Unicode 12.1</li>
+</ul>
+</li>
+<li>hotspot/gc<ul>
+<li>JEP 351中的ZGC不提交未使用的内存</li>
+<li>增加标记启用ZGC下标记<code>-XXSoftMaxHeapSize</code></li>
+<li>ZGC最大管理堆大小从4TB增加到16TB</li>
+</ul>
+</li>
+<li></li>
+</ul>
+<div class="note info">
+            <h2 id="JDK14"><a href="#JDK14" class="headerlink" title="JDK14"></a>JDK14</h2>
+          </div>
+<h3 id="简介-14"><a href="#简介-14" class="headerlink" title="简介"></a>简介</h3><p>2020年3月19日发布，完整特性参考<a href="https://www.oracle.com/technetwork/java/javase/14-relnote-issues-5809570.html#NewFeature" target="_blank" rel="noopener">What’s New in JDK 14</a></p>
+<hr>
+<p>参考资料：</p>
+<ul>
+<li><a href="https://www.oracle.com/technetwork/java/javase/overview/index.html" target="_blank" rel="noopener">https://www.oracle.com/technetwork/java/javase/overview/index.html</a></li>
+<li><a href="https://blog.csdn.net/fenglllle/article/details/81975222" target="_blank" rel="noopener">https://blog.csdn.net/fenglllle/article/details/81975222</a></li>
 </ul>
 
       
@@ -919,7 +990,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -1022,7 +1095,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-0"><span class="nav-number">1.</span> <span class="nav-text">JDK1.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性"><span class="nav-number">1.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-1"><span class="nav-number">2.</span> <span class="nav-text">JDK1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-1"><span class="nav-number">2.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-2"><span class="nav-number">3.</span> <span class="nav-text">JDK1.2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-2"><span class="nav-number">3.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-3"><span class="nav-number">4.</span> <span class="nav-text">JDK1.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-3"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-3"><span class="nav-number">4.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-4"><span class="nav-number">5.</span> <span class="nav-text">JDK1.4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-4"><span class="nav-number">5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-4"><span class="nav-number">5.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK5"><span class="nav-number">6.</span> <span class="nav-text">JDK5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-5"><span class="nav-number">6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-5"><span class="nav-number">6.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK6"><span class="nav-number">7.</span> <span class="nav-text">JDK6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-6"><span class="nav-number">7.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-6"><span class="nav-number">7.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK7"><span class="nav-number">8.</span> <span class="nav-text">JDK7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-7"><span class="nav-number">8.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-7"><span class="nav-number">8.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK8"><span class="nav-number">9.</span> <span class="nav-text">JDK8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-8"><span class="nav-number">9.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-8"><span class="nav-number">9.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK9"><span class="nav-number">10.</span> <span class="nav-text">JDK9</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-9"><span class="nav-number">10.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-9"><span class="nav-number">10.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK10"><span class="nav-number">11.</span> <span class="nav-text">JDK10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-10"><span class="nav-number">11.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-10"><span class="nav-number">11.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK11"><span class="nav-number">12.</span> <span class="nav-text">JDK11</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-11"><span class="nav-number">12.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-11"><span class="nav-number">12.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK12"><span class="nav-number">13.</span> <span class="nav-text">JDK12</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-12"><span class="nav-number">13.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-12"><span class="nav-number">13.2.</span> <span class="nav-text">新特性</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-0"><span class="nav-number">1.</span> <span class="nav-text">JDK1.0</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介"><span class="nav-number">1.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性"><span class="nav-number">1.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-1"><span class="nav-number">2.</span> <span class="nav-text">JDK1.1</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-1"><span class="nav-number">2.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-1"><span class="nav-number">2.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-2"><span class="nav-number">3.</span> <span class="nav-text">JDK1.2</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-2"><span class="nav-number">3.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-2"><span class="nav-number">3.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-3"><span class="nav-number">4.</span> <span class="nav-text">JDK1.3</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-3"><span class="nav-number">4.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-3"><span class="nav-number">4.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK1-4"><span class="nav-number">5.</span> <span class="nav-text">JDK1.4</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-4"><span class="nav-number">5.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-4"><span class="nav-number">5.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK5"><span class="nav-number">6.</span> <span class="nav-text">JDK5</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-5"><span class="nav-number">6.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-5"><span class="nav-number">6.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK6"><span class="nav-number">7.</span> <span class="nav-text">JDK6</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-6"><span class="nav-number">7.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-6"><span class="nav-number">7.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK7"><span class="nav-number">8.</span> <span class="nav-text">JDK7</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-7"><span class="nav-number">8.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-7"><span class="nav-number">8.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK8"><span class="nav-number">9.</span> <span class="nav-text">JDK8</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-8"><span class="nav-number">9.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-8"><span class="nav-number">9.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK9"><span class="nav-number">10.</span> <span class="nav-text">JDK9</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-9"><span class="nav-number">10.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-9"><span class="nav-number">10.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK10"><span class="nav-number">11.</span> <span class="nav-text">JDK10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-10"><span class="nav-number">11.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-10"><span class="nav-number">11.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK11"><span class="nav-number">12.</span> <span class="nav-text">JDK11</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-11"><span class="nav-number">12.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-11"><span class="nav-number">12.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK12"><span class="nav-number">13.</span> <span class="nav-text">JDK12</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-12"><span class="nav-number">13.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-12"><span class="nav-number">13.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK13"><span class="nav-number">14.</span> <span class="nav-text">JDK13</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-13"><span class="nav-number">14.1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#新特性-13"><span class="nav-number">14.2.</span> <span class="nav-text">新特性</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#JDK14"><span class="nav-number">15.</span> <span class="nav-text">JDK14</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#简介-14"><span class="nav-number">15.1.</span> <span class="nav-text">简介</span></a></li></ol></li></ol></div>
             
 
           </div>
@@ -1043,7 +1116,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019-2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-pencil"></i>
   </span>
@@ -1658,5 +1731,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"jsonPath":"/live2dw/assets/tororo.model.json"},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>

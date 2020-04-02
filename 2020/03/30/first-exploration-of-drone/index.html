@@ -126,13 +126,13 @@
   !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
 </script>
 
-  <meta name="description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。">
+  <meta name="description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。">
 <meta name="keywords" content="Drone,Jenkins">
 <meta property="og:type" content="article">
 <meta property="og:title" content="初探Drone">
 <meta property="og:url" content="http://47.104.243.84/2020/03/30/first-exploration-of-drone/index.html">
 <meta property="og:site_name" content="菩提思">
-<meta property="og:description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。">
+<meta property="og:description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/github_application_create.png">
@@ -141,10 +141,10 @@
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E7%99%BB%E9%99%86%E6%88%90%E5%8A%9F.png">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E5%8D%A1%E4%BD%8F.png">
 <meta property="og:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E6%88%90%E5%8A%9F.png?Expires=1585596395&OSSAccessKeyId=TMP.3KhPBpYPpx6i4WaQyArTcgQidYvT5cuAV2xgg41z5rn4TmFH3wiKJr5zZxfxeXXRgyXfoxZgZvLtGt8hsG6P6YtcfgnLA1&Signature=MIYK7hqIjlXomCRDgFBxulvw2vM%3D">
-<meta property="og:updated_time" content="2020-03-30T01:30:48.214Z">
+<meta property="og:updated_time" content="2020-04-02T05:30:18.665Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="初探Drone">
-<meta name="twitter:description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。">
+<meta name="twitter:description" content="Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。">
 <meta name="twitter:image" content="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg">
 
 
@@ -483,12 +483,24 @@
                 
               
 
-              <time title="创建时间：2020-03-30 09:04:13 / 修改时间：09:30:48" itemprop="dateCreated datePublished" datetime="2020-03-30T09:04:13+08:00">2020-03-30</time>
+              <time title="创建时间：2020-03-30 09:04:13" itemprop="dateCreated datePublished" datetime="2020-03-30T09:04:13+08:00">2020-03-30</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-04-02 13:30:18" itemprop="dateModified" datetime="2020-04-02T13:30:18+08:00">2020-04-02</time>
               
             
           </span>
@@ -506,6 +518,13 @@
               
               
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/" itemprop="url" rel="index"><span itemprop="name">运维</span></a></span>
+
+                
+                
+                  ，
+                
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing"><a href="/categories/运维/CI-CD/" itemprop="url" rel="index"><span itemprop="name">CI/CD</span></a></span>
 
                 
                 
@@ -544,6 +563,34 @@
           
 
           
+            <div class="post-symbolscount">
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-file-word-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">11k</span>
+              
+
+              
+                <span class="post-meta-divider">|</span>
+              
+
+              
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-clock-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">10 分钟</span>
+              
+            </div>
+          
 
           
 
@@ -562,9 +609,10 @@
       
         <p><img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/logo.svg" alt></p>
 <blockquote>
-<p>Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。<br>上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。</p>
+<p>Drone是一个现代化的持续集成和持续交付平台，使繁忙的团队能够自动化他们的构建、测试和发布工作流。</p>
 </blockquote>
 <a id="more"></a>
+<p>上面是官方对Drone的定义，和我们在工作过程中用的Jenkins一样，这是一款开源的CI/CD软件。不过Drone是基于Docker的，这一点也许是它的一大优势，它的所有编译和测试流程都在Docker容器中执行，与Jenkins相比它安装方便配置简单，此外也很容易集成到我们应用中。</p>
 <p>在大概了解一番后，我想着试用下看看，于是在网上搜了下，不过发现资料不是很多，而且比较坑的是搜到的文章中部署使用方法和官网描述的不太一致，这一点在具体过程中再细说。没有办法，只能完全参考官网的教程了，以下是具体的过程：<br><div class="note info">
             <h2 id="环境准备"><a href="#环境准备" class="headerlink" title="环境准备"></a>环境准备</h2>
           </div><br>我用的是阿里云的ECS，装有CentOS7系统，并且已经安装了Docker。</p>
@@ -605,10 +653,10 @@
 <p>我现在还只是停留在试用阶段，Drone的很多功能还有待进一步探索，有兴趣的朋友也可以自己试用一下。</p>
 <hr>
 <p>参考资料：</p>
-<ol>
+<ul>
 <li><a href="https://docs.drone.io/" target="_blank" rel="noopener">https://docs.drone.io/</a></li>
 <li><a href="https://www.cntofu.com/book/139/cases/ci/drone.md" target="_blank" rel="noopener">https://www.cntofu.com/book/139/cases/ci/drone.md</a></li>
-</ol>
+</ul>
 
       
     </div>
@@ -795,7 +843,9 @@
                     
                       
                     
-                    <span class="site-state-item-count">12</span>
+                      
+                    
+                    <span class="site-state-item-count">13</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -919,7 +969,7 @@
 
     <footer id="footer" class="footer">
       <div class="footer-inner">
-        <div class="copyright">&copy; <span itemprop="copyrightYear">2020</span>
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019-2020</span>
   <span class="with-love" id="animate">
     <i class="fa fa-pencil"></i>
   </span>
@@ -1534,5 +1584,5 @@
 
   
 
-</body>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"model":{"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"jsonPath":"/live2dw/assets/tororo.model.json"},"log":false,"pluginJsPath":"lib/","pluginModelPath":"assets/","pluginRootPath":"live2dw/","tagMode":false});</script></body>
 </html>
