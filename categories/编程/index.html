@@ -105,6 +105,167 @@
 
 <!-- 多级分类实现 -->
 
+  <link rel="stylesheet" href="/lib/layui/css/layui.css" media="all">
+  <script src="/lib/layui/layui.js" charset="utf-8"></script>
+  <script>
+    let srcCats = [];
+    
+        srcCats.push({
+          id: 'ck8jxvxo40004u83gk0qsswzh',
+          title: '编程',
+          href: 'http://47.104.243.84/categories/编程/',
+          path: 'categories/编程/',
+          length: '4'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxog000gu83g675rxvt3',
+          title: '盘点',
+          href: 'http://47.104.243.84/categories/盘点/',
+          path: 'categories/盘点/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxoj000lu83gbldkyf52',
+          title: '工具',
+          href: 'http://47.104.243.84/categories/工具/',
+          path: 'categories/工具/',
+          length: '2'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxol000ou83gzzkv6306',
+          title: '前端',
+          href: 'http://47.104.243.84/categories/编程/前端/',
+          path: 'categories/编程/前端/',
+          length: '2'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxom000tu83gzr01k5f1',
+          title: '运维',
+          href: 'http://47.104.243.84/categories/运维/',
+          path: 'categories/运维/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxoq000zu83g02n1twew',
+          title: '设计模式',
+          href: 'http://47.104.243.84/categories/编程/设计模式/',
+          path: 'categories/编程/设计模式/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxor0011u83gu6p0b69n',
+          title: '后端',
+          href: 'http://47.104.243.84/categories/编程/后端/',
+          path: 'categories/编程/后端/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxot001au83g6m6gyrj7',
+          title: '数据库',
+          href: 'http://47.104.243.84/categories/数据库/',
+          path: 'categories/数据库/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxou001eu83g5hn64490',
+          title: 'CSS',
+          href: 'http://47.104.243.84/categories/编程/前端/CSS/',
+          path: 'categories/编程/前端/CSS/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxow001iu83gnx9ce5k5',
+          title: 'CI/CD',
+          href: 'http://47.104.243.84/categories/运维/CI-CD/',
+          path: 'categories/运维/CI-CD/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxox001mu83gicc0xc12',
+          title: '性能优化',
+          href: 'http://47.104.243.84/categories/编程/前端/性能优化/',
+          path: 'categories/编程/前端/性能优化/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxoz001qu83ga901uzxq',
+          title: 'Java',
+          href: 'http://47.104.243.84/categories/编程/后端/Java/',
+          path: 'categories/编程/后端/Java/',
+          length: '1'
+        });
+    
+        srcCats.push({
+          id: 'ck8jxvxp0001tu83g76ns8kbh',
+          title: 'SQL',
+          href: 'http://47.104.243.84/categories/数据库/SQL/',
+          path: 'categories/数据库/SQL/',
+          length: '1'
+        });
+    
+
+    srcCats.map((item)=> {
+      let sPaths = item.path.split("/");
+      if(sPaths.length === 3) {
+        item.parent = '';
+      } else {
+        item.parent = sPaths[sPaths.length - 3];
+      }
+    });
+
+    let targetCats = toTree(srcCats);
+
+    layui.use(['tree'], function(){
+      let tree = layui.tree;
+      tree.render({
+        elem: '#category-all',
+        data: targetCats,
+        onlyIconControl: true,  //是否仅允许节点左侧图标控制展开收缩
+
+        // click: function(obj){ // 点击当前页跳转
+        //   window.location.href = obj.data.href;
+        // }，
+        accordion: true, // 是否开启手风琴模式
+        isJump: true // 是否允许点击节点时弹出新窗口跳转
+    });
+  });  
+
+  function toTree(data) {
+      let result = []
+      if (!Array.isArray(data)) {
+          return result
+      }
+      data.forEach((item) => {
+          delete item.children;
+      });
+      let map = {};
+      data.forEach((item) => {
+          map[item.title] = item;
+          item.title = `${item.title}(${item.length})`; // 节点标题展示文章数
+      });
+      data.forEach((item) => {
+          let parent = map[item.parent];
+          if (parent) { 
+            (parent.children || (parent.children = [])).push(item);
+          } else {
+            result.push(item);
+          }
+      });
+      return result;
+  }
+  </script>
+
 
 
   <!-- Chatra {literal} -->
