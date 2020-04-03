@@ -2,7 +2,7 @@
 Custom head.
 #}
 <!-- 多级分类实现 -->
-{% if page.type === 'categories'%}
+{% if is_category %}
   <link rel="stylesheet" href="/lib/layui/css/layui.css"  media="all">
   <script src="/lib/layui/layui.js" charset="utf-8"></script>
   <script>
