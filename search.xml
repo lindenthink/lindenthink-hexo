@@ -19,6 +19,7 @@
     <content type="text"><![CDATA[以下收集了2019年软件行业各类热门技术盘点的文章，涵盖了前端、后端、运维、数据库等各项热门技术。 2019十大最佳DevOps工具 值得看看，2019年11个受欢迎的JavaScript动画库！ 决胜未来，2019前端开发十大战略性技术布局 盘点2019年Java开发中7项主流、热门的IT技术！ 2019年必知的10大顶级Python库 2019年CSS的7大趋势与发展 2019年最好的JavaScript图表库 2019数据库趋势报告，最受欢迎的是MySQL]]></content>
       <categories>
         <category>盘点</category>
+        <category>2019</category>
       </categories>
       <tags>
         <tag>盘点</tag>
@@ -69,6 +70,7 @@
     <content type="text"><![CDATA[FindBugs用来静态分析和查找Java代码中存在的Bugs，它的运行需要依赖1.7或更高版本的JRE(或JDK)，但是它可以分析从1.0到1.8各个版本的JDK编译出的程序，是一个基于字节码的工具。本文简单介绍了如何在IDEA中使用FindBugs，并对FindBugs的相关概念作出说明。 IDEA中安装使用 安装 在IDEA中ctrl+alt+s打开设置面板，找到”Plugins”选项； 然后选择”Browse repositories…”在搜索框中输入”findbugs”查找插件，结果列表中选择”FindBugs-IDEA”并安装； 安装完成后重启IDEA方可生效。 使用 重启后，可以在下列截图中看到最下方工具栏中多出了”FindBugs-IDEA”一项，同时右键选项中也多出了”FindBugs”选项。截图分成了4列，其中第一列中是FindBugs工具栏，可以选择分析范围和分析结果分组；第二列是分析结果列，在该列中选择一个分析出来的Bug后，第三列和第四列会相应展示这个Bug出现的位置以及Bug的详细说明。 说明分析范围 当前文件 当前类(对于含内部类的文件，可以选择只分析光标所在类) 当前包 当前模块 当前工程 指定范围 所有修改的文件(需要结合VCS) changelist中的类(需要结合VCS) 结果分组 根据Bug分类分组，这也是默认的分组 根据类分组 根据包分组 根据Bug严重级别分组，工作中推荐使用的，可以相应优先处理严重级别较高的Bug。 严重级别 Of Concren - 建议, 如果遵循能更好的完善代码 Troubling - 不好的, 可能会引发不良后果 Scary - 严重问题, 在某种情况下一定会出现问题 Scariest - 非常严重, 已经影响到当前程序功能 Bug类型及示例 FindBugs定义了很多详细的Bug类型，这里针对每个大类仅列出一些比较常见的类型，完整列表请参考官网FindBugs Bug Descriptions。 Bad practice - 不好的习惯(仔细看下来有些Bug会导致程序错误，因此也需要谨慎对待) 比较字符串时使用”==”或”!=” 不可变类成员变量没有声明为”final” Correctness - 正确性 方法参数顺序颠倒，比如Preconditions.checkNotNull(“message”, message) 字符串格式化时缺少参数，比如formatter.format(“%s %s”, “a”) Experimental - 实验性的 没有使用try-finally进行关闭IO流 Internationalization - 国际化(在支持多语言时需要关注) 字符和字节数组转换时没有指定字符集 Malicious code vulnerability - 恶意代码漏洞 成员变量在一些情况下应声明为”final”但没有 Multithreaded correctness - 多线程正确性 多线程情况下可能存在双重检查锁的情况(单例模式下需注意) 使用静态的日期格式化相关对象，如：SimpleDateFormat Performance - 性能 在循环体重使用”+”号连接字符串，我们知道平时字符串变量使用”+”连接时编译器会进行优化为一个StringBuilder对象进行字符串拼接，但在循环体中会创建多个StringBuilder对象，大大增加了时间和空间的开销 对于没有引用父对象的子类没有定义为”static”，很好理解，这种做法会无意义的增加父对象的大小，并且父对象会持有无效的引用 定义了从未被使用的成员变量 Security - 安全 硬编码或者使用空的数据库密码 动态SQL语句没有使用”prepared statement” Dodgy code - 可疑代码 冗余的空值检查 Swich语句块缺少Default语句 在可能导致空指针异常的地方没有进行非空检查 后记 在IDEA中使用FindBugs是如此简单，但起到的作用真的太大了。在平时的工作中，由于各种因素程序中难免会存在不规范甚至错误的地方，有些错误只是一直没有暴露出来而已，等到真正暴露的时候已经为时已晚。所以我们应该尽可能的去避免这种情况的发生，FindBugs就是一个很好的选择。当然，我们不能完全依赖于工具，还应当做好代码审查以及测试等工作，工具只是一种补充手段。]]></content>
       <categories>
         <category>工具</category>
+        <category>IDE</category>
       </categories>
       <tags>
         <tag>Java</tag>
@@ -108,6 +110,7 @@
     <content type="text"><![CDATA[主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。 工具箱 oschina在线工具 一个工具箱 toolfk-程序员在线工具大全 编程 在线接口测试 在线正则表达式测试 模拟数据服务 Web开发测试工具集合 30秒掌握JS代码片段 两行代码统计PV 许可证 开源许可证选择 国内第一个开源协议-木兰宽松许可证 排版/转换 复制内容转为Markdown格式 在线格式化 数学公式截图转为latex排版 Unix时间戳 在线二维码生成 Nginx配置文件生成 cron表达式生成器 文字转图片 在线国际化 函数图形，可生成动态演示 AsciiMath，网页工具，可以将 ASCII 字符的公式转为数学字体显示 表格转换为各种格式，支持markdown/json/csv/json等格式 编辑器 在线Markdown编辑器 jsbin-在线编写调试JS jsfiddle-JS在线调试 codepen-前端在线开发，可嵌入到页面，含很多特效源码 codesandbox-前端代码沙盒，可以嵌入到页面 vscode网页版 在线拾色器 在线比较文本差异，支持普通文本、json和xml格式 加密/解密 在线加密/解密 Base64编码 多媒体 在线录屏工具 在线PS 开源视频编辑器 PDF相关功能，包括格式转换等很多功能 去除图片背景 在线画ASCII码框图 趣味 需要我帮你百度吗 演示汉字笔画顺序的JS库 各种绳结打法并配有视频教学 各种表情包收集项目 独角兽公司榜单，实时更新估值超过10亿美元的创业公司 前端技术实现的仿黑客帝国文字雨 参照/文档 HTTP状态码详解 RFC文档 谷歌JS编码规范 Node的API文档 JEP，Java增强提案(JDK Enhancement Proposal) JSDoc中文文档 IntelliJ Platform SDK GitHub官方教程 CSS预处理器stylus Swig文档 JSR，Java规范请求(Java Specification Requests) Java SE官方文档 MDN-Web开发技术文档 教程 菜鸟教程 极客学院 计算机组织导论 黑客工具教程 第九频道，包括很多课程视频 运维学校 免费编程笔记下载 Linux系统免费教程 处理器设计 CPU是怎样工作的 素材 17素材 阿里巴巴矢量图标库 ionicons-图标库 阮一峰整理免费资源合集 SVG格式Logo 千库网 无版权插图库 PPT模板 CSS特效 pixabay免费图片 33个免费图标网站 常用的SVG图标库 搜索引擎 多吉 中文搜索聚合网站 资源 Kindle电子书分享网 开源项目/资源收集分类 Chrome插件整理 静态网站生成器 海盗湾中文网BT资源 jsdelivr，npm/git的JS资源开源CDN 快速查看搜素Linux内核源码 植物画册 网络 wireshark-网络数据包分析 在线测速 anydesk-windows远程桌面连接工具，类似teamview，兼容性更好 学术 龙猫学术导航 在线古籍 鲁迅资料在线检索系统 未完待续…]]></content>
       <categories>
         <category>工具</category>
+        <category>综合</category>
       </categories>
       <tags>
         <tag>工具</tag>
