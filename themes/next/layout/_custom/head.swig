@@ -11,7 +11,7 @@ Custom head.
         srcCats.push({
           id: '{{ cat._id }}',
           title: '{{cat.name}}',
-          href: '{{cat.permalink}}',
+          // href: '{{cat.permalink}}',
           path: '{{cat.path}}',
           length: '{{cat.length}}'
         });
@@ -24,6 +24,7 @@ Custom head.
       } else {
         item.parent = sPaths[sPaths.length - 3];
       }
+      item.href = item.path.replace("categories/", ""); // 取相对路径
     });
 
     let targetCats = toTree(srcCats);

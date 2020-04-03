@@ -7,6 +7,7 @@ tags:
     - FindBugs
 categories:
     - 工具
+    - IDE
 ---
 
 ![](http://findbugs.sourceforge.net/umdFindbugs.png)

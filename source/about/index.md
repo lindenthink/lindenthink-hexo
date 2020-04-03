@@ -4,7 +4,7 @@ date: 2019-04-12 09:10:31
 type: about
 ---
 
-{% note default %}
+{% note success %}
 #### 简介
 一花一世界，一叶一菩提，欢迎光临菩提思！
 {% endnote %}
