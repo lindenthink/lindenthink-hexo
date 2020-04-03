@@ -1853,7 +1853,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #9dffa7;
+  background: #47eb28;
 }
 .feed-link,
 .chat {
@@ -2282,6 +2282,7 @@ i.fa {
   margin-top: 20px;
 }
 .category-all-page .category-list {
+  color: #808080;
   margin: 0;
   padding: 0;
 }
@@ -2303,7 +2304,7 @@ i.fa {
   padding-left: 10px;
 }
 .category-all-page .category-all>ul>li {
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px dotted #add8e6;
 }
 #event-list {
   padding-left: 30px;
