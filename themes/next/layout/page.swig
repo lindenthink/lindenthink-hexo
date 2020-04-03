@@ -60,9 +60,10 @@
               {% endfor %}
               {{ _p('counter.categories', visibleCategories) }}
             </div>
-            <div class="category-all">
+            <!-- <div class="category-all">
               {{ list_categories(site.categories) }}
-            </div>
+            </div> -->
+            <div id="category-all"></div>
           </div>
         {% elif page.type === 'schedule' %}
           {% include 'schedule.swig' %}

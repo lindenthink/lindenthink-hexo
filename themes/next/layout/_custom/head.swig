@@ -1,6 +1,73 @@
 {#
 Custom head.
 #}
+<!-- 多级分类实现 -->
+{% if page.type === 'categories'%}
+  <link rel="stylesheet" href="/lib/layui/css/layui.css"  media="all">
+  <script src="/lib/layui/layui.js" charset="utf-8"></script>
+  <script>
+    let srcCats = [];
+    {% for cat in site.categories %}
+        srcCats.push({
+          id: '{{ cat._id }}',
+          title: '{{cat.name}}',
+          href: '{{cat.permalink}}',
+          path: '{{cat.path}}',
+          length: '{{cat.length}}'
+        });
+    {% endfor %}
+
+    srcCats.map((item)=> {
+      let sPaths = item.path.split("/");
+      if(sPaths.length === 3) {
+        item.parent = '';
+      } else {
+        item.parent = sPaths[sPaths.length - 3];
+      }
+    });
+
+    let targetCats = toTree(srcCats);
+
+    layui.use(['tree'], function(){
+      let tree = layui.tree;
+      tree.render({
+        elem: '#category-all',
+        data: targetCats,
+        onlyIconControl: true,  //是否仅允许节点左侧图标控制展开收缩
+
+        // click: function(obj){ // 点击当前页跳转
+        //   window.location.href = obj.data.href;
+        // }，
+        accordion: true, // 是否开启手风琴模式
+        isJump: true // 是否允许点击节点时弹出新窗口跳转
+    });
+  });  
+
+  function toTree(data) {
+      let result = []
+      if (!Array.isArray(data)) {
+          return result
+      }
+      data.forEach((item) => {
+          delete item.children;
+      });
+      let map = {};
+      data.forEach((item) => {
+          map[item.title] = item;
+          item.title = `${item.title}(${item.length})`; // 节点标题展示文章数
+      });
+      data.forEach((item) => {
+          let parent = map[item.parent];
+          if (parent) { 
+            (parent.children || (parent.children = [])).push(item);
+          } else {
+            result.push(item);
+          }
+      });
+      return result;
+  }
+  </script>
+{% endif %}
 
 {% if theme.chatra.enable %}
   <!-- Chatra {literal} -->
