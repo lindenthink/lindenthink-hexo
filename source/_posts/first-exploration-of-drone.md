@@ -104,7 +104,7 @@ trigger:
 * SSH Runner
 * Digital Ocean Runner
 安装并成功启动exec执行器之后，我们发现原先的构建已经成功了：
-![构建成功](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E6%88%90%E5%8A%9F.png?Expires=1585596395&OSSAccessKeyId=TMP.3KhPBpYPpx6i4WaQyArTcgQidYvT5cuAV2xgg41z5rn4TmFH3wiKJr5zZxfxeXXRgyXfoxZgZvLtGt8hsG6P6YtcfgnLA1&Signature=MIYK7hqIjlXomCRDgFBxulvw2vM%3D)
+![构建成功](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/first-exploration-of-drone/%E6%9E%84%E5%BB%BA%E6%88%90%E5%8A%9F.png)
 过程也还算顺利，比当初我在使用Jenkins的时候容易多了。如果安装其他的执行器的话可以使用docker-compose，这样服务和执行器可以一起安装比较方便，这里提供一个docker-compose的配置文件以供参考(只包含Drone服务，根据需要自行添加执行器的相关配置)：
 ```yml
 version: '3'

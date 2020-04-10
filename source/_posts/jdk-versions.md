@@ -159,13 +159,182 @@ List<String> list = new ArrayList<>();
 2014年3月18日发布，时隔五年，这是Oracle收购Sun后发布的第一个版本，也是比较重要的一个版本。完整新特性参考：[What's New in JDK 8](https://www.oracle.com/technetwork/java/javase/8-whats-new-2157071.html)
 
 ### 新特性
-* Lambda表达式
-* Stream API
-* Date Time API 
-* 标准Base64编码/解码
-* 接口默认方法
-* 移除持久代(PermGen)
-* 新的Nashorn javascript引擎 
+#### 接口默认方法
+```java
+interface Formula {
+    double calculate(int a);
+
+    default double sqrt(int a) {
+        return Math.sqrt(a);
+    }
+}
+```
+#### Lambda表达式
+Lambda表达式为我们创建匿名对象提供了更简洁的语法：
+```java
+Collections.sort(names, (a, b) -> b.compareTo(a));
+```
+#### 函数式接口
+“函数式接口”是指仅仅只包含一个**抽象方法**的接口，每一个该类型的lambda表达式都会被匹配到这个抽象方法。为了确保接口达到这个要求可以给接口添加`@FunctionalInterface`注解，编译器如果发现标注了这个注解的接口有多于一个抽象方法的时候会报错：
+```java
+@FunctionalInterface
+interface Converter<F, T> {
+    T convert(F from);
+}
+Converter<String, Integer> converter = (from) -> Integer.valueOf(from);
+Integer converted = converter.convert("123");
+System.out.println(converted);    // 123
+```
+ JDK 1.8 API包含了很多内建的函数式接口，在老Java中常用到的比如Comparator或者Runnable接口，这些接口都增加了@FunctionalInterface注解以便能用在lambda上，接下来我们看看这些接口：
+* Predicate接口
+ Predicate 接口只有一个参数，返回boolean类型。该接口包含多种默认方法来将Predicate组合成其他复杂的逻辑（比如：与，或，非）：
+ ```java
+Predicate<String> predicate = (s) -> s.length() > 0;
+
+predicate.test("foo");              // true
+predicate.negate().test("foo");     // false
+
+Predicate<Boolean> nonNull = Objects::nonNull;
+Predicate<Boolean> isNull = Objects::isNull;
+
+Predicate<String> isEmpty = String::isEmpty;
+Predicate<String> isNotEmpty = isEmpty.negate();
+ ```
+* Function接口
+ Function接口有一个参数并且返回一个结果，并附带了一些可以和其他函数组合的默认方法（compose, andThen）：
+ ```java
+Function<String, Integer> toInteger = Integer::valueOf;
+Function<String, String> backToString = toInteger.andThen(String::valueOf);
+
+backToString.apply("123");     // "123"
+ ```
+* Supplier接口
+ Supplier接口返回一个任意范型的值，和Function接口不同的是该接口没有任何参数
+ ```java
+Supplier<Person> personSupplier = Person::new;
+personSupplier.get();   // new Person
+ ```
+* Consumer接口
+ Consumer接口表示执行在单个参数上的操作。
+ ```java
+Consumer<Person> greeter = (p) -> System.out.println("Hello, " + p.firstName);
+greeter.accept(new Person("Luke", "Skywalker"));
+ ```
+* Comparator接口
+ Comparator是老Java中的经典接口，Java 8在此之上添加了多种默认方法：
+ ```java
+Comparator<Person> comparator = (p1, p2) -> p1.firstName.compareTo(p2.firstName);
+
+Person p1 = new Person("John", "Doe");
+Person p2 = new Person("Alice", "Wonderland");
+
+comparator.compare(p1, p2);             // > 0
+comparator.reversed().compare(p1, p2);  // < 0
+ ```
+* Optional接口
+ Optional不是函数是接口，这是个用来防止NullPointerException异常的辅助类型，这是下一届中将要用到的重要概念，现在先简单的看看这个接口能干什么：
+ Optional被定义为一个简单的容器，其值可能是null或者不是null。在Java 8之前一般某个函数应该返回非空对象但是偶尔却可能返回了null，而在Java 8中，不推荐你返回null而是返回Optional。
+ ```java
+Optional<String> optional = Optional.of("bam");
+
+optional.isPresent();           // true
+optional.get();                 // "bam"
+optional.orElse("fallback");    // "bam"
+
+optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
+ ```
+* Stream接口
+ java.util.Stream 表示能应用在一组元素上一次执行的操作序列。Stream 操作分为中间操作或者最终操作两种，最终操作返回一特定类型的计算结果，而中间操作返回Stream本身，这样你就可以将多个操作依次串起来。Stream 的创建需要指定一个数据源，比如 java.util.Collection的子类，List或者Set， Map不支持。Stream的操作可以串行执行或者并行执行。
+ 首先看看Stream是怎么用，首先创建实例代码的用到的数据List：
+ ```java
+ List<String> stringCollection = new ArrayList<>();
+ stringCollection.add("ddd2");
+ stringCollection.add("aaa2");
+ stringCollection.add("bbb1");
+ stringCollection.add("aaa1");
+ stringCollection.add("bbb3");
+ stringCollection.add("ccc");
+ stringCollection.add("bbb2");
+ stringCollection.add("ddd1");
+ ```
+ Java 8扩展了集合类，可以通过 Collection.stream() 或者 Collection.parallelStream() 来创建一个Stream。下面几节将详细解释常用的Stream操作：
+ * Filter 过滤
+ 过滤通过一个predicate接口来过滤并只保留符合条件的元素，该操作属于中间操作，所以我们可以在过滤后的结果来应用其他Stream操作（比如forEach）。forEach需要一个函数来对过滤后的元素依次执行。forEach是一个最终操作，所以我们不能在forEach之后来执行其他Stream操作。
+ ```java
+ stringCollection
+    .stream()
+    .filter((s) -> s.startsWith("a"))
+    .forEach(System.out::println);
+
+// "aaa2", "aaa1"
+ ```
+ * Sort排序
+ 排序是一个中间操作，返回的是排序好后的Stream。如果你不指定一个自定义的Comparator则会使用默认排序。
+ ```java
+ stringCollection
+    .stream()
+    .sorted()
+    .filter((s) -> s.startsWith("a"))
+    .forEach(System.out::println);
+
+// "aaa1", "aaa2"
+ ```
+ 需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringCollection是不会被修改的。
+ ```java
+ System.out.println(stringCollection);
+// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
+ ```
+ * Map映射
+
+#### 方法与构造函数引用
+上面的`Converter`还可以通过静态方法引用来实现：
+```java
+Converter<String, Integer> converter = Integer::valueOf;
+Integer converted = converter.convert("123");
+System.out.println(converted);   // 123
+```
+ 接下来看看构造函数是如何使用::关键字来引用的，首先我们定义一个包含多个构造函数的简单类：
+ ```java
+class Person {
+    String firstName;
+    String lastName;
+
+    Person() {}
+
+    Person(String firstName, String lastName) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+    }
+}
+ ```
+ 接下来我们指定一个用来创建Person对象的对象工厂接口：
+ ```java
+ interface PersonFactory<P extends Person> {
+    P create(String firstName, String lastName);
+}
+ ```
+ 这里我们使用构造函数引用来将他们关联起来，而不是实现一个完整的工厂：
+ ```java
+PersonFactory<Person> personFactory = Person::new;
+Person person = personFactory.create("Peter", "Parker");
+ ```
+ 我们只需要使用 Person::new 来获取Person类构造函数的引用，Java编译器会自动根据PersonFactory.create方法的签名来选择合适的构造函数。
+
+#### Date Time API 
+Java 8 在包java.time下包含了一组全新的时间日期API。新的日期API和开源的Joda-Time库差不多，但又不完全一样：
+```java
+LocalDate today = LocalDate.now();
+LocalDate tomorrow = today.plus(1, ChronoUnit.DAYS);
+LocalDate yesterday = tomorrow.minusDays(2);
+
+LocalDate independenceDay = LocalDate.of(2014, Month.JULY, 4);
+DayOfWeek dayOfWeek = independenceDay.getDayOfWeek();
+
+System.out.println(dayOfWeek);    // FRIDAY
+```
+#### 标准Base64编码/解码
+
+#### 移除持久代(PermGen)
 
 {% note info %}
 ## JDK9
@@ -250,3 +419,4 @@ var x = new ArrayList<String>();
 参考资料：
 * https://www.oracle.com/technetwork/java/javase/overview/index.html
 * https://blog.csdn.net/fenglllle/article/details/81975222
+* https://www.jianshu.com/p/0bf8fe0f153b
