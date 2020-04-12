@@ -105,7 +105,7 @@ date: 2019-06-24 22:39:17
 2006年12月11日发布，工程代号Mustang(野马)。结束了J2EE、J2SE和J2ME的命名方式，启用Java SE6、Java EE 6和Java ME 6的命名方式。 ![JDK1.6架构图](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/jdk-versions/JDK1.6%E6%9E%B6%E6%9E%84%E5%9B%BE.png)
 
 ### 新特性
-* 动态语言支持(通过内置Mozillaa JavaScript Rhino引擎实现)
+* 动态语言支持(通过内置Mozilla JavaScript Rhino引擎实现)
 * 提供编译API
 * 微型HTTP服务器API
 * 改进了锁与同步、垃圾收集和类加载等
@@ -120,13 +120,12 @@ date: 2019-06-24 22:39:17
 
 ### 新特性
 * 提供新的G1收集器
-从JDK1.3开始，HotSpot团队一直努力朝着高效收集、减少停顿(STW: Stop The World)的方向努力，贡献了从串行到并行再到CMS乃至最新的G1在内的一系列优秀的垃圾收集器。G1(Garbage First)最大的特点是引入分区的思想，弱化了分代的概念，合理利用垃圾收集各个周期的资源，解决了其他收集器甚至CMS的众多缺陷。
+从JDK1.3开始，HotSpot团队一直努力朝着高效收集、减少停顿(STW: Stop The World)的方向努力，贡献了从串行到并行再到CMS(Concurrent Mark-Sweep Collector)乃至最新的G1在内的一系列优秀的垃圾收集器。G1(Garbage First)最大的特点是引入分区的思想，弱化了分代的概念，合理利用垃圾收集各个周期的资源，解决了其他收集器甚至CMS的众多缺陷。
 &nbsp;
 JDK默认垃圾回收器查看方法：
 ```
 java -XX:+PrintCommandLineFlags -version
 ```
-* 升级类加载架构
 * Try-With-Resources
 操作的类只要是实现了`AutoCloseable`接口就可以在try语句块退出的时候自动调用close方法关闭流资源。
 ```java
@@ -149,6 +148,32 @@ switch (str){
 * 泛型推导
 ```java
 List<String> list = new ArrayList<>();
+```
+* 捕获多个异常
+Java7以前在一个方法抛出多个异常时，只能一个个的catch，这样代码会有多个catch,显得很不友好，现在只需一个catch语句，多个异常类型用"|"隔开。
+```java
+try {
+  result = field.get(obj);
+} catch (IllegalArgumentException | IllegalAccessException e) {
+  e.printStackTrace();
+}
+
+```
+* 数字中可添加分隔符
+Java7中支持在数字中间增加'\_'作为分隔符，分隔长int以及long（也支持double,float），显示更直观，如（12\_123\_456）。
+下划线只能在数字中间，编译时编译器自动删除数字中的下划线。
+```java
+int intOne = 1_000_000;
+long longOne = 1_000_000;
+double doubleOne = 1_000_000;
+float floatOne = 1_000_000;
+```
+* 增加二进制表示
+Java7前支持十进制（123）、八进制（0123）、十六进制（0X12AB）
+```java
+int binary = 0b0001_1001;
+System.out.println("binary is :"+binary);
+// binary is :25
 ```
 
 {% note info %}
@@ -279,12 +304,156 @@ optional.ifPresent((s) -> System.out.println(s.charAt(0)));     // "b"
 
 // "aaa1", "aaa2"
  ```
- 需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringCollection是不会被修改的。
- ```java
- System.out.println(stringCollection);
-// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
- ```
+	需要注意的是，排序只创建了一个排列好后的Stream，而不会影响原有的数据源，排序之后原数据stringCollection是不会被修改的。
+	 ```java
+	 System.out.println(stringCollection);
+	// ddd2, aaa2, bbb1, aaa1, bbb3, ccc, bbb2, ddd1
+	 ```
  * Map映射
+ 中间操作map会将元素根据指定的Function接口来依次将元素转成另外的对象，下面的示例展示了将字符串转换为大写字符串。你也可以通过map来将对象转换成其他类型，map返回的Stream类型是根据你map传递进去的函数的返回值决定的。
+ ```java
+ stringCollection
+    .stream()
+    .map(String::toUpperCase)
+    .sorted((a, b) -> b.compareTo(a))
+    .forEach(System.out::println);
+
+// "DDD2", "DDD1", "CCC", "BBB3", "BBB2", "AAA2", "AAA1"
+ ```
+ * Match匹配
+ Stream提供了多种匹配操作，允许检测指定的Predicate是否匹配整个Stream。所有的匹配操作都是最终操作，并返回一个boolean类型的值。
+ ```java
+ boolean anyStartsWithA = 
+    stringCollection
+        .stream()
+        .anyMatch((s) -> s.startsWith("a"));
+
+System.out.println(anyStartsWithA);      // true
+
+boolean allStartsWithA = 
+    stringCollection
+        .stream()
+        .allMatch((s) -> s.startsWith("a"));
+
+System.out.println(allStartsWithA);      // false
+
+boolean noneStartsWithZ = 
+    stringCollection
+        .stream()
+        .noneMatch((s) -> s.startsWith("z"));
+
+System.out.println(noneStartsWithZ);      // true
+ ```
+ * Count计数
+ 计数是一个最终操作，返回Stream中元素的个数，返回值类型是long。
+ ```java
+ long startsWithB = 
+    stringCollection
+        .stream()
+        .filter((s) -> s.startsWith("b"))
+        .count();
+
+System.out.println(startsWithB);    // 3
+ ```
+ * Reduce规约
+ 这是一个最终操作，允许通过指定的函数来讲stream中的多个元素规约为一个元素，规越后的结果是通过Optional接口表示的：
+ ```java
+ Optional<String> reduced =
+    stringCollection
+        .stream()
+        .sorted()
+        .reduce((s1, s2) -> s1 + "#" + s2);
+
+reduced.ifPresent(System.out::println);
+// "aaa1#aaa2#bbb1#bbb2#bbb3#ccc#ddd1#ddd2"
+ ```
+ * 并行Streams
+ 前面提到过Stream有串行和并行两种，串行Stream上的操作是在一个线程中依次完成，而并行Stream则是在多个线程上同时执行。
+ 下面的例子展示了是如何通过并行Stream来提升性能：
+ 首先我们创建一个没有重复元素的大表
+ ```java
+ int max = 1000000;
+List<String> values = new ArrayList<>(max);
+for (int i = 0; i < max; i++) {
+    UUID uuid = UUID.randomUUID();
+    values.add(uuid.toString());
+}
+ ```
+ 	然后我们计算一下排序这个Stream要耗时多久
+ 	串行排序：
+ ```java
+long t0 = System.nanoTime();
+
+long count = values.stream().sorted().count();
+System.out.println(count);
+
+long t1 = System.nanoTime();
+
+long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+System.out.println(String.format("sequential sort took: %d ms", millis));
+// 串行耗时: 899 ms
+```
+	并行排序：
+```java
+long t0 = System.nanoTime();
+
+long count = values.parallelStream().sorted().count();
+System.out.println(count);
+
+long t1 = System.nanoTime();
+
+long millis = TimeUnit.NANOSECONDS.toMillis(t1 - t0);
+System.out.println(String.format("parallel sort took: %d ms", millis));
+// 并行排序耗时: 472 ms
+```
+	上面两个代码几乎是一样的，但是并行版的快了50%之多，唯一需要做的改动就是将stream()改为parallelStream()。
+ * Map
+前面提到过，Map类型不支持stream，不过Map提供了一些新的有用的方法来处理一些日常任务。
+```java
+Map<Integer, String> map = new HashMap<>();
+
+for (int i = 0; i < 10; i++) {
+    map.putIfAbsent(i, "val" + i);
+}
+
+map.forEach((id, val) -> System.out.println(val));
+```
+	以上代码很容易理解， putIfAbsent 不需要我们做额外的存在性检查，而forEach则接收一个Consumer接口来对map里的每一个键值对进行操作。
+	下面的例子展示了map上的其他有用的函数：
+```java
+map.computeIfPresent(3, (num, val) -> val + num);
+map.get(3);             // val33
+
+map.computeIfPresent(9, (num, val) -> null);
+map.containsKey(9);     // false
+
+map.computeIfAbsent(23, num -> "val" + num);
+map.containsKey(23);    // true
+
+map.computeIfAbsent(3, num -> "bam");
+map.get(3);             // val33
+```
+	接下来展示如何在Map里删除一个键值全都匹配的项
+```java
+map.remove(3, "val3");
+map.get(3);             // val33
+
+map.remove(3, "val33");
+map.get(3);             // null
+```
+	另外一个有用的方法
+```java
+map.getOrDefault(42, "not found");  // not found
+```
+	对Map的元素做合并也变得很容易了：
+```java
+map.merge(9, "val9", (value, newValue) -> value.concat(newValue));
+map.get(9);             // val9
+
+map.merge(9, "concat", (value, newValue) -> value.concat(newValue));
+map.get(9);          
+```
+	Merge做的事情是如果键名不存在则插入，否则则对原键对应的值做合并操作并重新插入到map中。
 
 #### 方法与构造函数引用
 上面的`Converter`还可以通过静态方法引用来实现：
@@ -419,4 +588,5 @@ var x = new ArrayList<String>();
 参考资料：
 * https://www.oracle.com/technetwork/java/javase/overview/index.html
 * https://blog.csdn.net/fenglllle/article/details/81975222
+* https://blog.csdn.net/u014209205/article/details/79718689
 * https://www.jianshu.com/p/0bf8fe0f153b
