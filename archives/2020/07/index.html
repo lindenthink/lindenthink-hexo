@@ -314,17 +314,16 @@
   !function (e, t, a) {function r() {for (var e = 0; e < s.length; e++) s[e].alpha <= 0 ? (t.body.removeChild(s[e].el), s.splice(e, 1)) : (s[e].y--, s[e].scale += .004, s[e].alpha -= .013, s[e].el.style.cssText = "left:" + s[e].x + "px;top:" + s[e].y + "px;opacity:" + s[e].alpha + ";transform:scale(" + s[e].scale + "," + s[e].scale + ") rotate(45deg);background:" + s[e].color + ";z-index:99999");requestAnimationFrame(r)}function n() {var t = "function" == typeof e.onclick && e.onclick;e.onclick = function (e) {t && t(), o(e)}}function o(e) {var a = t.createElement("div");a.className = "heart", s.push({el: a,x: e.clientX - 5,y: e.clientY - 5,scale: 1,alpha: 1,color: c()}), t.body.appendChild(a)}function i(e) {var a = t.createElement("style");a.type = "text/css";try {a.appendChild(t.createTextNode(e))} catch (t) {a.styleSheet.cssText = e}t.getElementsByTagName("head")[0].appendChild(a)}function c() {return "rgb(" + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + "," + ~~(255 * Math.random()) + ")"}var s = [];e.requestAnimationFrame = e.requestAnimationFrame || e.webkitRequestAnimationFrame || e.mozRequestAnimationFrame || e.oRequestAnimationFrame || e.msRequestAnimationFrame || function (e) {setTimeout(e, 1e3 / 60)}, i(".heart{width: 10px;height: 10px;position: fixed;background: #f00;transform: rotate(45deg);-webkit-transform: rotate(45deg);-moz-transform: rotate(45deg);}.heart:after,.heart:before{content: '';width: inherit;height: inherit;background: inherit;border-radius: 50%;-webkit-border-radius: 50%;-moz-border-radius: 50%;position: fixed;}.heart:after{top: -5px;}.heart:before{left: -5px;}"), n(), r()}(window, document);
 </script>
 
-  <meta name="description" content="简介一花一世界，一叶一菩提，欢迎光临菩提思！                         站长闲来无事时才会思索人生的意义，那我们平时忙碌的又是为了什么？只有不断去思考和总结，人生才会更加有意义！                         内容沉淀技术不断提升自己，持之以恒巧用工具避免重复劳动，事倍功倍酸甜苦辣体会世间百态，慢走细品兴趣爱好丰富内心世界，悠然自得">
+  <meta name="description" content="书到用时方恨少，事非经过不知难。">
 <meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://47.104.243.84/about/index.html">
+<meta property="og:title" content="菩提思">
+<meta property="og:url" content="http://47.104.243.84/archives/2020/07/index.html">
 <meta property="og:site_name" content="菩提思">
-<meta property="og:description" content="简介一花一世界，一叶一菩提，欢迎光临菩提思！                         站长闲来无事时才会思索人生的意义，那我们平时忙碌的又是为了什么？只有不断去思考和总结，人生才会更加有意义！                         内容沉淀技术不断提升自己，持之以恒巧用工具避免重复劳动，事倍功倍酸甜苦辣体会世间百态，慢走细品兴趣爱好丰富内心世界，悠然自得">
+<meta property="og:description" content="书到用时方恨少，事非经过不知难。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-04-03T11:53:17.702Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于">
-<meta name="twitter:description" content="简介一花一世界，一叶一菩提，欢迎光临菩提思！                         站长闲来无事时才会思索人生的意义，那我们平时忙碌的又是为了什么？只有不断去思考和总结，人生才会更加有意义！                         内容沉淀技术不断提升自己，持之以恒巧用工具避免重复劳动，事倍功倍酸甜苦辣体会世间百态，慢走细品兴趣爱好丰富内心世界，悠然自得">
+<meta name="twitter:title" content="菩提思">
+<meta name="twitter:description" content="书到用时方恨少，事非经过不知难。">
 
 
 
@@ -332,7 +331,7 @@
 
   
   
-  <link rel="canonical" href="http://47.104.243.84/about/">
+  <link rel="canonical" href="http://47.104.243.84/archives/2020/07/">
 
 
 
@@ -342,7 +341,7 @@
   };
 </script>
 
-  <title>关于 | 菩提思</title>
+  <title>归档 | 菩提思</title>
   
 
 
@@ -390,7 +389,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left page-archive">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -482,7 +481,7 @@
         
         
           
-          <li class="menu-item menu-item-archives">
+          <li class="menu-item menu-item-archives menu-item-active">
 
     
     
@@ -499,7 +498,7 @@
         
         
           
-          <li class="menu-item menu-item-about menu-item-active">
+          <li class="menu-item menu-item-about">
 
     
     
@@ -623,74 +622,78 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">关于
-
-</h1>
-
-<div class="post-meta">
   
   
-
-
-
-</div>
-
-</header>
+  
+  <div class="post-block archive">
+    <div id="posts" class="posts-collapse">
+      <span class="archive-move-on"></span>
 
       
+      <span class="archive-page-counter">
+        
+        
+        
+          
+        
+        嗯..! 目前共计 11 篇日志。 继续努力。
+      </span>
       
+
       
-      <div class="post-body han-init-context">
+
         
         
-          <div class="note success">
-            <h4 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h4><p>一花一世界，一叶一菩提，欢迎光临菩提思！</p>
-          </div>
-<div class="note primary">
-            <h4 id="站长"><a href="#站长" class="headerlink" title="站长"></a>站长</h4><p>闲来无事时才会思索人生的意义，那我们平时忙碌的又是为了什么？只有不断去思考和总结，人生才会更加有意义！</p>
-          </div>
-<div class="note info">
-            <h4 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h4><ul><li>沉淀技术不断提升自己，持之以恒</li><li>巧用工具避免重复劳动，事倍功倍</li><li>酸甜苦辣体会世间百态，慢走细品</li><li>兴趣爱好丰富内心世界，悠然自得</li></ul>
-          </div>
-<div class="note warning">
-            <h4 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h4><ul><li>在线时间：9:00 - 18:00</li><li>友链：<ul><li>申请格式：名称+网址[+标语][+展示图片(140*140)地址]</li><li>申请方式：邮件或在线</li><li>申请条件：博客内容完整且至少发表十篇以上原创文章</li></ul></li></ul>
-          </div>
-<div class="note danger">
-            <h4 id="禁止"><a href="#禁止" class="headerlink" title="禁止"></a>禁止</h4><ul><li>请不要发表辱骂等不当言论</li><li>请不要发表广告或危险链接</li></ul>
+        
+
+        
+          
+          <div class="collection-title">
+            <h1 class="archive-year" id="archive-year-2020">2020</h1>
           </div>
         
+        
+
+        
+
+  <article class="post post-type-original" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2020/07/24/解放C盘/" itemprop="url">
+            
+              <span itemprop="name">解放C盘</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2020-07-24T09:19:17+08:00" content="2020-07-24">
+          07-24
+        </time>
       </div>
+
+    </header>
+  </article>
+
+
+
       
-      
-      
+
     </div>
-    
-
-
-
-    
-    
-    
   </div>
+  
+  
+  
+
+  
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-
-  
-
-
 
         </div>
         
@@ -710,17 +713,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -879,23 +873,6 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#简介"><span class="nav-number">1.</span> <span class="nav-text">简介</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#站长"><span class="nav-number">2.</span> <span class="nav-text">站长</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#内容"><span class="nav-number">3.</span> <span class="nav-text">内容</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#注意"><span class="nav-number">4.</span> <span class="nav-text">注意</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#禁止"><span class="nav-number">5.</span> <span class="nav-text">禁止</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
 
@@ -1053,10 +1030,6 @@
 
 
   
-  <script src="/js/scrollspy.js?v=7.1.0"></script>
-<script src="/js/post-details.js?v=7.1.0"></script>
-
-
 
   
 
@@ -1104,8 +1077,6 @@
 
 
 
-
-  
 
 
   
