@@ -6,7 +6,7 @@ categories:
   - Java
 date: 2019-06-24 22:39:17
 ---
-![](https://docs.oracle.com/en/java/javase/12/sp_common/shared-images/1-java.png)
+![](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/jdk-versions/logo.png)
 > 记录了JDK的发展历史以及各版本的主要特性，从1.7版本开始会结合示例进行说明和讲解，本文将持续进行收集和更新。
 
 <!-- more -->

@@ -10,7 +10,7 @@ categories:
     - IDE
 ---
 
-![](http://findbugs.sourceforge.net/umdFindbugs.png)
+![](https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/findbugs/logo.png)
 > FindBugs用来静态分析和查找Java代码中存在的Bugs，它的运行需要依赖1.7或更高版本的JRE(或JDK)，但是它可以分析从1.0到1.8各个版本的JDK编译出的程序，是一个基于字节码的工具。本文简单介绍了如何在IDEA中使用FindBugs，并对FindBugs的相关概念作出说明。
 
 

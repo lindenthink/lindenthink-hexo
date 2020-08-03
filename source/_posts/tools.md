@@ -8,7 +8,7 @@ top: 100
 date: 2019-06-11 23:36:43
 ---
 
-<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1563616241564&di=d4b053d5918b4ed6c7b34a9078c9a77d&imgtype=0&src=http%3A%2F%2Fwww.juimg.com%2Ftuku%2Fyulantu%2F130904%2F328517-130Z41J43398.jpg"  width="25%" height="25%">
+<img src="https://lindenthink.oss-cn-beijing.aliyuncs.com/picture/%E5%B8%B8%E7%94%A8%E7%BD%91%E7%AB%99%E9%9B%86%E5%90%88/logo.jpg"  width="25%" height="25%">
 > 主要记录了一些工具或者参考资料类等常常需要用到的网站，将持续进行收集和更新。
 
 <!-- more -->
