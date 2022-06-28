@@ -1096,7 +1096,7 @@ pre .javascript .function {
   background: #222;
 }
 .site-meta {
-  background: url("/images/banner.gif") round !important;
+  background: url("/lindenthink-hexo/images/banner.gif") round !important;
   margin: 0;
   text-align: center;
 }
@@ -1853,7 +1853,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #2aff32;
+  background: #1244ff;
 }
 .feed-link,
 .chat {
