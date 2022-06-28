@@ -356,7 +356,7 @@ System.out.println(noneStartsWithZ);      // true
 System.out.println(startsWithB);    // 3
  ```
  * Reduce规约
- 这是一个最终操作，允许通过指定的函数来讲stream中的多个元素规约为一个元素，规越后的结果是通过Optional接口表示的：
+ 这是一个最终操作，允许通过指定的函数来讲stream中的多个元素规约为一个元素，规约后的结果是通过Optional接口表示的：
  ```java
  Optional<String> reduced =
     stringCollection

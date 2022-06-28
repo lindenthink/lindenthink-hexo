@@ -3,8 +3,8 @@ Custom head.
 #}
 <!-- 多级分类实现 -->
 {% if is_category %}
-  <link rel="stylesheet" href="/lib/layui/css/layui.css"  media="all">
-  <script src="/lib/layui/layui.js" charset="utf-8"></script>
+  <link rel="stylesheet" href="/lindenthink-hexo/lib/layui/css/layui.css"  media="all">
+  <script src="/lindenthink-hexo/lib/layui/layui.js" charset="utf-8"></script>
   <script>
     let srcCats = [];
     {% for cat in site.categories %}

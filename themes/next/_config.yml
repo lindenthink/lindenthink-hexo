@@ -359,7 +359,7 @@ wechat_subscriber:
 reward_settings:
   # If true, reward would be displayed in every article by default.
   # You can show or hide reward in a specific article throuth `reward: true | false` in Front Matter.
-  enable: false
+  enable: true
   animation: true
   #comment: Donate comment here
 
@@ -634,8 +634,8 @@ changyan:
 # More info available at https://valine.js.org
 valine:
   enable: true # When enable is set to be true, leancloud_visitors is recommended to be closed for the re-initialization problem within different leancloud adk version.
-  appid:  oWo6kKY3sMJSHgETPN0wToR9-gzGzoHsz
-  appkey:  VLjcJi2mwUj7XeGj4Vq2sUmx
+  appid:  L4nHuhL2DAGYwFDHlxONztEO-gzGzoHsz
+  appkey:  INt3noa18YsmgdXBaXoocy2N
   notify: true # mail notifier, See: https://github.com/xCss/Valine/wiki
   verify: true # Verification code
   placeholder: 敬请留言，你的支持是我最大的动力！ # comment box placeholder
@@ -1218,26 +1218,26 @@ images: images
 friends: 
   -
     name: 菩提思
-    href: http://47.104.243.84/
+    href: https://lindenthink.github.io/lindenthink-hexo
     slogan: 一花一世界，一页一菩提
-    snapshot: http://47.104.243.84/images/avatar.jpeg
+    snapshot: https://lindenthink.github.io/lindenthink-hexo/images/avatar.jpeg
   - 
     name: 菩提思2
-    href: http://47.104.243.84/
+    href: https://lindenthink.github.io/lindenthink-hexo
     slogan: 一花一世界，一页一菩提
-    snapshot: http://47.104.243.84/images/avatar.jpeg
+    snapshot: https://lindenthink.github.io/lindenthink-hexo/images/avatar.jpeg
   - 
     name: 菩提思3
-    href: http://47.104.243.84/
+    href: https://lindenthink.github.io/lindenthink-hexo
     slogan: 一花一世界，一页一菩提
-    snapshot: http://47.104.243.84/images/avatar.jpeg
+    snapshot: https://lindenthink.github.io/lindenthink-hexo/images/avatar.jpeg
   - 
     name: 菩提思4
-    href: http://47.104.243.84/
+    href: https://lindenthink.github.io/lindenthink-hexo
     slogan: 一花一世界，一页一菩提
-    snapshot: http://47.104.243.84/images/avatar.jpeg
+    snapshot: https://lindenthink.github.io/lindenthink-hexo/images/avatar.jpeg
   - 
     name: 菩提思5
-    href: http://47.104.243.84/
+    href: https://lindenthink.github.io/lindenthink-hexo
     slogan: 一花一世界，一页一菩提
-    snapshot: http://47.104.243.84/images/avatar.jpeg
+    snapshot: https://lindenthink.github.io/lindenthink-hexo/images/avatar.jpeg
